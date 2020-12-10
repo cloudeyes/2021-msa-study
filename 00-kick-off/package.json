@@ -1,0 +1,14 @@
+{
+  "name": "00-kick-off",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build node_modules yarn.lock"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "shallow-equal-object": "^1.1.1"
+  }
+}
