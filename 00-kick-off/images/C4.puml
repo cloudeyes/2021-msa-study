@@ -15,7 +15,7 @@ skinparam roundCorner 20
 skinparam Padding 2
 skinparam wrapWidth 200
 skinparam default {
-    FontName Segoe UI Regular
+    FontName "Segoe UI"
     FontSize 18
 }
 
