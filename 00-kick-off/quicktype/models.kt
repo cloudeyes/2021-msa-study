@@ -1,7 +1,6 @@
 // To parse the JSON, install kotlin's serialization plugin and do:
 //
 // val json      = Json(JsonConfiguration.Stable)
-// val sku       = json.parse(Sku.serializer(), jsonString)
 // val integer   = json.parse(Integer.serializer(), jsonString)
 // val batch     = json.parse(Batch.serializer(), jsonString)
 // val order     = json.parse(Order.serializer(), jsonString)
@@ -11,33 +10,26 @@ package quicktype
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import kotlinx.serialization.internal.*
+import kotlinx.serialization.descriptors.*
+import kotlinx.serialization.encoding.*
 
 @Serializable
 data class Batch (
-    val allocations: List<OrderLine>,
-    val qty: Long,
     val reference: String,
-
-    /**
-     * TypeScript-JSON Schema for quicktype code generation.
-     */
-    val sku: String
+    val sku: String,
+    val qty: Long,
+    val allocations: List<OrderLine>
 )
 
 @Serializable
 data class OrderLine (
     val id: String,
-    val qty: Long,
-
-    /**
-     * TypeScript-JSON Schema for quicktype code generation.
-     */
-    val sku: String
+    val sku: String,
+    val qty: Long
 )
 
 @Serializable
 data class Order (
-    val orderLines: List<OrderLine>? = null,
-    val reference: String
+    val reference: String,
+    val orderLines: List<OrderLine>
 )

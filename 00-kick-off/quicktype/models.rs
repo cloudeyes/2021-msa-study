@@ -13,43 +13,26 @@
 
 extern crate serde_derive;
 
-pub type Sku = String;
 pub type Integer = f64;
 
 #[derive(Serialize, Deserialize)]
 pub struct Batch {
-    #[serde(rename = "allocations")]
-    allocations: Vec<OrderLine>,
-
-    #[serde(rename = "qty")]
-    qty: i64,
-
-    #[serde(rename = "reference")]
     reference: String,
-
-    /// TypeScript-JSON Schema for quicktype code generation.
-    #[serde(rename = "sku")]
     sku: String,
+    qty: i64,
+    allocations: Vec<OrderLine>,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct OrderLine {
-    #[serde(rename = "id")]
     id: String,
-
-    #[serde(rename = "qty")]
-    qty: i64,
-
-    /// TypeScript-JSON Schema for quicktype code generation.
-    #[serde(rename = "sku")]
     sku: String,
+    qty: i64,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct Order {
-    #[serde(rename = "orderLines")]
-    order_lines: Option<Vec<OrderLine>>,
-
-    #[serde(rename = "reference")]
     reference: String,
+    #[serde(rename = "orderLines")]
+    order_lines: Vec<OrderLine>,
 }

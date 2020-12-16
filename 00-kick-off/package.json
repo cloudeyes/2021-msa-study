@@ -9,14 +9,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "quicktype-kotlin": "yarn quicktype --src-lang=typescript --src=models.ts -o quicktype/models.kt --framework kotlinx",
-    "quicktype-go": "yarn quicktype --src-lang=typescript --src=models.ts -o quicktype/models.go --just-types-and-package",
-    "quicktype-rust": "yarn quicktype --src-lang=rust --src=models.ts -o quicktype/models.rs"
+    "quicktype-kt": "yarn quicktype -s typescript --src quicktype/models.ts -o quicktype/models.kt --framework kotlinx",
+    "quicktype-go": "yarn quicktype -s typescript --src quicktype/models.ts -o quicktype/models.go --just-types-and-package",
+    "quicktype-rs": "yarn quicktype -s typescript --src quicktype/models.ts -o quicktype/models.rs --density dense"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "quicktype": "^15.0.258"
+    "quicktype": "https://github.com/cloudeyes/quicktype"
   }
 }
