@@ -8,13 +8,14 @@ pub struct Batch {
 
 pub struct OrderLine {
     id: String,
-    qty: i64,
     sku: String,
+    qty: i64,
 }
 
+#[derive(Default)]
 pub struct Order {
-    order_lines: Option<Vec<OrderLine>>,
     reference: String,
+    order_lines: Vec<OrderLine>,
 }
 
 impl PartialEq for Batch {
@@ -49,5 +50,3 @@ mod tests {
 fn main() {
     println!("Hello, world!");
 }
-
-
