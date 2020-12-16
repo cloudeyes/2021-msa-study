@@ -1,6 +1,9 @@
+.mypy_cache
+.pytest_cache
 .ipynb_checkpoints
 __pycache__
 build/
 book/
 node_modules/
 SAP/
+target/
