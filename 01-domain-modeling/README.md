@@ -19,9 +19,9 @@
 
 **진행중**
 
-- [01-domain-modeling-gv.ipynb](/01-domain-modeling/01-domain-modeling-cs.ipynb) : C# 언어 구현
-- [01-domain-modeling-gv.ipynb](/01-domain-modeling/01-domain-modeling-gv.ipynb) : Groovy 언어 구현
-- [01-domain-modeling-kt.ipynb](/01-domain-modeling/01-domain-modeling-kt.ipynb) : Kotlin 언어 구현
+- [01-domain-modeling-gv.ipynb](/01-domain-modeling/01-domain-modeling-cs.ipynb) : C# 언어 구현 (60%)
+- [01-domain-modeling-gv.ipynb](/01-domain-modeling/01-domain-modeling-gv.ipynb) : Groovy 언어 구현 
+- [01-domain-modeling-kt.ipynb](/01-domain-modeling/01-domain-modeling-kt.ipynb) : Kotlin 언어 구현 (70%)
 - [01-domain-modeling-ts.ipynb](/01-domain-modeling/01-domain-modeling-ts.ipynb) : TypeScript 언어 구현
 
 
