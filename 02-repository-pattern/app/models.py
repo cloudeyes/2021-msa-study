@@ -3,12 +3,6 @@ from typing import Optional, NewType
 from dataclasses import dataclass
 from datetime import date
 
-Quantity = NewType("Quantity", int)
-Sku = NewType("Sku", str)
-Reference = NewType("Reference", str)
-OrderReference = NewType("OrderReference", str)
-ProductReference = NewType("ProductReference", str)
-
 class OutOfStock(Exception):
     pass
 
@@ -26,14 +20,14 @@ class OrderLine:
         
 class Batch:
     def __init__(
-        self, ref: Reference, sku: Sku, qty: int, eta: Optional[date]
+        self, ref: str, sku: str, qty: int, eta: Optional[date]=None
     ):
         self.reference = ref
         self.sku = sku
         self.eta = eta
         self._purchased_quantity = qty
         self._allocations = set[OrderLine]()
-        
+    
     def allocate(self, line: OrderLine) -> None:
         if self.can_allocate(line):
             self._allocations.add(line)
@@ -67,14 +61,3 @@ class Batch:
         if other.eta is None:
             return False
         return self.eta < other.eta
-    
-
-def allocate(line: OrderLine, batches: list[Batch]) -> str:
-    try:
-        batch = next(
-            b for b in sorted(batches) if b.can_allocate(line)
-        )
-        batch.allocate(line)
-        return batch.reference            
-    except StopIteration:
-        raise OutOfStock(f'Out of stock for sku {line.sku}')

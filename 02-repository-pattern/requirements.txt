@@ -1,5 +1,3 @@
 sqlalchemy
-
-# dev packages
 pytest
-mypy
+git+https://github.com/AllanDaemon/mypy.git@0edf1233672117c4555759c5a91461a502ddce5d
