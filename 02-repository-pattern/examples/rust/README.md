@@ -17,7 +17,7 @@
   ```
 - Ubuntu
   ```
-  sudo apt install libsqlite3-dev libpq-dev
+  $ sudo apt install libsqlite3-dev libpq-dev
   ```
 
 ### Project setup

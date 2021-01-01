@@ -79,7 +79,7 @@ use super::*;
             assert_eq!(1, results.len());
 
             let b1 = results.first().unwrap();
-            assert_eq!("batch-002", b1.reference);
+            assert_eq!("batch-001", b1.reference);
             assert_eq!("TEST-TABLE", b1.sku);
         })
     }
