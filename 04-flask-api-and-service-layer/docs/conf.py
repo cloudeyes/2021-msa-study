@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'Chapter 4 - Flask App'
-copyright = '2021, Joseph Kim'
+copyright = '2021, Joseph Kim <cloudeyes@gmail.com>'
 author = 'Joseph Kim'
 
 # -- General configuration ---------------------------------------------------

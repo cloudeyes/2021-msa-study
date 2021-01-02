@@ -2,7 +2,8 @@
 ===============================
 
 .. image:: https://images-na.ssl-images-amazon.com/images/I/51-q9CWNBHL._SX379_BO1,204,203,200_.jpg
-  :width: 200
+  :width: 250
+  :align: center
 
 .. automodule:: app
    :members:

@@ -1,14 +1,27 @@
+from __future__ import annotations
 """API 테스트."""
 import uuid
 
-
-def add_stock(stocks: list) -> None:
-    pass
+import pytest
 
 
-def random_sku() -> str:
+@pytest.fixture
+def add_stock() -> None:
+    def inner(stocks: list[tuple[str, str, int, str]]):
+        pass
+
+    return inner
+
+
+def random_sku(name: Optional[str] = None) -> str:
     """`uuid.uuid4` 로 생성된 Unique ID로 임의의 SKU 문자열을 리턴합니다."""
+    if name:
+        return name
     return str(uuid.uuid4())
+
+
+def random_batchref(id: int):
+    pass
 
 
 def test_api_returns_allocation(add_stock) -> None:

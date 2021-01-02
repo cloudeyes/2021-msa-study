@@ -20,16 +20,23 @@ ScopedSession = AbstractContextManager[Session]
 
 
 def livereload_doc() -> None:
-    """파이썬 코드와 rst 파일이 변경될 때 자동으로 문서를 빌드하고 브라우저를 리프레시 합니다."""
+    """파이썬 코드와 rst 파일이 변경될 때 자동으로 문서를 빌드하고 브라우저를 리프레시 합니다.
+
+    실행 방법:
+
+    .. code-block:: bash
+
+        $ python -c "import app; app.livereload_doc()"
+    """
     from livereload import Server, shell
     server = Server()
-    server.watch('app/**/*.py', shell('make html', cwd='doc'))
-    server.watch('doc/*.rst', shell('make html', cwd='doc'))
-    server.serve(root='doc/_build/html')
+    server.watch('app/**/*.py', shell('make html', cwd='docs'))
+    server.watch('docs/*.rst', shell('make html', cwd='docs'))
+    server.serve(root='docs/_build/html')
 
 
 class mytest:
-    """pytest 를 흉내내는 간한한 Jupyter Notebook용 테스트 러너 입니다."""
+    """pytest 를 흉내내는 간한한 Jupyter Notebook용 테스트 러너 입니다. """
     module = None
 
     @classmethod
