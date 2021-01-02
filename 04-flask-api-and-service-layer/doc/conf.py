@@ -14,10 +14,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
-import app
 # -- Project information -----------------------------------------------------
 
-project = 'app'
+project = 'Chapter 4 - Flask App'
 copyright = '2021, Joseph Kim'
 author = 'Joseph Kim'
 
@@ -29,7 +28,14 @@ author = 'Joseph Kim'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx_rtd_theme',
+    'sphinxcontrib.plantuml',
+    'sphinx.ext.napoleon',
+    'sphinx_paramlinks',
 ]
+
+add_module_names = False
+
+plantuml_output_format = 'svg'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
