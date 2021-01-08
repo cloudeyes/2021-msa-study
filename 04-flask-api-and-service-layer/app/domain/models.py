@@ -13,7 +13,7 @@ class OutOfStock(Exception):
 
 @dataclass
 class Order:
-    """고객이 발주하는 주문(Order)의 모델입니다.."""
+    """고객이 발주하는 주문(Order) 모델입니다.."""
     id: str
 
 

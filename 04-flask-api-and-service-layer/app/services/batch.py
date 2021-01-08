@@ -1,38 +1,18 @@
-from typing import Callable, TypeVar, NewType, Any, Tuple, cast
-from contextlib import AbstractContextManager
+"""Batch 서비스."""
+from ..adapters.repository import AbstractRepository
+from ..adapters.orm import AbstractSession
+from ..domain import models
 
-from flask import Flask, jsonify, request
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+class InvalidSku(Exception):
+    pass
 
-from app import models, orm, repository
-from app.repository import SqlAlchemyRepository
+def is_valid_sku(sku, batches):
+    return sku in {b.sku for b in batches}
 
-flask_app = Flask(__name__)
-
-FlaskResponse = Tuple[Any, int]
-DecoratorType = Callable[..., Callable[[Callable[..., Any]], Callable[...,
-                                                                      Any]]]
-route: DecoratorType = cast(DecoratorType, flask_app.route)
-
-metadata = orm.start_mappers()
-engine = orm.init_engine(metadata, "sqlite://", show_log=True)
-get_session = orm.sessionfactory(engine)
-
-
-def get_repo() -> SqlAlchemyRepository:
-    return SqlAlchemyRepository(get_session())
-
-
-@route("/allocate", methods=['POST'])
-def allocate_endpoint() -> FlaskResponse:
-    with get_repo() as repo:
-        batches = repo.list()
-        line = models.OrderLine(
-            request.json['orderid'],
-            request.json['sku'],
-            request.json['qty'],
-        )
-        batchref = models.allocate(line, batches)
-
-    return jsonify({'batchref': batchref}), 201
+def allocate(line: models.OrderLine, repo: AbstractRepository, session: AbstractSession) -> str:
+    batches = repo.list()
+    if not is_valid_sku(line.sku, batches):
+        raise InvalidSku(f'Invalid sku {line.sku}')
+    batchref = models.allocate(line, batches)
+    session.commit()
+    return batchref

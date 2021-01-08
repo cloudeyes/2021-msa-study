@@ -1,12 +1,18 @@
-from __future__ import annotations
 """API 테스트."""
+from __future__ import annotations
+from typing import Optional, Callable
+from datetime import date, timedelta
 import uuid
 
 import pytest
+import requests
+
+from ...domain.models import Batch
+from ... import config
 
 
 @pytest.fixture
-def add_stock() -> None:
+def add_stock() -> Callable[..., None]:
     def inner(stocks: list[tuple[str, str, int, str]]):
         pass
 
@@ -20,8 +26,15 @@ def random_sku(name: Optional[str] = None) -> str:
     return str(uuid.uuid4())
 
 
-def random_batchref(id: int):
-    pass
+def random_batchref(days_after: int) -> Batch:
+    ref = str(uuid.uuid4())
+    today = date.today()
+
+    return Batch(ref, 'TEST', 1, today + timedelta(days=days_after))
+
+
+def random_orderid() -> str:
+    return str(uuid.uuid4())
 
 
 def test_api_returns_allocation(add_stock) -> None:
@@ -35,7 +48,9 @@ def test_api_returns_allocation(add_stock) -> None:
         (otherbatch, othersku, 100, None),
     ])
     data = {'orderid': random_orderid(), 'sku': sku, 'qty': 3}
+
     url = config.get_api_url()
     r = requests.post(f'{url}/allocate', json=data)
+
     assert r.status_code == 201
     assert r.json()['batchref'] == earlybatch
