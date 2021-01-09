@@ -1,3 +1,12 @@
 {
-    "restructuredtext.languageServer.disabled": true
+  "restructuredtext.languageServer.disabled": true,
+  "python.formatting.provider": "yapf",
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true,
+  "python.testing.pytestArgs": [
+      "app"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.pytestEnabled": true
 }

@@ -1,6 +1,0 @@
-{
-  "python.pythonPath": "/home/ykkim/conda/envs/lab/bin/python",
-  "python.formatting.provider": "yapf",
-  "python.linting.mypyEnabled": true,
-  "python.linting.enabled": true
-}
