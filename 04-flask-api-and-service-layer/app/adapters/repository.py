@@ -1,6 +1,6 @@
 """레포지터리 패턴 구현."""
 from __future__ import annotations
-from typing import Optional, Callable, Union, Literal, Any, cast
+from typing import Optional, Union, Literal, Any, cast
 from contextlib import ContextDecorator
 import abc
 
@@ -12,11 +12,11 @@ from ..domain.models import Batch, OrderLine
 class AbstractRepository(abc.ABC, ContextDecorator):
     """Repository 패턴 추상 인터페이스."""
     def __enter__(self) -> AbstractRepository:
-        """`contextmanager`의 필수 인터페이스 구현. """
+        """`module`:contextmanager`의 필수 인터페이스 구현."""
         return self
 
     def __exit__(self,
-                 type: Any = None,
+                 typ: Any = None,
                  value: Any = None,
                  traceback: Any = None) -> Literal[False]:
         self.close()
@@ -49,8 +49,6 @@ class AbstractRepository(abc.ABC, ContextDecorator):
 
 
 class SqlAlchemyRepository(AbstractRepository):
-    from sqlalchemy.orm import Session
-
     def __init__(self, db: Session):
         self.db = db
 

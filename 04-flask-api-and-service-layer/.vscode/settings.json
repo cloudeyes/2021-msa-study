@@ -11,5 +11,6 @@
   "python.testing.pytestEnabled": true,
   "editor.rulers": [
     79, 120
-  ]
+  ],
+  "restructuredtext.confPath": "${workspaceFolder}/docs"
 }

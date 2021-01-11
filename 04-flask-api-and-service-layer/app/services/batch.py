@@ -11,14 +11,14 @@ class InvalidSku(Exception):
     ...
 
 
-def is_valid_sku(sku, items: Sequence[Any]) -> bool:
+def is_valid_sku(sku: str, items: Sequence[Any]) -> bool:
     return sku in {it.sku for it in items}
 
 
 def allocate(line: models.OrderLine, repo: AbstractRepository,
              session: AbstractSession) -> str:
     batches = repo.list()
-    if not is_valid_sku(line.sku, batches):  # type: ignore
+    if not is_valid_sku(line.sku, batches):
         raise InvalidSku(f'Invalid sku {line.sku}')
     batchref = models.allocate(line, batches)
     session.commit()

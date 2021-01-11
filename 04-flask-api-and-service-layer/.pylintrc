@@ -1,0 +1,10 @@
+[DESIGN]
+
+max-args=7
+min-public-methods=1
+
+
+[TYPECHECK]
+
+ignored-modules=sqlalchemy
+ignored-classes=Session

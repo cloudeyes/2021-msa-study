@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Callable, Generator, Optional, Sequence, Union, Any, cast
+from typing import Callable, Generator, Optional, Union, Any
 from contextlib import contextmanager, AbstractContextManager
-import abc, io, sys, re, logging
+import abc
+import io
+import re
+import logging
 
 from sqlalchemy import (MetaData, Table, Column, ForeignKey, Integer, String,
-                        Date, engine, create_engine)
+                        Date, create_engine)
+from sqlalchemy.engine import Engine
+from sqlalchemy.pool import Pool
 from sqlalchemy.orm import (
     mapper,
     relationship,
@@ -16,7 +21,6 @@ from sqlalchemy.orm import (
 )
 from sqlalchemy.orm.session import Session
 
-from ..adapters.repository import AbstractRepository
 from ..domain.models import Batch, OrderLine
 
 SessionMaker = Callable[[], Session]
@@ -29,11 +33,14 @@ class AbstractSession(abc.ABC):
     """세션의 일반적인 작업(`commit`, `)."""
     @abc.abstractmethod
     def commit(self) -> None:
+        """트랜잭션을 커밋합니다."""
+        # TODO: 설명을 좀더 자세하게 적어주세요.
         raise NotImplementedError
 
 
-def start_mappers(use_exist=True) -> MetaData:
-    global metadata
+def start_mappers(use_exist: bool = True) -> MetaData:
+    """도메인 객체들을 SqlAlchemy ORM 매퍼에 등록합니다."""
+    global metadata  # pylint: disable=global-statement,invalid-name
     if use_exist and metadata:
         return metadata
 
@@ -93,23 +100,28 @@ def clear_mappers() -> None:
     _clear_mappers()
 
 
-def init_engine(metadata: MetaData,
+def init_engine(meta: MetaData,
                 url: str,
                 connect_args: Optional[dict[str, Any]] = None,
-                poolclass=None,
+                poolclass: Optional[Pool] = None,
                 show_log: Union[bool, dict[str, Any]] = False,
-                drop_all=False) -> engine.Engine:
+                drop_all: bool = False) -> Engine:
+    """ORM Engine을 초기화 합니다.
 
+    TODO: 상세 설명 추가.
+    """
     logger = logging.getLogger("sqlalchemy.engine.base.Engine")
     out = io.StringIO()
     logger.addHandler(logging.StreamHandler(out))
     engine = create_engine(url,
                            connect_args=connect_args or {},
                            poolclass=poolclass,
-                           echo=False if not show_log else True)
+                           echo=show_log)
 
-    drop_all and metadata.drop_all(engine)
-    metadata.create_all(engine)
+    if drop_all:
+        meta.drop_all(engine)
+
+    meta.create_all(engine)
 
     if show_log:
         log_txt = out.getvalue()
@@ -123,15 +135,25 @@ def init_engine(metadata: MetaData,
     return engine
 
 
-def get_scoped_session(engine) -> ScopedSession:
+def get_scoped_session(engine: Engine) -> Callable[[], ScopedSession]:
+    """``with...`` 문으로 자동 리소스가 반환되는 세션을 리턴합니다.
+
+    Example:
+        예제 코드입니다. ::
+
+            with get_scoped_session() as db:
+                batches = db.query(Batch).all()
+                ...
+    """
     get_session = sessionmaker(engine)
 
     @contextmanager
-    def scoped_session():
-        session = None
+    def scoped_session() -> Generator[Session, None, None]:
+        sess: Session = None
         try:
-            yield (session := get_session())
+            yield (sess := get_session())  # pylint: disable=superfluous-parens
         finally:
-            session and session.close()
+            if sess:
+                sess.close()
 
     return scoped_session

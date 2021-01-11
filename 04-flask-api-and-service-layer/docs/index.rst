@@ -14,6 +14,7 @@
 
    domain.rst
    apps.rst
+   adapters.rst
 
 
 Indices and tables
