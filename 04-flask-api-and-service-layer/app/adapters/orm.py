@@ -2,18 +2,24 @@
 
 from __future__ import annotations
 
-from typing import Callable, Generator, Optional, Sequence, Union, cast
+from typing import Callable, Generator, Optional, Sequence, Union, Any, cast
 from contextlib import contextmanager, AbstractContextManager
 import abc, io, sys, re, logging
 
 from sqlalchemy import (MetaData, Table, Column, ForeignKey, Integer, String,
                         Date, engine, create_engine)
-from sqlalchemy.orm import mapper, relationship, sessionmaker, clear_mappers
+from sqlalchemy.orm import (
+    mapper,
+    relationship,
+    sessionmaker,
+    clear_mappers as _clear_mappers,
+)
 from sqlalchemy.orm.session import Session
 
 from ..adapters.repository import AbstractRepository
 from ..domain.models import Batch, OrderLine
 
+SessionMaker = Callable[[], Session]
 ScopedSession = AbstractContextManager[Session]
 
 metadata: MetaData = None
@@ -22,38 +28,8 @@ metadata: MetaData = None
 class AbstractSession(abc.ABC):
     """세션의 일반적인 작업(`commit`, `)."""
     @abc.abstractmethod
-    def commit() -> None:
+    def commit(self) -> None:
         raise NotImplementedError
-
-
-class SqlAlchemyRepository(AbstractRepository):
-    def __init__(self, db: Session):
-        self.db = db
-
-    def close(self) -> None:
-        self.db.close()
-
-    def add(self, batch: Batch) -> None:
-        self.db.add(batch)
-        self.db.commit()
-
-    def get(self, reference: str) -> Optional[Batch]:
-        return cast(
-            Optional[Batch],
-            self.db.query(Batch).filter_by(reference=reference).first())
-
-    def delete(self, item: Union[Batch, OrderLine]) -> None:
-        self.db.delete(item)
-        self.db.commit()
-
-    def list(self) -> list[Batch]:
-        return cast(list[Batch], self.db.query(Batch).all())
-
-    def clear(self) -> None:
-        self.db.execute('DELETE FROM allocation')
-        self.db.execute('DELETE FROM batch')
-        self.db.execute('DELETE FROM order_line')
-        self.db.commit()
 
 
 def start_mappers(use_exist=True) -> MetaData:
@@ -112,11 +88,16 @@ def start_mappers(use_exist=True) -> MetaData:
     return metadata
 
 
+def clear_mappers() -> None:
+    """ORM 매핑을 초기화 합니다."""
+    _clear_mappers()
+
+
 def init_engine(metadata: MetaData,
                 url: str,
-                connect_args: dict[str, Any] = None,
+                connect_args: Optional[dict[str, Any]] = None,
                 poolclass=None,
-                show_log: Union[bool, dict] = False,
+                show_log: Union[bool, dict[str, Any]] = False,
                 drop_all=False) -> engine.Engine:
 
     logger = logging.getLogger("sqlalchemy.engine.base.Engine")
@@ -125,7 +106,7 @@ def init_engine(metadata: MetaData,
     engine = create_engine(url,
                            connect_args=connect_args or {},
                            poolclass=poolclass,
-                           echo=True)
+                           echo=False if not show_log else True)
 
     drop_all and metadata.drop_all(engine)
     metadata.create_all(engine)
@@ -154,12 +135,3 @@ def get_scoped_session(engine) -> ScopedSession:
             session and session.close()
 
     return scoped_session
-
-
-def get_scoped_repo(engine):
-    get_session = sessionmaker(engine)
-
-    def get_repo() -> SqlAlchemyRepository:
-        return lambda: SqlAlchemyRepository(get_session())
-
-    return get_repo

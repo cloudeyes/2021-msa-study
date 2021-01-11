@@ -2,9 +2,8 @@ from typing import Callable, Any, cast
 
 from flask import request, jsonify
 
-from ..apps.flask import (route, FlaskResponse)
+from ..apps.flask import (route, FlaskResponse, get_repo)
 from ..domain import models
-from ..config import get_repo
 
 
 @route('/batches', methods=['GET'])
