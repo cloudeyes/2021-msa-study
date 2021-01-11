@@ -1,9 +1,14 @@
-models
+domain
 ======
+
+도메인 모듈.
 
 .. uml:: diagrams/domain-model.puml
 
-.. automodule:: app.models
+models
+------
+
+.. automodule:: app.domain.models
    :members:
 
 .. toctree::

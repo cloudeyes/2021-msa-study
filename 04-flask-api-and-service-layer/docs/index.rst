@@ -10,9 +10,11 @@
 
 .. toctree::
    :maxdepth: 2
-   :caption: Modules:
+   :caption: Modules
 
-   models.rst
+   domain.rst
+   apps.rst
+
 
 Indices and tables
 ==================

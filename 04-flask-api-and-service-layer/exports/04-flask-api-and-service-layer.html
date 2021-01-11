@@ -14262,7 +14262,7 @@ a.anchor-link {
 <center style="font-size: 16px; font-weight: normal">
   `21 Microservices Architecture Patterns Study</center><center><h1>Chapter 4. Our First Use Case:<br/> Flask API and Service Layer</h1></center><center>
   Joseph Kim &lt;cloudeyes@gmail.com&gt;<br/>
-  Dec 28. 2020<br/>
+  Jan 8. 2021<br/>
 </center><center>
   <img src="https://images-na.ssl-images-amazon.com/images/I/51-q9CWNBHL._SX379_BO1,204,203,200_.jpg" style="width: 200px">
 </center><center>
@@ -14356,11 +14356,13 @@ a.anchor-link {
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h3 id="&#49892;&#49845;&#50640;-&#54596;&#50836;&#54620;-&#54596;&#49688;-&#54056;&#53412;&#51648;-&#49444;&#52824;&#54616;&#44592;">&#49892;&#49845;&#50640; &#54596;&#50836;&#54620; &#54596;&#49688; &#54056;&#53412;&#51648; &#49444;&#52824;&#54616;&#44592;<a class="anchor-link" href="#&#49892;&#49845;&#50640;-&#54596;&#50836;&#54620;-&#54596;&#49688;-&#54056;&#53412;&#51648;-&#49444;&#52824;&#54616;&#44592;">&#182;</a></h3>
+<pre><code>git clone https://github.com/cloudeyes/2021-msa-study.git</code></pre>
+
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install flask requests sqlalchemy pytest <span class="p">|</span> grep <span class="s2">&quot;satisfied: flask&quot;</span>
@@ -14400,7 +14402,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cat app/requirements.txt
@@ -14433,9 +14435,29 @@ fastalchemy
 # development
 pytest
 pytest-flask
+pytest-watch
 pydocstyle
 git+https://github.com/AllanDaemon/mypy.git@0edf1233672117c4555759c5a91461a502ddce5d
 git+https://github.com/PyCQA/pylint.git
+
+# documentation
+sphinx
+sphinx_rtd_theme
+livereload</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>127.0.0.1 - - [09/Jan/2021 15:30:13] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+127.0.0.1 - - [09/Jan/2021 15:30:16] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+127.0.0.1 - - [09/Jan/2021 15:30:27] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+127.0.0.1 - - [09/Jan/2021 15:30:31] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre>
 </div>
 </div>
@@ -14529,7 +14551,7 @@ git+https://github.com/PyCQA/pylint.git
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">app.tests</span> <span class="kn">import</span> <span class="n">mytest</span>
@@ -14543,7 +14565,7 @@ git+https://github.com/PyCQA/pylint.git
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@mytest</span><span class="o">.</span><span class="n">test</span>
@@ -14766,7 +14788,7 @@ services:
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install psycopg2-binary
@@ -14789,7 +14811,7 @@ services:
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Requirement already satisfied: psycopg2-binary in /home/ykkim/conda/envs/lab/lib/python3.9/site-packages (2.8.6)
+<pre>Requirement already satisfied: psycopg2-binary in /users/smprc/conda/envs/lab/lib/python3.9/site-packages (2.8.6)
 </pre>
 </div>
 </div>
@@ -14809,7 +14831,7 @@ services:
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -14831,7 +14853,7 @@ services:
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -14853,7 +14875,7 @@ services:
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
@@ -14877,7 +14899,7 @@ services:
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
@@ -14947,7 +14969,7 @@ CREATE TABLE allocation (
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
@@ -14971,7 +14993,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
@@ -15001,10 +15023,46 @@ CREATE TABLE allocation (
 <h4 id="PostgresSQL-DB-SqlAlchemyRepository-&#49324;&#50857;&#54644;&#48372;&#44592;">PostgresSQL DB <code>SqlAlchemyRepository</code> &#49324;&#50857;&#54644;&#48372;&#44592;<a class="anchor-link" href="#PostgresSQL-DB-SqlAlchemyRepository-&#49324;&#50857;&#54644;&#48372;&#44592;">&#182;</a></h4><p>제가 확장한 <code>AbstractRepository</code> 에는 자동 리소스 반환 프로토콜이 내장되어 있습니다. 아래와 같이 자동 리소스 반환되는 <code>with</code> 블록에서 Repository 인스턴스를 사용할 수 있습니다.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">scoped_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Batch</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">SqlAlchemyRepository</span><span class="p">(</span><span class="n">get_session</span><span class="p">())</span> <span class="k">as</span> <span class="n">repo</span><span class="p">:</span>
@@ -15039,7 +15097,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">uuid</span>
@@ -15059,13 +15117,13 @@ CREATE TABLE allocation (
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>UUID(&#39;e7db4038-adfb-4634-b55a-555a9badcb77&#39;)</pre>
+<pre>UUID(&#39;b32ae8cf-55a4-42ee-81b6-2d5a3c6185bd&#39;)</pre>
 </div>
 
 </div>
@@ -15077,7 +15135,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span>
@@ -15096,13 +15154,13 @@ CREATE TABLE allocation (
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&#39;94f0532f4c1847b5a95fb419c7029184&#39;</pre>
+<pre>&#39;1b0faa353d79475f90a84e973560fa8b&#39;</pre>
 </div>
 
 </div>
@@ -15119,7 +15177,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">uuid</span>
@@ -15159,7 +15217,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -15202,7 +15260,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@mytest</span><span class="o">.</span><span class="n">test</span>
@@ -15253,7 +15311,59 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">scoped_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM batch&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[]
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">scoped_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;DELETE from batch&#39;</span><span class="p">)</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mytest</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test_add_stock</span><span class="p">)</span>
@@ -15296,7 +15406,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">threading</span>
@@ -15349,7 +15459,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
@@ -15382,7 +15492,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_app</span> <span class="o">=</span> <span class="n">CustomFlask</span><span class="p">(</span><span class="s1">&#39;test_app&#39;</span><span class="p">)</span>
@@ -15405,7 +15515,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
@@ -15413,7 +15523,7 @@ CREATE TABLE allocation (
 <span class="nd">@route</span><span class="p">(</span><span class="s1">&#39;/allocate&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">allocate_endpoint</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="si">=}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({}),</span> <span class="mi">501</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;abc&quot;</span><span class="p">:</span> <span class="mi">1243</span><span class="p">}),</span> <span class="mi">501</span>
 
 <span class="n">restart_server</span><span class="p">(</span><span class="n">test_app</span><span class="p">)</span> <span class="c1"># 라우팅 적용을 서버에 업데이트 하기 위해서는 Restart 필요</span>
 </pre></div>
@@ -15435,7 +15545,8 @@ CREATE TABLE allocation (
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>starting server... started.
+<pre>shutting down server...
+starting server... started.
 </pre>
 </div>
 </div>
@@ -15454,7 +15565,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
@@ -15462,6 +15573,7 @@ CREATE TABLE allocation (
     <span class="s1">&#39;hello&#39;</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span>
 <span class="p">})</span>
 <span class="k">assert</span> <span class="mi">501</span> <span class="o">==</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> 
+<span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -15481,7 +15593,7 @@ CREATE TABLE allocation (
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:28] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:40:54] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
 </pre>
 </div>
 </div>
@@ -15498,6 +15610,20 @@ CREATE TABLE allocation (
 </div>
 </div>
 
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;abc&#39;: 1243}</pre>
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -15510,7 +15636,7 @@ CREATE TABLE allocation (
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">app.tests</span> <span class="kn">import</span> <span class="n">mytest</span>
@@ -15555,7 +15681,7 @@ CREATE TABLE allocation (
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:28] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:41:20] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
 </pre>
 </div>
 </div>
@@ -15567,7 +15693,7 @@ CREATE TABLE allocation (
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>request.json={&#39;orderid&#39;: &#39;order--7339da&#39;, &#39;sku&#39;: &#39;sku--224041&#39;, &#39;qty&#39;: 3}
+<pre>request.json={&#39;orderid&#39;: &#39;order--e9f6cd&#39;, &#39;sku&#39;: &#39;sku--3de03e&#39;, &#39;qty&#39;: 3}
 ❌ <span class="ansi-red-intense-fg">test_api_returns_allocation</span>
 </pre>
 </div>
@@ -15581,7 +15707,7 @@ CREATE TABLE allocation (
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-24-ee04117d4e65&gt;&#34;, line 20, in test_api_returns_allocation
+  File &#34;&lt;ipython-input-33-ee04117d4e65&gt;&#34;, line 20, in test_api_returns_allocation
     assert r.status_code == 201
 AssertionError
 </pre>
@@ -15622,7 +15748,7 @@ AssertionError
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@route</span><span class="p">(</span><span class="s2">&quot;/allocate&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
@@ -15678,7 +15804,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mytest</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test_api_returns_allocation</span><span class="p">)</span>
@@ -15701,7 +15827,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:28] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:42:49] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre>
 </div>
 </div>
@@ -15731,7 +15857,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="n">scoped_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">db</span><span class="p">:</span>
@@ -15792,7 +15918,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@mytest</span><span class="o">.</span><span class="n">test</span>
@@ -15823,7 +15949,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:28] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:46:00] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre>
 </div>
 </div>
@@ -15835,7 +15961,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>batch=&lt;app.domain.models.Batch object at 0x7f9988ee66d0&gt;, lines=[], allocs=[], batch._allocations=InstrumentedSet()
+<pre>batch=&lt;app.domain.models.Batch object at 0x7f361874a6a0&gt;, lines=[], allocs=[], batch._allocations=InstrumentedSet()
 ✅ <span class="ansi-magenta-intense-fg">test_api_returns_allocation_debug</span>
 </pre>
 </div>
@@ -15856,7 +15982,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[44]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@mytest</span><span class="o">.</span><span class="n">test</span>
@@ -15880,7 +16006,7 @@ starting server... started.
     <span class="c1"># 두번째 주문으로 batch2 가 소진되어야 합니다.</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">/allocate&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">line2</span><span class="p">)</span>
     <span class="k">assert</span> <span class="mi">201</span> <span class="o">==</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span>
-    <span class="k">assert</span> <span class="n">batch2</span> <span class="o">==</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;batchref&#39;</span><span class="p">]</span>    
+    <span class="k">assert</span> <span class="n">batch2</span> <span class="o">==</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;batchref&#39;</span><span class="p">]</span>
 </pre></div>
 
      </div>
@@ -15900,8 +16026,8 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:28] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [08/Jan/2021 20:45:28] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:48:22] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [09/Jan/2021 07:48:22] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre>
 </div>
 </div>
@@ -15926,7 +16052,7 @@ starting server... started.
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-30-c6d0e8ffd5aa&gt;&#34;, line 22, in test_allocations_are_persisted
+  File &#34;&lt;ipython-input-44-aa2b7b00d091&gt;&#34;, line 22, in test_allocations_are_persisted
     assert batch2 == r.json()[&#39;batchref&#39;]
 AssertionError
 </pre>
@@ -15946,7 +16072,7 @@ AssertionError
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@route</span><span class="p">(</span><span class="s2">&quot;/allocate&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
@@ -16003,7 +16129,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mytest</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test_allocations_are_persisted</span><span class="p">)</span>
@@ -16026,8 +16152,8 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:29] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [08/Jan/2021 20:45:29] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:48:36] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [09/Jan/2021 07:48:36] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre>
 </div>
 </div>
@@ -16068,7 +16194,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[47]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># 서버 예외가 Jupyter Notebook에 출력되지 않도록</span>
@@ -16115,7 +16241,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:29] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:49:57] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
 </pre>
 </div>
 </div>
@@ -16140,10 +16266,10 @@ starting server... started.
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-33-cc008ae5764d&gt;&#34;, line 14, in test_400_message_for_out_of_stock
+  File &#34;&lt;ipython-input-47-cc008ae5764d&gt;&#34;, line 14, in test_400_message_for_out_of_stock
     assert 400 == r.status_code
 AssertionError
-127.0.0.1 - - [08/Jan/2021 20:45:29] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
+127.0.0.1 - - [09/Jan/2021 07:49:57] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
 </pre>
 </div>
 </div>
@@ -16168,7 +16294,7 @@ AssertionError
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-33-cc008ae5764d&gt;&#34;, line 24, in test_400_message_for_invalid_sku
+  File &#34;&lt;ipython-input-47-cc008ae5764d&gt;&#34;, line 24, in test_400_message_for_invalid_sku
     assert r.status_code == 400
 AssertionError
 </pre>
@@ -16188,7 +16314,7 @@ AssertionError
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[48]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span>
@@ -16252,7 +16378,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[49]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mytest</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test_400_message_for_out_of_stock</span><span class="p">)</span>
@@ -16276,7 +16402,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:29] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:50:10] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre>
 </div>
 </div>
@@ -16300,7 +16426,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:30] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:50:10] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre>
 </div>
 </div>
@@ -16352,7 +16478,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[50]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
@@ -16397,7 +16523,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">app.tests</span> <span class="kn">import</span> <span class="n">mytest</span>
@@ -16454,7 +16580,7 @@ starting server... started.
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-37-86150bf828ce&gt;&#34;, line 12, in test_returns_allocation
+  File &#34;&lt;ipython-input-51-86150bf828ce&gt;&#34;, line 12, in test_returns_allocation
     result = services.allocate(line, repo, FakeSession())
 AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;allocate&#39;
 </pre>
@@ -16481,7 +16607,7 @@ AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;alloca
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-37-86150bf828ce&gt;&#34;, line 21, in test_error_for_invalid_sku
+  File &#34;&lt;ipython-input-51-86150bf828ce&gt;&#34;, line 21, in test_error_for_invalid_sku
     with pytest.raises(services.InvalidSku, match=&#34;Invalid sku NONEXISTENTSKU&#34;):
 AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;InvalidSku&#39;
 </pre>
@@ -16514,7 +16640,7 @@ AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;Invali
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">FakeSession</span><span class="p">():</span>
@@ -16564,7 +16690,7 @@ AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;Invali
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
 <pre>Traceback (most recent call last):
-  File &#34;&lt;ipython-input-38-e6e46a4cf603&gt;&#34;, line 14, in test_commits
+  File &#34;&lt;ipython-input-52-e6e46a4cf603&gt;&#34;, line 14, in test_commits
     services.batch.allocate(line, repo, session)
 AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;batch&#39;
 </pre>
@@ -16590,7 +16716,7 @@ AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;batch&
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[53]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">app.adapters.orm</span> <span class="kn">import</span> <span class="n">AbstractSession</span>
@@ -16618,7 +16744,7 @@ AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;batch&
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[54]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@mytest</span><span class="o">.</span><span class="n">test</span>
@@ -16677,7 +16803,7 @@ AttributeError: module &#39;app.services._fail&#39; has no attribute &#39;batch&
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[55]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">services</span>
@@ -16743,7 +16869,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[42]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[56]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 서비스 레이어 전용 테스트</span>
@@ -16816,7 +16942,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[57]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_app</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span>
@@ -16866,7 +16992,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:30] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:53:29] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre>
 </div>
 </div>
@@ -16890,7 +17016,7 @@ starting server... started.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>127.0.0.1 - - [08/Jan/2021 20:45:30] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+<pre>127.0.0.1 - - [09/Jan/2021 07:53:29] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre>
 </div>
 </div>
@@ -16975,7 +17101,7 @@ starting server... started.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[46]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert <span class="m">04</span>-flask-api-and-service-layer.ipynb --output-dir<span class="o">=</span>./exports --to html <span class="err">\</span>
@@ -17002,7 +17128,7 @@ starting server... started.
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[NbConvertApp] Converting notebook 04-flask-api-and-service-layer.ipynb to html
-[NbConvertApp] Writing 1034641 bytes to exports/04-flask-api-and-service-layer.html
+[NbConvertApp] Writing 1341545 bytes to exports/04-flask-api-and-service-layer.html
 </pre>
 </div>
 </div>

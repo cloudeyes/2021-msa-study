@@ -1,16 +1,15 @@
 """ORM 구현."""
 
 from __future__ import annotations
+
 from typing import Callable, Generator, Optional, Sequence, Union, cast
 from contextlib import contextmanager, AbstractContextManager
-import io, sys, re, logging
-import abc
+import abc, io, sys, re, logging
 
 from sqlalchemy import (MetaData, Table, Column, ForeignKey, Integer, String,
-                        Date, create_engine)
+                        Date, engine, create_engine)
 from sqlalchemy.orm import mapper, relationship, sessionmaker, clear_mappers
 from sqlalchemy.orm.session import Session
-from sqlalchemy.engine import Engine
 
 from ..adapters.repository import AbstractRepository
 from ..domain.models import Batch, OrderLine
@@ -19,11 +18,13 @@ ScopedSession = AbstractContextManager[Session]
 
 metadata: MetaData = None
 
+
 class AbstractSession(abc.ABC):
-    
+    """세션의 일반적인 작업(`commit`, `)."""
     @abc.abstractmethod
     def commit() -> None:
         raise NotImplementedError
+
 
 class SqlAlchemyRepository(AbstractRepository):
     def __init__(self, db: Session):
@@ -40,7 +41,7 @@ class SqlAlchemyRepository(AbstractRepository):
         return cast(
             Optional[Batch],
             self.db.query(Batch).filter_by(reference=reference).first())
-    
+
     def delete(self, item: Union[Batch, OrderLine]) -> None:
         self.db.delete(item)
         self.db.commit()
@@ -53,7 +54,8 @@ class SqlAlchemyRepository(AbstractRepository):
         self.db.execute('DELETE FROM batch')
         self.db.execute('DELETE FROM order_line')
         self.db.commit()
-        
+
+
 def start_mappers(use_exist=True) -> MetaData:
     global metadata
     if use_exist and metadata:
@@ -111,17 +113,20 @@ def start_mappers(use_exist=True) -> MetaData:
 
 
 def init_engine(metadata: MetaData,
-                url: str, connect_args: dict=None, poolclass=None,
-                show_log: Union[bool, dict]=False,
-                drop_all=False) -> Engine:
-    
+                url: str,
+                connect_args: dict[str, Any] = None,
+                poolclass=None,
+                show_log: Union[bool, dict] = False,
+                drop_all=False) -> engine.Engine:
+
     logger = logging.getLogger("sqlalchemy.engine.base.Engine")
     out = io.StringIO()
     logger.addHandler(logging.StreamHandler(out))
-    engine = create_engine(url, 
-                           connect_args=connect_args or {}, 
-                           poolclass=poolclass, echo=True)
-    
+    engine = create_engine(url,
+                           connect_args=connect_args or {},
+                           poolclass=poolclass,
+                           echo=True)
+
     drop_all and metadata.drop_all(engine)
     metadata.create_all(engine)
 
@@ -129,16 +134,17 @@ def init_engine(metadata: MetaData,
         log_txt = out.getvalue()
         if show_log is True:
             print(''.join(
-                re.findall('CREATE.*?\n\n', log_txt, re.DOTALL|re.I)))
-        else:
+                re.findall('CREATE.*?\n\n', log_txt, re.DOTALL | re.I)))
+        elif isinstance(show_log, dict):
             if show_log.get('all'):
                 print(log_txt)
 
     return engine
 
-def get_scoped_session(engine):
+
+def get_scoped_session(engine) -> ScopedSession:
     get_session = sessionmaker(engine)
-    
+
     @contextmanager
     def scoped_session():
         session = None
@@ -152,8 +158,8 @@ def get_scoped_session(engine):
 
 def get_scoped_repo(engine):
     get_session = sessionmaker(engine)
-    
+
     def get_repo() -> SqlAlchemyRepository:
         return lambda: SqlAlchemyRepository(get_session())
-    
+
     return get_repo
