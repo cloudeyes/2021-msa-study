@@ -1,0 +1,1668 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>01. Domain Modeling &mdash; Architecture Patterns with Python  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="02. Repository Pattern" href="02.html" />
+    <link rel="prev" title="00. Kick-Off" href="00.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Architecture Patterns with Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00.html">00. Kick-Off</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">01. Domain Modeling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Context-diagram-for-the-allocation-service">Context diagram for the allocation service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Exploring-the-Domain-Language">Exploring the Domain Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Unit-Testing-Domain-Models">Unit Testing Domain Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Value-Objects-and-Entities">Value Objects and Entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#A-name-itself-cannot-change…">A name itself cannot change…</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#But-a-person-can!">But a person can!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Implementing-equality-opeartors">Implementing equality opeartors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Not-Everything-Has-to-Be-an-Object:-A-Domain-Service-Function">Not Everything Has to Be an Object: A Domain Service Function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Testing-our-domain-services">Testing our domain services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#A-standalone-function-for-our-domain-service">A standalone function for our domain service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Python’s-Magic-Methods-Let-Us-Use-Our-Models-with-Idiomatic-Python">Python’s Magic Methods Let Us Use Our Models with Idiomatic Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Exceptions-Can-Express-Domain-Concetps-Too">Exceptions Can Express Domain Concetps Too</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#Domain-Modeling-Recap">Domain Modeling Recap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02.html">02. Repository Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03.html">03. Coupling and Abstractions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04.html">04. Flask API and Service Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05.html">05. TDD in High and Low Gears</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../domain.html">domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../adapters.html">adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html">services</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Library Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vendor.html">SQLAlchemy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendor.html#flask">Flask</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Architecture Patterns with Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../guide.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>01. Domain Modeling</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/guide/01.ipynb" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="01.-Domain-Modeling">
+<h1>01. Domain Modeling<a class="headerlink" href="#01.-Domain-Modeling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Overview">
+<h2>Overview<a class="headerlink" href="#Overview" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Context-diagram-for-the-allocation-service">
+<h3>Context diagram for the allocation service<a class="headerlink" href="#Context-diagram-for-the-allocation-service" title="Permalink to this headline">¶</a></h3>
+<p>MADE.com is a successful furniture retailer. We source our furniture from manufacturers all over the world and sell it across Europe.</p>
+<p>We have separate systems that are responsible for</p>
+<ul class="simple">
+<li><p>buying stock,</p></li>
+<li><p>selling stock to customers,</p></li>
+<li><p>and shipping goods to customers.</p></li>
+</ul>
+<p>A system in the middle needs to coordinate the process by allocating stock to a customer’s orders;</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">plantuml</span>
+
+@startuml allocation
+!include images/C4_Context.puml
+scale 0.7
+
+System(systema, &quot;Allocation&quot;, &quot;Allocates stock to customer orders&quot;)
+
+Person(customer, &quot;Customer&quot;, &quot;Wants to buy furniture&quot;)
+Person(buyer, &quot;Buying Team&quot;, &quot;Needs to purchase furniture from suppliers&quot;)
+
+System(procurement, &quot;Purchasing&quot;, &quot;Manages workflow for buying stock from suppliers&quot;)
+System(ecom, &quot;Ecommerce&quot;, &quot;Sells goods online&quot;)
+System(warehouse, &quot;Warehouse&quot;, &quot;Manages workflow for shipping goods to customers&quot;)
+
+Rel(buyer, procurement, &quot;Uses&quot;)
+Rel(procurement, systema, &quot;Notifies about shipments&quot;)
+Rel(customer, ecom, &quot;Buys from&quot;)
+Rel(ecom, systema, &quot;Asks for stock levels&quot;)
+Rel(ecom, systema, &quot;Notifies about orders&quot;)
+Rel_R(systema, warehouse, &quot;Sends instructions to&quot;)
+Rel_U(warehouse, customer, &quot;Dispatches goods to&quot;)
+
+@enduml
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/guide_01_2_0.svg" src="../_images/guide_01_2_0.svg" /></div>
+</div>
+<style>
+.usecase { border-radius: 3px; border: 1px silver solid; background: #ddd; padding: 5px 8px }
+</style></div>
+</div>
+<div class="section" id="Exploring-the-Domain-Language">
+<h2>Exploring the Domain Language<a class="headerlink" href="#Exploring-the-Domain-Language" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Product</strong></p>
+<ul>
+<li><p>identified by <em>SKU</em>(Stock Keeping Unit)</p></li>
+</ul>
+</li>
+<li><p><strong>Order</strong></p>
+<ul>
+<li><p>identified by an <em>order reference</em></p></li>
+<li><p>comprises mutliple <em>order lines</em></p></li>
+</ul>
+</li>
+<li><p><strong>OrderLine</strong></p>
+<ul>
+<li><p>has a <em>SKU</em> and a <em>quantity</em></p></li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p><strong>Batch</strong></p>
+<ul>
+<li><p>has a unique ID(<em>reference</em>), a <em>SKU</em>, and a <em>quantity</em></p></li>
+<li><p>has an ETA if they are currently shipping</p>
+<ul>
+<li><p>or they may be in <em>warehouse stock</em>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="simple">
+<li><p>When we allocate x units of stock to a batch, the <em>available quantity</em> is reduced by x.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">plantuml</span>
+
+@startuml
+
+left to right direction
+
+class Product {
+    sku: SKU
+}
+
+class Order {
+    reference: OrderReference
+    _order_lines: [OrderLine]
+}
+
+class OrderLine {
+    orderid: OrderReference
+    sku: SKU
+    qty: int
+}
+
+class Batch {
+    reference: BatchReference
+    sku: SKU
+    quantity: int
+    _allocations: [OrderLine]
+}
+
+Order::_order_lines o-- OrderLine
+Batch::_allocations o-- OrderLine
+OrderLine::sku -- Product
+Batch::sku -- Product
+
+@enduml
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/guide_01_5_0.svg" src="../_images/guide_01_5_0.svg" /></div>
+</div>
+</div>
+<div class="section" id="Unit-Testing-Domain-Models">
+<h2>Unit Testing Domain Models<a class="headerlink" href="#Unit-Testing-Domain-Models" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># 단위 테스트를 위한 헬퍼 데코레이터</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="n">VIOLET</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[95m&#39;</span>
+<span class="n">ENDC</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[0m&#39;</span>
+<span class="n">BOLD</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\033</span><span class="s1">[1m&#39;</span>
+
+<span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">func</span><span class="p">()</span> <span class="c1"># 함수를 정의할때 바로 실행되도록</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;✅ </span><span class="si">{</span><span class="n">VIOLET</span><span class="si">}{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}{</span><span class="n">ENDC</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">exc_args</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+        <span class="n">traceback</span><span class="o">.</span><span class="n">print_exception</span><span class="p">(</span><span class="o">*</span><span class="n">exc_args</span><span class="p">,</span> <span class="n">limit</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># 함수 실행이 실패해도 함수 정의는 그대로 리턴하도록</span>
+        <span class="k">return</span> <span class="n">func</span>
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Batch</span></code> 도메인이 정의되지 않아서 테스트가 실패합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_allocating_to_a_batch_reduces_the_available_quantity</span><span class="p">():</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;batch-001&quot;</span><span class="p">,</span> <span class="s2">&quot;SMALL-TABLE&quot;</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s1">&#39;order-ref&#39;</span><span class="p">,</span> <span class="s2">&quot;SMALL-TABLE&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">18</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-4-ec9a4771936d&gt;&#34;, line 3, in test_allocating_to_a_batch_reduces_the_available_quantity
+    batch = Batch(&#34;batch-001&#34;, &#34;SMALL-TABLE&#34;, qty=20, eta=date.today())
+NameError: name &#39;Batch&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> first_cut
+
+from dataclasses import dataclass
+from typing import Optional
+from datetime import date
+
+@dataclass(frozen=True)
+class OrderLine:
+    orderid: str
+    sku: str
+    qty: int
+
+
+class Batch:
+    def __init__(
+        self, ref: str, sku: str, qty: int, eta: Optional[date]
+    ):
+        self.reference = ref
+        self.sku = sku
+        self.eta = eta
+        self.available_quantity = qty
+
+    def allocate(self, line: OrderLine) -&gt; None:
+        self.available_quantity -= line.qty
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<p>도메인 객체 정의 후 테스트 성공합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_allocating_to_a_batch_reduces_the_available_quantity</span><span class="p">():</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;batch-001&quot;</span><span class="p">,</span> <span class="s2">&quot;SMALL-TABLE&quot;</span><span class="p">,</span> <span class="n">qty</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s1">&#39;order-ref&#39;</span><span class="p">,</span> <span class="s2">&quot;SMALL-TABLE&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">18</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_allocating_to_a_batch_reduces_the_available_quantity</span>
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">can_allocate</span></code> 가 정의되지 않아 실패하는 테스트 코드를 먼저 작성합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">make_batch_and_line</span><span class="p">(</span><span class="n">sku</span><span class="p">,</span> <span class="n">batch_qty</span><span class="p">,</span> <span class="n">line_qty</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;batch-001&quot;</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">batch_qty</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()),</span>
+        <span class="n">OrderLine</span><span class="p">(</span><span class="s2">&quot;order-123&quot;</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">line_qty</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_can_allocate_if_available_greater_than_required</span><span class="p">():</span>
+    <span class="n">large_batch</span><span class="p">,</span> <span class="n">small_line</span> <span class="o">=</span> <span class="n">make_batch_and_line</span><span class="p">(</span><span class="s2">&quot;ELEGANT-LAMP&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">large_batch</span><span class="o">.</span><span class="n">can_allocate</span><span class="p">(</span><span class="n">small_line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-7-9ae6c0e6fdad&gt;&#34;, line 10, in test_can_allocate_if_available_greater_than_required
+    assert large_batch.can_allocate(small_line)
+AttributeError: &#39;Batch&#39; object has no attribute &#39;can_allocate&#39;
+</pre></div></div>
+</div>
+<p>테스트가 성공하도록 <code class="docutils literal notranslate"><span class="pre">Batch</span></code> 객체에 <code class="docutils literal notranslate"><span class="pre">can_allocate</span></code>를 정의합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> batch_alloc from first_cut[OrderLine]
+from datetime import date
+
+class Batch:
+    def __init__(
+        self, ref: str, sku: str, qty: int, eta: Optional[date]
+    ):
+        self.reference = ref
+        self.sku = sku
+        self.eta = eta
+        self._purchased_quantity = qty
+        self._allocations = set[OrderLine]()
+
+    def allocate(self, line: OrderLine) -&gt; None:
+        if self.can_allocate(line):
+            self._allocations.add(line)
+
+    def deallocate(self, line: OrderLine) -&gt; None:
+        if line in self._allocations:
+            self._allocations.remove(line)
+
+    @property
+    def allocated_quantity(self) -&gt; int:
+        return sum(line.qty for line in self._allocations)
+
+    @property
+    def available_quantity(self) -&gt; int:
+        return self._purchased_quantity - self.allocated_quantity
+
+    def can_allocate(self, line: OrderLine) -&gt; bool:
+        return self.sku == line.sku and self.available_quantity &gt;= line.qty
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<p>테스트 성공</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_can_allocate_if_available_greater_than_required</span><span class="p">():</span>
+    <span class="n">large_batch</span><span class="p">,</span> <span class="n">small_line</span> <span class="o">=</span> <span class="n">make_batch_and_line</span><span class="p">(</span><span class="s2">&quot;ELEGANT-LAMP&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">large_batch</span><span class="o">.</span><span class="n">can_allocate</span><span class="p">(</span><span class="n">small_line</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_cannot_allocate_if_available_smaller_than_required</span><span class="p">():</span>
+    <span class="n">small_batch</span><span class="p">,</span> <span class="n">large_line</span> <span class="o">=</span> <span class="n">make_batch_and_line</span><span class="p">(</span><span class="s2">&quot;ELEGANT-LAMP&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">small_batch</span><span class="o">.</span><span class="n">can_allocate</span><span class="p">(</span><span class="n">large_line</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_can_allocate_if_available_equal_to_required</span><span class="p">():</span>
+    <span class="n">batch</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="n">make_batch_and_line</span><span class="p">(</span><span class="s2">&quot;ELEGANT-LAMP&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">batch</span><span class="o">.</span><span class="n">can_allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_cannot_allocate_if_skus_do_not_match</span><span class="p">():</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;batch-001&quot;</span><span class="p">,</span> <span class="s2">&quot;UNCOMFORTABLE-CHAIR&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">different_sku_line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s2">&quot;order-123&quot;</span><span class="p">,</span> <span class="s2">&quot;EXPENSIVE-TOASTER&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">batch</span><span class="o">.</span><span class="n">can_allocate</span><span class="p">(</span><span class="n">different_sku_line</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_can_allocate_if_available_greater_than_required</span>
+✅ <span class="ansi-magenta-intense-fg">test_cannot_allocate_if_available_smaller_than_required</span>
+✅ <span class="ansi-magenta-intense-fg">test_can_allocate_if_available_equal_to_required</span>
+✅ <span class="ansi-magenta-intense-fg">test_cannot_allocate_if_skus_do_not_match</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_can_only_deallocate_allocated_lines</span><span class="p">():</span>
+    <span class="n">batch</span><span class="p">,</span> <span class="n">unallocated_line</span> <span class="o">=</span> <span class="n">make_batch_and_line</span><span class="p">(</span><span class="s2">&quot;DECORATIVE-TRINKET&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">batch</span><span class="o">.</span><span class="n">deallocate</span><span class="p">(</span><span class="n">unallocated_line</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_can_only_deallocate_allocated_lines</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_allocation_is_idempotent</span><span class="p">():</span>
+    <span class="n">batch</span><span class="p">,</span> <span class="n">line</span> <span class="o">=</span> <span class="n">make_batch_and_line</span><span class="p">(</span><span class="s2">&quot;ANGULAR-DESK&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">18</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_allocation_is_idempotent</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> custom_types from batch_alloc
+from typing import NewType
+
+Quantity = NewType(&quot;Quantity&quot;, int)
+Sku = NewType(&quot;Sku&quot;, str)
+Reference = NewType(&quot;Reference&quot;, str)
+OrderReference = NewType(&quot;OrderReference&quot;, str)
+ProductReference = NewType(&quot;ProductReference&quot;, str)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> orderline from custom_types
+
+@dataclass(frozen=True)
+class OrderLine:
+    orderid: OrderReference
+    sku: Sku
+    qty: Quantity
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">NamedTuple</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Name</span><span class="p">:</span>
+    <span class="n">first_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">surname</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="k">class</span> <span class="nc">Money</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="n">Line</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Line&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sku&#39;</span><span class="p">,</span> <span class="s1">&#39;qty&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_equality</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">Name</span><span class="p">(</span><span class="s1">&#39;Harry&#39;</span><span class="p">,</span> <span class="s1">&#39;Percival&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Name</span><span class="p">(</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Gregory&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">Line</span><span class="p">(</span><span class="s1">&#39;RED-CHAIR&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="n">Line</span><span class="p">(</span><span class="s1">&#39;RED-CHAIR&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_equality</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fiver</span> <span class="o">=</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">tenner</span> <span class="o">=</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">can_add_money_values_for_the_same_currency</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">fiver</span> <span class="o">+</span> <span class="n">fiver</span> <span class="o">==</span> <span class="n">tenner</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-16-3e32c9afbc08&gt;&#34;, line 6, in can_add_money_values_for_the_same_currency
+    assert fiver + fiver == tenner
+AssertionError
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">class</span> <span class="nc">Money</span><span class="p">(</span><span class="n">NamedTuple</span><span class="p">):</span>
+    <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Money</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">currency</span> <span class="o">!=</span> <span class="n">rhs</span><span class="o">.</span><span class="n">currency</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">ValueError</span>
+        <span class="k">return</span> <span class="n">Money</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currency</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="n">Money</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">currency</span> <span class="o">==</span> <span class="n">rhs</span><span class="o">.</span><span class="n">currency</span>
+        <span class="k">return</span> <span class="n">Money</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currency</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">rhs</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span>
+        <span class="k">return</span> <span class="n">Money</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">currency</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">rhs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">fiver</span> <span class="o">=</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">tenner</span> <span class="o">=</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">can_add_money_values_for_the_same_currency</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">fiver</span> <span class="o">+</span> <span class="n">fiver</span> <span class="o">==</span> <span class="n">tenner</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">can_subtract_money_values</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">tenner</span> <span class="o">-</span> <span class="n">fiver</span> <span class="o">==</span> <span class="n">fiver</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">adding_different_currencies_fails</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;usd&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">can_multiply_money_by_a_number</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">fiver</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">==</span> <span class="n">Money</span><span class="p">(</span><span class="s1">&#39;gbp&#39;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">multiplying_two_money_values_is_an_error</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+        <span class="n">tenner</span> <span class="o">*</span> <span class="n">fiver</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">can_add_money_values_for_the_same_currency</span>
+✅ <span class="ansi-magenta-intense-fg">can_subtract_money_values</span>
+✅ <span class="ansi-magenta-intense-fg">adding_different_currencies_fails</span>
+✅ <span class="ansi-magenta-intense-fg">can_multiply_money_by_a_number</span>
+✅ <span class="ansi-magenta-intense-fg">multiplying_two_money_values_is_an_error</span>
+</pre></div></div>
+</div>
+<div class="section" id="Value-Objects-and-Entities">
+<h3>Value Objects and Entities<a class="headerlink" href="#Value-Objects-and-Entities" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="A-name-itself-cannot-change…">
+<h4>A name itself cannot change…<a class="headerlink" href="#A-name-itself-cannot-change…" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_name_equality</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">Name</span><span class="p">(</span><span class="s2">&quot;Harry&quot;</span><span class="p">,</span> <span class="s2">&quot;Percival&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Name</span><span class="p">(</span><span class="s2">&quot;Barry&quot;</span><span class="p">,</span> <span class="s2">&quot;Percival&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_name_equality</span>
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="But-a-person-can!">
+<h4>But a person can!<a class="headerlink" href="#But-a-person-can!" title="Permalink to this headline">¶</a></h4>
+<p>엔티티는 값과 달리 특정 id 속성값으로 동등성을 검사합니다. 객체 속성 바뀌어도 id가 같다면 같은 객체입니다.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n">Name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_barry_is_harry</span><span class="p">():</span>
+    <span class="n">harry</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="n">Name</span><span class="p">(</span><span class="s2">&quot;Harry&quot;</span><span class="p">,</span> <span class="s2">&quot;Percival&quot;</span><span class="p">))</span>
+    <span class="n">barry</span> <span class="o">=</span> <span class="n">harry</span>
+
+    <span class="n">barry</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">Name</span><span class="p">(</span><span class="s2">&quot;Barry&quot;</span><span class="p">,</span> <span class="s2">&quot;Percival&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">harry</span> <span class="ow">is</span> <span class="n">barry</span> <span class="ow">and</span> <span class="n">barry</span> <span class="ow">is</span> <span class="n">harry</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_barry_is_harry</span>
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Implementing-equality-opeartors">
+<h4>Implementing equality opeartors<a class="headerlink" href="#Implementing-equality-opeartors" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_batch_equality</span><span class="p">():</span>
+    <span class="n">batch1</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s1">&#39;batch-001&#39;</span><span class="p">,</span> <span class="s1">&#39;SIMPLE-TABLE&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+    <span class="n">batch2</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s1">&#39;batch-001&#39;</span><span class="p">,</span> <span class="s1">&#39;SIMPLE-CHAIR&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+
+    <span class="k">assert</span> <span class="n">batch1</span> <span class="o">==</span> <span class="n">batch2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-22-7e6a1737e553&gt;&#34;, line 6, in test_batch_equality
+    assert batch1 == batch2
+AssertionError
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Batch</span></code> 엔티티에도 동일성을 검사할 수 있는 매직 메소드를 추가해봅시다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> batch_entity from custom_types, orderline
+from datetime import date
+
+class Batch:
+    def __init__(
+        self, ref: Reference, sku: Sku, qty: int, eta: Optional[date]
+    ):
+        self.__reference = ref
+        self.sku = sku
+        self.eta = eta
+        self._purchased_quantity = qty
+        self._allocations = set[OrderLine]()
+
+    @property
+    def reference(self) -&gt; Reference:
+        return self.__reference
+
+    def allocate(self, line: OrderLine) -&gt; None:
+        if self.can_allocate(line):
+            self._allocations.add(line)
+
+    def deallocate(self, line: OrderLine) -&gt; None:
+        if line in self._allocations:
+            self._allocations.remove(line)
+
+    @property
+    def allocated_quantity(self) -&gt; int:
+        return sum(line.qty for line in self._allocations)
+
+    @property
+    def available_quantity(self) -&gt; int:
+        return self._purchased_quantity - self.allocated_quantity
+
+    def can_allocate(self, line: OrderLine) -&gt; bool:
+        return self.sku == line.sku and self.available_quantity &gt;= line.qty
+
+    #######################################################################
+    def __eq__(self, other: object) -&gt; bool:
+        if not isinstance(other, Batch):
+            return False
+        return other.reference == self.reference
+
+    def __hash__(self) -&gt; int:
+        return hash(self.reference)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_batch_equality</span><span class="p">():</span>
+    <span class="n">batch1</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s1">&#39;batch-001&#39;</span><span class="p">,</span> <span class="s1">&#39;SIMPLE-TABLE&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+    <span class="n">batch2</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s1">&#39;batch-001&#39;</span><span class="p">,</span> <span class="s1">&#39;SIMPLE-CHAIR&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
+
+    <span class="k">assert</span> <span class="n">batch1</span> <span class="o">==</span> <span class="n">batch2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_batch_equality</span>
+</pre></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Not-Everything-Has-to-Be-an-Object:-A-Domain-Service-Function">
+<h2>Not Everything Has to Be an Object: A Domain Service Function<a class="headerlink" href="#Not-Everything-Has-to-Be-an-Object:-A-Domain-Service-Function" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Testing-our-domain-services">
+<h3>Testing our domain services<a class="headerlink" href="#Testing-our-domain-services" title="Permalink to this headline">¶</a></h3>
+<p>정의되지 않은 <code class="docutils literal notranslate"><span class="pre">allocate</span></code> 함수(서비스)에 대한 실패하는 테스트를 먼저 작성합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="n">tomorrow</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_prefers_current_stock_batches_to_shipments</span><span class="p">():</span>
+    <span class="n">in_stock_batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;in-stock-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;RETRO-CLOCK&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">shipment_batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;shipment-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;RETRO-CLOCK&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">tomorrow</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s2">&quot;oref&quot;</span><span class="p">,</span> <span class="s2">&quot;RETRO-CLOCK&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">[</span><span class="n">in_stock_batch</span><span class="p">,</span> <span class="n">shipment_batch</span><span class="p">])</span>
+
+    <span class="k">assert</span> <span class="n">in_stock_batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">90</span>
+    <span class="k">assert</span> <span class="n">shipment_batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-25-c27cf706fffa&gt;&#34;, line 10, in test_prefers_current_stock_batches_to_shipments
+    allocate(line, [in_stock_batch, shipment_batch])
+NameError: name &#39;allocate&#39; is not defined
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="A-standalone-function-for-our-domain-service">
+<h3>A standalone function for our domain service<a class="headerlink" href="#A-standalone-function-for-our-domain-service" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Batch</span></code> 객체의 순서를 정의할 수 없으므로 <code class="docutils literal notranslate"><span class="pre">sorted</span></code> 를 적용할 수 없어 에러 발생합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> allocate from orderline, batch_entity
+from typing import List
+
+def allocate(line: OrderLine, batches: List[Batch]) -&gt; str:
+    batch = next(
+        b for b in sorted(batches) if b.can_allocate(line)
+    )
+    batch.allocate(line)
+    return batch.reference
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&lt;string&gt;:6: error: Value of type variable &#34;_SupportsLessThanT&#34; of &#34;sorted&#34; cannot be &#34;Batch&#34;
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Python’s-Magic-Methods-Let-Us-Use-Our-Models-with-Idiomatic-Python">
+<h3>Python’s Magic Methods Let Us Use Our Models with Idiomatic Python<a class="headerlink" href="#Python’s-Magic-Methods-Let-Us-Use-Our-Models-with-Idiomatic-Python" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">__lt__</span></code> 매직 메소드를 구현하여 <code class="docutils literal notranslate"><span class="pre">Batch</span></code> 객체들의 정렬이 가능하도록 합시다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> batch_ord from custom_types, orderline
+from datetime import date
+
+class Batch:
+    def __init__(
+        self, ref: Reference, sku: Sku, qty: int, eta: Optional[date]
+    ):
+        self.__reference = ref
+        self.sku = sku
+        self.eta = eta
+        self._purchased_quantity = qty
+        self._allocations = set[OrderLine]()
+
+    @property
+    def reference(self) -&gt; Reference:
+        return self.__reference
+
+    def allocate(self, line: OrderLine) -&gt; None:
+        if self.can_allocate(line):
+            self._allocations.add(line)
+
+    def deallocate(self, line: OrderLine) -&gt; None:
+        if line in self._allocations:
+            self._allocations.remove(line)
+
+    @property
+    def allocated_quantity(self) -&gt; int:
+        return sum(line.qty for line in self._allocations)
+
+    @property
+    def available_quantity(self) -&gt; int:
+        return self._purchased_quantity - self.allocated_quantity
+
+    def can_allocate(self, line: OrderLine) -&gt; bool:
+        return self.sku == line.sku and self.available_quantity &gt;= line.qty
+
+    def __eq__(self, other: object) -&gt; bool:
+        if not isinstance(other, Batch):
+            return False
+        return other.reference == self.reference
+
+    def __hash__(self) -&gt; int:
+        return hash(self.reference)
+
+    #######################################################################
+    def __lt__(self, other: Batch) -&gt; bool:
+        if self.eta is None:
+            return True
+        if other.eta is None:
+            return False
+        return self.eta &lt; other.eta
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">Batch</span></code> 객체의 정렬이 가능하여 타입체크에 성공하고 테스트들도 성공적으로 수행됩니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%%</span><span class="k">typecheck</span> allocate from batch_ord, orderline
+from typing import List
+
+def allocate(line: OrderLine, batches: List[Batch]) -&gt; str:
+    batch = next(
+        b for b in sorted(batches) if b.can_allocate(line)
+    )
+    batch.allocate(line)
+    return batch.reference
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">Typecheck: </span><span class="ansi-green-intense-fg">success</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">today</span><span class="p">,</span> <span class="n">tomorrow</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_prefers_current_stock_batches_to_shipments</span><span class="p">():</span>
+    <span class="n">in_stock_batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;in-stock-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;RETRO-CLOCK&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">shipment_batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;shipment-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;RETRO-CLOCK&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">tomorrow</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s2">&quot;oref&quot;</span><span class="p">,</span> <span class="s2">&quot;RETRO-CLOCK&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">[</span><span class="n">in_stock_batch</span><span class="p">,</span> <span class="n">shipment_batch</span><span class="p">])</span>
+
+    <span class="k">assert</span> <span class="n">in_stock_batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">90</span>
+    <span class="k">assert</span> <span class="n">shipment_batch</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_prefers_current_stock_batches_to_shipments</span>
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="n">today</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
+<span class="n">tomorrow</span><span class="p">,</span> <span class="n">later</span> <span class="o">=</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">today</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_prefers_earlier_batches</span><span class="p">():</span>
+    <span class="n">earliest</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;speedy-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;MINIMALIST-SPOON&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">today</span><span class="p">)</span>
+    <span class="n">medium</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;normal-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;MINIMALIST-SPOON&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">tomorrow</span><span class="p">)</span>
+    <span class="n">latest</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;slow-batch&quot;</span><span class="p">,</span> <span class="s2">&quot;MINIMALIST-SPOON&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">later</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s2">&quot;order1&quot;</span><span class="p">,</span> <span class="s2">&quot;MINIMALIST-SPOON&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">[</span><span class="n">medium</span><span class="p">,</span> <span class="n">earliest</span><span class="p">,</span> <span class="n">latest</span><span class="p">])</span>
+
+    <span class="k">assert</span> <span class="n">earliest</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">90</span>
+    <span class="k">assert</span> <span class="n">medium</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">100</span>
+    <span class="k">assert</span> <span class="n">latest</span><span class="o">.</span><span class="n">available_quantity</span> <span class="o">==</span> <span class="mi">100</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_returns_allocated_batch_ref</span><span class="p">():</span>
+    <span class="n">in_stock_batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;in-stock-batch-ref&quot;</span><span class="p">,</span> <span class="s2">&quot;HIGHBROW-POSTER&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">shipment_batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;shipment-batch-ref&quot;</span><span class="p">,</span> <span class="s2">&quot;HIGHBROW-POSTER&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">tomorrow</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">OrderLine</span><span class="p">(</span><span class="s2">&quot;oref&quot;</span><span class="p">,</span> <span class="s2">&quot;HIGHBROW-POSTER&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">allocation</span> <span class="o">=</span> <span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">[</span><span class="n">in_stock_batch</span><span class="p">,</span> <span class="n">shipment_batch</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">allocation</span> <span class="o">==</span> <span class="n">in_stock_batch</span><span class="o">.</span><span class="n">reference</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_prefers_earlier_batches</span>
+✅ <span class="ansi-magenta-intense-fg">test_returns_allocated_batch_ref</span>
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Exceptions-Can-Express-Domain-Concetps-Too">
+<h3>Exceptions Can Express Domain Concetps Too<a class="headerlink" href="#Exceptions-Can-Express-Domain-Concetps-Too" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> 를 이용해 할당할 <code class="docutils literal notranslate"><span class="pre">Stock</span></code> 이 없을 경우 <code class="docutils literal notranslate"><span class="pre">OutOfStock</span></code> 예외가 발생하는지 테스트합시다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">class</span> <span class="nc">OutOfStock</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_raises_out_of_stock_exception_if_cannot_allocate</span><span class="p">():</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s1">&#39;batch1&#39;</span><span class="p">,</span> <span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">today</span><span class="p">)</span>
+    <span class="n">allocate</span><span class="p">(</span><span class="n">OrderLine</span><span class="p">(</span><span class="s1">&#39;order1&#39;</span><span class="p">,</span> <span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">[</span><span class="n">batch</span><span class="p">])</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">OutOfStock</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">):</span>
+        <span class="n">allocate</span><span class="p">(</span><span class="n">OrderLine</span><span class="p">(</span><span class="s1">&#39;order2&#39;</span><span class="p">,</span> <span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="n">batch</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;&lt;ipython-input-28-8c58e5803c91&gt;&#34;, line 4, in allocate
+    batch = next(
+StopIteration
+</pre></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">allocate</span></code> 함수에 예외발생 부분을 추가</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">OrderLine</span><span class="p">,</span> <span class="n">batches</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Batch</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">batch</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+            <span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">batches</span><span class="p">)</span> <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">can_allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">batch</span><span class="o">.</span><span class="n">reference</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">OutOfStock</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Out of stock for sku </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">sku</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>이제 테스트가 성공합니다.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_raises_out_of_stock_exception_if_cannot_allocate</span><span class="p">():</span>
+    <span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">(</span><span class="s1">&#39;batch1&#39;</span><span class="p">,</span> <span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="n">today</span><span class="p">)</span>
+    <span class="n">allocate</span><span class="p">(</span><span class="n">OrderLine</span><span class="p">(</span><span class="s1">&#39;order1&#39;</span><span class="p">,</span> <span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">[</span><span class="n">batch</span><span class="p">])</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">OutOfStock</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">):</span>
+        <span class="n">allocate</span><span class="p">(</span><span class="n">OrderLine</span><span class="p">(</span><span class="s1">&#39;order2&#39;</span><span class="p">,</span> <span class="s1">&#39;SMALL-FORK&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">[</span><span class="n">batch</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+✅ <span class="ansi-magenta-intense-fg">test_raises_out_of_stock_exception_if_cannot_allocate</span>
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Domain-Modeling-Recap">
+<h2>Domain Modeling Recap<a class="headerlink" href="#Domain-Modeling-Recap" title="Permalink to this headline">¶</a></h2>
+<p>This is the part of your code that is closest to the business, the most likely to change, and the place where you deliver the most value to the business. Make it easy to understand and modify.</p>
+<p>A value object is defined by its attributes. It’s usually best implemented as an immutable type. If you change an attribute on a Value Object, it represents a different object. In contrast, an entity has attributes that may vary over time and it will still be the same entity. It’s important to define what does uniquely identify an entity (usually some sort of name or reference field).</p>
+<p>Python is a multiparadigm language, so let the “verbs” in your code be functions. For every <code class="docutils literal notranslate"><span class="pre">FooManager</span></code>, <code class="docutils literal notranslate"><span class="pre">BarBuilder</span></code>, or <code class="docutils literal notranslate"><span class="pre">BazFactory</span></code>, there’s often a more expressive and readable <code class="docutils literal notranslate"><span class="pre">manage_foo()</span></code>, <code class="docutils literal notranslate"><span class="pre">build_bar()</span></code>, or <code class="docutils literal notranslate"><span class="pre">get_baz()</span></code> waiting to happen.</p>
+<p>Revisit the SOLID principles and all the other good heuristics like “has a versus is-a,” “prefer composition over inheritance,” and so on.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>jupyter nbconvert <span class="m">01</span>.<span class="se">\ </span>domain-modeling-py.ipynb --output-dir<span class="o">=</span>./exports --to html --TagRemovePreprocessor.remove_input_tags<span class="o">=</span><span class="s1">&#39;{&quot;hidden_input&quot;}&#39;</span> --TagRemovePreprocessor.remove_cell_tags<span class="o">=</span><span class="s1">&#39;{&quot;hidden_cell&quot;}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[NbConvertApp] Converting notebook 01. domain-modeling-py.ipynb to html
+[NbConvertApp] Writing 705432 bytes to exports/01. domain-modeling-py.html
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>jupyter nbconvert <span class="m">01</span>.<span class="se">\ </span>domain-modeling-py.ipynb --output-dir<span class="o">=</span>./exports --to html --TagRemovePreprocessor.remove_cell_tags<span class="o">=</span><span class="s1">&#39;{&quot;hidden_cell&quot;}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[NbConvertApp] Converting notebook 01. domain-modeling-py.ipynb to html
+[NbConvertApp] Writing 712127 bytes to exports/01. domain-modeling-py.html
+</pre></div></div>
+</div>
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {}, "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02.html" class="btn btn-neutral float-right" title="02. Repository Pattern" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="00.html" class="btn btn-neutral float-left" title="00. Kick-Off" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Joseph Kim &lt;cloudeyes@gmail.com&gt;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
