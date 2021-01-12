@@ -56,7 +56,7 @@ class Batch:
         """지정된 :class:`OrderLine` 을 현재 :class:`Batch` 에 추가합니다.
 
         Args:
-            line: 배치에 추가할 :class:`OrderLine`.
+            line: 배치에 추가할 OrderLine.
         """
         if self.can_allocate(line):
             self._allocations.add(line)

@@ -1,3 +1,6 @@
+[MASTER]
+ignore-patterns=test_.*?py
+
 [DESIGN]
 
 max-args=7

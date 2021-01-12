@@ -16,4 +16,6 @@ git+https://github.com/PyCQA/pylint.git
 # documentation
 sphinx
 sphinx_rtd_theme
+sphinx-autodoc-typehints
+sphinxcontrib-plantuml
 livereload

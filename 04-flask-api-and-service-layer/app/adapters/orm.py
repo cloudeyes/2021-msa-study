@@ -11,8 +11,8 @@ import logging
 
 from sqlalchemy import (MetaData, Table, Column, ForeignKey, Integer, String,
                         Date, create_engine)
+from sqlalchemy.pool.base import Pool
 from sqlalchemy.engine import Engine
-from sqlalchemy.pool import Pool
 from sqlalchemy.orm import (
     mapper,
     relationship,
@@ -138,12 +138,15 @@ def init_engine(meta: MetaData,
 def get_scoped_session(engine: Engine) -> Callable[[], ScopedSession]:
     """``with...`` 문으로 자동 리소스가 반환되는 세션을 리턴합니다.
 
-    Example:
-        예제 코드입니다. ::
+    Example: ::
 
-            with get_scoped_session() as db:
-                batches = db.query(Batch).all()
-                ...
+        with get_scoped_session() as db:
+            batches = db.query(Batch).all()
+            ...
+
+    Args:
+        engine: Engine.
+
     """
     get_session = sessionmaker(engine)
 

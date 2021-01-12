@@ -12,9 +12,17 @@
    :maxdepth: 2
    :caption: Modules
 
+   config.rst
    domain.rst
-   apps.rst
    adapters.rst
+   services.rst
+
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Library Reference
+
+   vendor.rst
 
 
 Indices and tables

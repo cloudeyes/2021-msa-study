@@ -27,14 +27,14 @@ author = 'Joseph Kim'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx_autodoc_typehints',
     'sphinx_rtd_theme',
     'sphinxcontrib.plantuml',
-    'sphinx.ext.napoleon',
     'sphinx_paramlinks',
 ]
 
 add_module_names = False
-
 plantuml_output_format = 'svg'
 
 # Add any paths that contain templates here, relative to this directory.

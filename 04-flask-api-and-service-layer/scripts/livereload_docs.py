@@ -15,7 +15,7 @@ def main() -> None:
     server = Server()
     server.watch('app/**/*.py', shell('make html', cwd='docs'))
     server.watch('docs/*.rst', shell('make html', cwd='docs'))
-    server.serve(root='docs/_build/html')
+    server.serve(root='docs/_build/html', host='0.0.0.0')
 
 
 if __name__ == '__main__':
