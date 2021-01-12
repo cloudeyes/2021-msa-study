@@ -1,16 +1,9 @@
-from typing import Callable, Any, cast
+from __future__ import annotations
 
 from flask import request, jsonify
 
-from ..apps.flask import (route, FlaskResponse, get_repo)
+from ..apps.flask import (route, get_repo, FlaskResponse)
 from ..domain import models
-
-
-@route('/batches', methods=['GET'])
-def batches() -> FlaskResponse:
-    with get_repo() as repo:
-        batches = repo.list()
-        return jsonify(batches), 200
 
 
 @route("/allocate", methods=['POST'])

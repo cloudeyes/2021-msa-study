@@ -1,6 +1,6 @@
 """API 테스트."""
 from __future__ import annotations
-
+from typing import Callable, Optional
 import uuid
 
 import pytest
@@ -12,20 +12,23 @@ def random_suffix() -> str:
     return uuid.uuid4().hex[:6]
 
 
-def random_sku(name='') -> str:
+def random_sku(name: str = '') -> str:
     return f'sku-{name}-{random_suffix()}'
 
 
-def random_batchref(name='') -> str:
-    return f'batch-{name}-{random_suffix()}'
+def random_batchref(num: int = 1) -> str:
+    return f'batch-{num}-{random_suffix()}'
 
 
-def random_orderid(name='') -> str:
+def random_orderid(name: str = '') -> str:
     return f'order-{name}-{random_suffix()}'
 
 
+AddStockFunc = Callable[[list[tuple[str, str, int, Optional[str]]]], None]
+
+
 @pytest.mark.usefixtures('server')
-def test_api_returns_allocation(add_stock) -> None:
+def test_api_returns_allocation(add_stock: AddStockFunc) -> None:
     sku, othersku = random_sku(), random_sku('other')
     earlybatch = random_batchref(1)
     laterbatch = random_batchref(2)

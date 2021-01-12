@@ -1,9 +1,10 @@
 from datetime import date
 
 from ...domain import models
+from sqlalchemy.orm import Session
 
 
-def test_orderline_mapper_can_load_lines(session):
+def test_orderline_mapper_can_load_lines(session: Session) -> None:
     session.execute("INSERT INTO order_line (orderid, sku, qty) VALUES "
                     "('order1', 'RED-CHAIR', 12),"
                     "('order1', 'RED-TABLE', 13),"
@@ -16,7 +17,7 @@ def test_orderline_mapper_can_load_lines(session):
     assert session.query(models.OrderLine).all() == expected
 
 
-def test_orderline_mapper_can_save_lines(session):
+def test_orderline_mapper_can_save_lines(session: Session) -> None:
     new_line = models.OrderLine("order1", "DECORATIVE-WIDGET", 12)
     session.add(new_line)
     session.commit()
@@ -25,7 +26,7 @@ def test_orderline_mapper_can_save_lines(session):
     assert rows == [("order1", "DECORATIVE-WIDGET", 12)]
 
 
-def test_retrieving_batches(session):
+def test_retrieving_batches(session: Session) -> None:
     session.execute(
         "INSERT INTO batch (reference, sku, _purchased_quantity, eta)"
         " VALUES ('batch1', 'sku1', 100, null)")
@@ -40,7 +41,7 @@ def test_retrieving_batches(session):
     assert session.query(models.Batch).all() == expected
 
 
-def test_saving_batches(session):
+def test_saving_batches(session: Session) -> None:
     batch = models.Batch('batch1', 'sku1', 100, eta=None)
     session.add(batch)
     session.commit()
@@ -50,7 +51,7 @@ def test_saving_batches(session):
     assert rows == [('batch1', 'sku1', 100, None)]
 
 
-def test_saving_allocations(session):
+def test_saving_allocations(session: Session) -> None:
     batch = models.Batch('batch1', 'sku1', 100, eta=None)
     line = models.OrderLine('order1', 'sku1', 10)
     batch.allocate(line)
@@ -58,10 +59,10 @@ def test_saving_allocations(session):
     session.commit()
     rows = list(
         session.execute('SELECT orderline_id, batch_id FROM allocation'))
-    assert rows == [(batch.id, line.id)]
+    assert rows == [(batch.id, getattr(line, 'id'))]
 
 
-def test_retrieving_allocations(session):
+def test_retrieving_allocations(session: Session) -> None:
     session.execute(
         "INSERT INTO order_line (orderid, sku, qty) VALUES ('order1', 'sku1', 12)"
     )

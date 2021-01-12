@@ -1,14 +1,14 @@
 """도메인 모델."""
 
 from __future__ import annotations
-from typing import Optional, NewType
+from typing import Optional
 from dataclasses import dataclass
 from datetime import date
 
 
 class OutOfStock(Exception):
     """:class:`Batch` 에 할당할 재고(Stock)가 없을 때 발생하는 예외입니다."""
-    pass
+    ...
 
 
 @dataclass
@@ -39,8 +39,16 @@ class Batch:
                  ref: str,
                  sku: str,
                  qty: int,
-                 eta: Optional[date] = None):
-        """`Batch` 의 기본 생성자."""
+                 eta: Optional[date] = None,
+                 id: Optional[int] = None):  # pylint: disable=redefined-builtin
+        """기본 생성자.
+
+        Args:
+            id: 매핑된 DB가 할당한 고유 ID. 세션 commit이 될 경우에만 값이 부여됩니다.
+        """
+        self.id = id  # pylint: disable=invalid-name
+        """매핑된 DB가 할당한 고유 ID. 세션 commit이 될 경우에만 값이 부여됩니다."""
+
         self.reference = ref
 
         self.sku = sku

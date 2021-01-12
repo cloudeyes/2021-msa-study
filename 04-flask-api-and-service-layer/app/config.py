@@ -1,7 +1,7 @@
 """App Configurations."""
 from __future__ import annotations
 from typing import Any, Optional
-from sqlalchemy.pool import StaticPool
+from sqlalchemy.pool import StaticPool, Pool
 
 
 def get_api_host() -> str:
@@ -39,7 +39,7 @@ def get_db_connect_args() -> dict[str, Any]:
     return {}
 
 
-def get_db_poolclass() -> Optional[sqlalchemy.pool.base.Pool]:
+def get_db_poolclass() -> Optional[Pool]:
     """Get db poolclass arguemnt for SQLAlchemy's engine creation.
 
     Returns:
@@ -47,4 +47,3 @@ def get_db_poolclass() -> Optional[sqlalchemy.pool.base.Pool]:
 
     """
     return StaticPool
-

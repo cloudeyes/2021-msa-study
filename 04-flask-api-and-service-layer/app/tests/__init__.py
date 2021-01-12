@@ -15,36 +15,36 @@ BOLD = '\033[1m'
 _AnyFunc = Callable[..., Any]
 
 
-class mytest:
+class mytest:  #pylint: disable=invalid-name
     """pytest 를 흉내내는 간단한 Jupyter Notebook용 테스트 러너 입니다. """
-    modules: dict[str, ModuleType] = {}
-    tests: dict[str, _AnyFunc] = {}
+    fixtures: dict[str, _AnyFunc] = {}
+    tests: dict[_AnyFunc, _AnyFunc] = {}
 
     @classmethod
     def fixture(cls, func: _AnyFunc) -> _AnyFunc:
-        cls.modules[func.__name__] = func
+        cls.fixtures[func.__name__] = func
         return func
 
     @classmethod
-    def run(cls, func) -> Any:
+    def run(cls, func: _AnyFunc) -> Any:
         assert func in cls.tests, \
                f'{func} should be registered with `@unit` decorator first'
         cls.tests[func]()
 
     @classmethod
-    def test(cls, func) -> _AnyFunc:
-        def unit():
+    def test(cls, func: _AnyFunc) -> _AnyFunc:
+        def unit() -> _AnyFunc:
             cleanups = []
 
-            def unwrap(func):
+            def unwrap(func: _AnyFunc) -> Any:
                 argvals = []
                 fixnames: list[str] = inspect.getfullargspec(func).args
 
                 for fixname in fixnames:
-                    assert fixname in cls.modules, \
+                    assert fixname in cls.fixtures, \
                            f'name "{fixname}" should be registered first with @mytest.fixture'
 
-                    fixfunc = cls.modules[fixname]
+                    fixfunc = cls.fixtures[fixname]
                     fixargs = inspect.getfullargspec(fixfunc).args
 
                     if not fixargs:  # 인자가 없는 fixture라면
@@ -67,7 +67,7 @@ class mytest:
             try:
                 unwrap(func)
                 print(f'✅ {VIOLET}{func.__name__}{ENDC}', flush=True)
-            except:
+            except:  #pylint: disable=bare-except
                 print(f'❌ {FAIL}{func.__name__}{ENDC}', flush=True)
                 traceback.print_exc(limit=-1)
                 sys.stderr.flush()
@@ -93,10 +93,10 @@ class ServerThread(threading.Thread):
         self.ctx = app.app_context()
         self.ctx.push()
 
-    def run(self):
+    def run(self) -> None:
         print('starting server... ', end='')
         self.srv.serve_forever()
 
-    def shutdown(self):
+    def shutdown(self) -> None:
         print('shutting down server...')
         self.srv.shutdown()

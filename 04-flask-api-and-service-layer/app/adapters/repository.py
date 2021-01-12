@@ -44,7 +44,7 @@ class AbstractRepository(abc.ABC, ContextDecorator):
 
     @abc.abstractmethod
     def clear(self) -> None:
-        """레포지터리 내의 모든 엔티티 데이터를 지웁니다"""
+        """레포지터리 내의 모든 엔티티 데이터를 지웁니다."""
         raise NotImplementedError
 
 
