@@ -1,0 +1,11 @@
+{
+    "python.formatting.provider": "yapf",
+    "python.linting.mypyArgs": [
+        "--ignore-missing-imports",
+        "--follow-imports=silent",
+        "--show-column-numbers",
+        "--strict",
+        "--allow-untyped-decorators"
+    ],
+    "python.linting.mypyEnabled": true
+}

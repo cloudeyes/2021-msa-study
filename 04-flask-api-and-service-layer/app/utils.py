@@ -10,6 +10,11 @@ def show_test_pyramid(counts: dict[str, int],
                       margin_right: int = 0,
                       margin_top: int = 10,
                       margin_bottom: int = 10) -> SVG:
+    """테스트 피라미드를 SVG로 출력합니다.
+
+    Args:
+        counts: 테스트 항목(`e2e`, `integration`, `unit`)별 키에 대한 갯수입니다.
+    """
 
     e2e, intg, unit = [
         counts.get(it, 0) for it in ('e2e', 'integration', 'unit')

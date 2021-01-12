@@ -1,0 +1,6 @@
+<svg width="400" height="150">
+      <polygon points="235,140 195,75 155,10 395,10 355,75 315,140" style="fill:none;stroke:black;stroke-width:2"/>
+       <text x="0" y="135">unit: 10</text>
+       <text x="0" y="75">integration: 20</text>
+       <text x="0" y="20">e2e: 30</text>
+    </svg>
