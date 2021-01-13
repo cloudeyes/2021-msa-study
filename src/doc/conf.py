@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Architecture Patterns with Python'
+project = '2021 Microservices Architecture Study'
 copyright = '2021, Joseph Kim <cloudeyes@gmail.com>'
 author = 'Joseph Kim'
 
