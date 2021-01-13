@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests &mdash; 2021 Microservices Architecture Study  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SQLAlchemy" href="vendor.html" />
+    <link rel="prev" title="apps" href="apps.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 2021 Microservices Architecture Study
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/00.html">00. Kick-Off</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/01.html">01. Domain Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/02.html">02. Repository Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/03.html">03. Coupling and Abstractions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/04.html">04. Flask API and Service Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/05.html">05. TDD in High and Low Gears</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="config.html">config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps.html">apps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.tests.conftest">conftest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-app.tests.__init__">__init__</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Library Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vendor.html">SQLAlchemy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vendor.html#flask">Flask</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">2021 Microservices Architecture Study</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>tests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tests.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="tests">
+<h1>tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h1>
+<p>테스트 모듈.</p>
+<div class="section" id="module-app.tests.conftest">
+<span id="conftest"></span><h2>conftest<a class="headerlink" href="#module-app.tests.conftest" title="Permalink to this headline">¶</a></h2>
+<p>pytest 에서 사용될 전역 Fixture들을 정의합니다.</p>
+<dl class="py data">
+<dt id="app.tests.conftest.AddStockFunc">
+<code class="sig-name descname">AddStockFunc</code><a class="headerlink" href="#app.tests.conftest.AddStockFunc" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#app.tests.conftest.add_stock" title="app.tests.conftest.add_stock"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stock()</span></code></a> 함수 타입.</p>
+<p>alias of Callable[[List[Tuple[str, str, int, Optional[str]]]], None]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="app.tests.conftest.AddStockLines">
+<code class="sig-name descname">AddStockLines</code><a class="headerlink" href="#app.tests.conftest.AddStockLines" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#app.tests.conftest.add_stock" title="app.tests.conftest.add_stock"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stock()</span></code></a> 함수의 인자 타입.</p>
+<p>alias of List[Tuple[str, str, int, Optional[str]]]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.tests.conftest.add_stock">
+<code class="sig-name descname">add_stock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">get_repo</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.conftest.add_stock" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#app.tests.conftest.get_repo" title="app.tests.conftest.get_repo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_repo()</span></code></a> 픽스쳐를 이용해 레포지터리에 배치를 추가하는 <cite>add_stock</cite>
+함수를 리턴하는 픽스쳐입니다.</p>
+<p>제너레이터를 이용해 리턴하며 픽스쳐 사용 이후에는 레포지터리에서 입력된 배치를
+Clean up 합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.tests.conftest.AddStockFunc" title="app.tests.conftest.AddStockFunc"><code class="xref py py-class docutils literal notranslate"><span class="pre">AddStockFunc</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.tests.conftest.get_repo">
+<code class="sig-name descname">get_repo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">get_session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.conftest.get_repo" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SqlAlchemyRepository</span></code> 팩토리 함수를 리턴하는 픽스쳐입니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[[], <a class="reference internal" href="adapters.html#app.adapters.repository.AbstractRepository" title="app.adapters.repository.AbstractRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRepository</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.tests.conftest.get_session">
+<code class="sig-name descname">get_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.conftest.get_session" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="vendor.html#sqlalchemy.orm.Session" title="sqlalchemy.orm.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></a> 팩토리 메소드(<a class="reference internal" href="adapters.html#app.adapters.orm.SessionMaker" title="app.adapters.orm.SessionMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">SessionMaker</span></code></a>)
+를 리턴하는 픽스쳐 입니다.</p>
+<p>호출시마다 <a class="reference internal" href="apps.html#app.apps.flask.init_db" title="app.apps.flask.init_db"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init_db()</span></code></a> 을 호출(<cite>drop_all=True</cite>)하여
+모든 DB 엔티티를 매번 재생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="adapters.html#app.adapters.orm.SessionMaker" title="app.adapters.orm.SessionMaker"><code class="xref py py-class docutils literal notranslate"><span class="pre">SessionMaker</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.tests.conftest.server">
+<code class="sig-name descname">server</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">get_session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.conftest.server" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="xref py py-class docutils literal notranslate"><span class="pre">ServerThread</span></code> 로 구현된 재시작 가능한 멀티스레드 Flask 서버를
+리턴하는 픽스쳐입니다.</p>
+<p>픽스쳐 사용후에는 <a href="#id1"><span class="problematic" id="id2">`</span></a>shutdown`을 통해 서버를 종료합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">ServerThread</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.tests.conftest.session">
+<code class="sig-name descname">session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.conftest.session" title="Permalink to this definition">¶</a></dt>
+<dd><p>테스트에 사용될 새로운 <a class="reference internal" href="vendor.html#sqlalchemy.orm.Session" title="sqlalchemy.orm.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></a> 픽스처를 리턴합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="vendor.html#sqlalchemy.orm.Session" title="sqlalchemy.orm.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-app.tests.__init__">
+<span id="init"></span><h2>__init__<a class="headerlink" href="#module-app.tests.__init__" title="Permalink to this headline">¶</a></h2>
+<p>테스트 기본 설정 및 헬퍼 함수를 정의합니다.</p>
+<dl class="py class">
+<dt id="app.tests.__init__.ServerThread">
+<em class="property">class </em><code class="sig-name descname">ServerThread</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.__init__.ServerThread" title="Permalink to this definition">¶</a></dt>
+<dd><p>여러 다른 Flask App 컨텍스트를 교체하고 재시작 가능한 멀티스레드 서버.</p>
+<dl class="py method">
+<dt id="app.tests.__init__.ServerThread.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.__init__.ServerThread.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>서버를 실행합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.tests.__init__.ServerThread.shutdown">
+<code class="sig-name descname">shutdown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.__init__.ServerThread.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>서버를 종료합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="app.tests.__init__.mytest">
+<em class="property">class </em><code class="sig-name descname">mytest</code><a class="headerlink" href="#app.tests.__init__.mytest" title="Permalink to this definition">¶</a></dt>
+<dd><p>pytest 를 흉내내는 간단한 Jupyter Notebook용 테스트 러너 입니다.</p>
+<dl class="py method">
+<dt id="app.tests.__init__.mytest.fixture">
+<em class="property">classmethod </em><code class="sig-name descname">fixture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.__init__.mytest.fixture" title="Permalink to this definition">¶</a></dt>
+<dd><p>함수 객체를 픽스쳐 레지스트리에 등록하는 함수 데코레이터.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[…, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.tests.__init__.mytest.run">
+<em class="property">classmethod </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.__init__.mytest.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>이전에 실행한 유닛 테스트를 다시 실행합니다.</p>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@test</span>
+<span class="k">def</span> <span class="nf">test_example</span><span class="p">()</span>
+    <span class="o">...</span>
+
+<span class="n">mytest</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">test_example</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.tests.__init__.mytest.test">
+<em class="property">classmethod </em><code class="sig-name descname">test</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.tests.__init__.mytest.test" title="Permalink to this definition">¶</a></dt>
+<dd><p>유닛 테스트를 등록하는 함수 데코레이터.</p>
+<p>함수 정의와 동시에 테스트 함수를 실행합니다. 함수 실행이 실패해도 예외
+메세지가 출력될 뿐 실행이 중단되지 않습니다.</p>
+<p>파라메터가 정의된 함수의 경우 파라메터 이름들을 픽스쳐 레지스트리에서 찾아
+재귀적으로 픽스쳐 함수를 실행한 결과를 인자 값으로 주입하여 테스트 함수를
+실행합니다.</p>
+<p>테스트 실행시 예외가 발생하면 예외 메세지를 출력합니다.</p>
+<p>함수 객체는 내부 테스트 레지스트리에 보관되며 <a class="reference internal" href="#app.tests.__init__.mytest.run" title="app.tests.__init__.mytest.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mytest.run()</span></code></a> 으로 다시
+실행할 수 있습니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code>[…, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="vendor.html" class="btn btn-neutral float-right" title="SQLAlchemy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="apps.html" class="btn btn-neutral float-left" title="apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Joseph Kim &lt;cloudeyes@gmail.com&gt;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
