@@ -22,7 +22,7 @@ extensions = [
 ]
 
 
-highlight_language = 'none'
+#highlight_language = 'none'
 html_sourcelink_suffix = ''
 nbsphinx_execute_arguments = [
     "--InlineBackend.figure_formats={'svg', 'pdf'}",
