@@ -1,8 +1,9 @@
 """Flask 로 구현한 RESTful 서비스 앱."""
 from __future__ import annotations
-from typing import Callable, TypeVar, Optional, Any, Tuple, cast
+from typing import Callable, Optional, Any, cast
 
 from flask import Flask
+from sqlalchemy.orm import sessionmaker
 
 from ..adapters import orm
 from ..adapters.orm import SessionMaker
@@ -16,15 +17,15 @@ RouteDecorator = Callable[..., Callable[[_AnyFunc], _AnyFunc]]
 FlaskResponse = tuple[Any, int]
 
 # globals
-app: Flask = cast(Flask, None)  # pylint: disable=invalid-name
+app = Flask(__name__)  # pylint: disable=invalid-name
 get_session: SessionMaker = cast(SessionMaker, None)  # pylint: disable=invalid-name
 
 
 def init_db(db_url: Optional[str] = None,
             drop_all: bool = False,
             show_log: bool = False) -> SessionMaker:
-    from sqlalchemy.orm import sessionmaker
-    global get_session  # pylint: disable=global-statement
+    """DB 엔진을 초기화 합니다."""
+    global get_session  # pylint: disable=global-statement, invalid-name
 
     if get_session:
         return get_session
@@ -41,21 +42,21 @@ def init_db(db_url: Optional[str] = None,
 
 
 def get_repo() -> AbstractRepository:
+    """앱 DB와 연결된 레포지터리 객체를 리턴합니다."""
     return SqlAlchemyRepository(get_session())
 
 
-def create_app() -> Flask:
-    global app  # pylint: disable=global-statement, invalid-name
-    app = Flask(__name__)
-    return app
-
-
 def init_app() -> Flask:
-    from ..routes import flask  # pylint: disable=import-outside-toplevel, unused-import
+    """Flask 앱을 초기화 합니다.
+
+    :mod:`app.routes.flask` 모듈에서 엔드포인트 라우팅 설정을 로드하고
+    :meth:`.init_db` 를 호출하여 DB를 초기화 합니다.
+    """
+    # pylint: disable=import-outside-toplevel,cyclic-import, unused-import
+    from ..routes import flask
     global get_session  # pylint: disable=global-statement, invalid-name
     get_session = init_db()
     return app
 
 
-app = create_app()
 route: RouteDecorator = cast(RouteDecorator, app.route)

@@ -14,7 +14,7 @@ class OutOfStock(Exception):
 @dataclass
 class Order:
     """고객이 발주하는 주문(Order) 모델입니다.."""
-    id: str
+    id: str  # pylint: disable=invalid-name
 
 
 @dataclass(unsafe_hash=True)
@@ -70,18 +70,26 @@ class Batch:
             self._allocations.add(line)
 
     def deallocate(self, line: OrderLine) -> None:
+        """주문선 `line` 을 할당 취소 합니다."""
         if line in self._allocations:
             self._allocations.remove(line)
 
     @property
     def allocated_quantity(self) -> int:
+        """할당된 주문선 수량."""
         return sum(line.qty for line in self._allocations)
 
     @property
     def available_quantity(self) -> int:
+        """사용 가능한 재고 수량."""
         return self._purchased_quantity - self.allocated_quantity
 
     def can_allocate(self, line: OrderLine) -> bool:
+        """할당 가능 여부를 리턴합니다.
+
+        주문선의 SKU가 배치의 SKU와 동일하고 할당 가능한 수량이 주문선의 요구 수량보다
+        큰 경우에만 할당 가능합니다.
+        """
         return self.sku == line.sku and self.available_quantity >= line.qty
 
     def __eq__(self, other: object) -> bool:
@@ -101,9 +109,14 @@ class Batch:
 
 
 def allocate(line: OrderLine, batches: list[Batch]) -> str:
+    """주어진 배치들 중 할당 가능하고  가장 ETA가 빠른 배치를 주문선 `line`에 할당합니다.
+
+    Raises:
+        :class:`OutOfStock` 할당 가능한 배치가 없을 때 발생하는 예외.
+    """
     try:
         batch = next(b for b in sorted(batches) if b.can_allocate(line))
         batch.allocate(line)
         return batch.reference
-    except StopIteration:
-        raise OutOfStock(f'Out of stock for sku {line.sku}')
+    except StopIteration as ex:
+        raise OutOfStock(f'Out of stock for sku {line.sku}') from ex

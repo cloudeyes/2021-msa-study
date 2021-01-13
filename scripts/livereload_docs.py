@@ -13,7 +13,7 @@ def main() -> None:
         $ python -m "scripts.livereload_docs"
     """
     server = Server()
-    server.watch('app/**/*.py', shell('make -W -b html', cwd='src/doc'))
+    server.watch('src/app/**/*.py', shell('make -W -b html', cwd='src/doc'))
     server.watch('src/doc/**/*.rst', shell('make -W -b html', cwd='src/doc'))
     server.watch('src/doc/**/*.rst', shell('make -W -b html', cwd='src/doc'))
     server.serve(root='src/doc/_build/html', host='0.0.0.0')

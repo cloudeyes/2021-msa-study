@@ -3,6 +3,7 @@
 from IPython.display import SVG
 
 
+# pylint: disable=too-many-locals
 def show_test_pyramid(counts: dict[str, int],
                       svg_width: int = 400,
                       svg_height: int = 150,
