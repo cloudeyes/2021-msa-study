@@ -2,5 +2,4 @@
    :maxdepth: 2
    :glob:
 
-   guide/*
-
+   guide/* 
