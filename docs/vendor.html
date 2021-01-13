@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>SQLAlchemy &mdash; Architecture Patterns with Python  documentation</title>
+  <title>SQLAlchemy &mdash; 2021 Microservices Architecture Study  documentation</title>
   
 
   
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Architecture Patterns with Python
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 2021 Microservices Architecture Study
           
 
           
@@ -122,7 +122,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Architecture Patterns with Python</a>
+          <a href="index.html">2021 Microservices Architecture Study</a>
         
       </nav>
 
@@ -288,9 +288,9 @@ source of database connectivity and behavior.</p>
 <dd><p>Return a context manager delivering a <code class="xref py py-class docutils literal notranslate"><span class="pre">_engine.Connection</span></code>
 with a <code class="xref py py-class docutils literal notranslate"><span class="pre">Transaction</span></code> established.</p>
 <p>E.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>with engine.begin() as conn:
-    conn.execute(&quot;insert into table (x, y, z) values (1, 2, 3)&quot;)
-    conn.execute(&quot;my_special_procedure(5)&quot;)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;insert into table (x, y, z) values (1, 2, 3)&quot;</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;my_special_procedure(5)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Upon successful operation, the <code class="xref py py-class docutils literal notranslate"><span class="pre">Transaction</span></code>
@@ -433,9 +433,9 @@ with the new <code class="xref py py-class docutils literal notranslate"><span c
 to implement “sharding” schemes where multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">_engine.Engine</span></code>
 objects refer to the same connection pool, but are differentiated
 by options that would be consumed by a custom event:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>primary_engine = create_engine(&quot;mysql://&quot;)
-shard1 = primary_engine.execution_options(shard_id=&quot;shard1&quot;)
-shard2 = primary_engine.execution_options(shard_id=&quot;shard2&quot;)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">primary_engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mysql://&quot;</span><span class="p">)</span>
+<span class="n">shard1</span> <span class="o">=</span> <span class="n">primary_engine</span><span class="o">.</span><span class="n">execution_options</span><span class="p">(</span><span class="n">shard_id</span><span class="o">=</span><span class="s2">&quot;shard1&quot;</span><span class="p">)</span>
+<span class="n">shard2</span> <span class="o">=</span> <span class="n">primary_engine</span><span class="o">.</span><span class="n">execution_options</span><span class="p">(</span><span class="n">shard_id</span><span class="o">=</span><span class="s2">&quot;shard2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Above, the <code class="docutils literal notranslate"><span class="pre">shard1</span></code> engine serves as a factory for
@@ -451,20 +451,20 @@ time keeping track of which database we’ve established using the
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">_engine.Connection.info</span></code> dictionary,
 which gives us a persistent
 storage space that follows the DBAPI connection:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sqlalchemy import event
-from sqlalchemy.engine import Engine
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">event</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.engine</span> <span class="kn">import</span> <span class="n">Engine</span>
 
-shards = {&quot;default&quot;: &quot;base&quot;, shard_1: &quot;db1&quot;, &quot;shard_2&quot;: &quot;db2&quot;}
+<span class="n">shards</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;base&quot;</span><span class="p">,</span> <span class="n">shard_1</span><span class="p">:</span> <span class="s2">&quot;db1&quot;</span><span class="p">,</span> <span class="s2">&quot;shard_2&quot;</span><span class="p">:</span> <span class="s2">&quot;db2&quot;</span><span class="p">}</span>
 
-@event.listens_for(Engine, &quot;before_cursor_execute&quot;)
-def _switch_shard(conn, cursor, stmt,
-        params, context, executemany):
-    shard_id = conn._execution_options.get(&#39;shard_id&#39;, &quot;default&quot;)
-    current_shard = conn.info.get(&quot;current_shard&quot;, None)
+<span class="nd">@event</span><span class="o">.</span><span class="n">listens_for</span><span class="p">(</span><span class="n">Engine</span><span class="p">,</span> <span class="s2">&quot;before_cursor_execute&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_switch_shard</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">stmt</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">executemany</span><span class="p">):</span>
+    <span class="n">shard_id</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">_execution_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;shard_id&#39;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+    <span class="n">current_shard</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;current_shard&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-    if current_shard != shard_id:
-        cursor.execute(&quot;use %s&quot; % shards[shard_id])
-        conn.info[&quot;current_shard&quot;] = shard_id
+    <span class="k">if</span> <span class="n">current_shard</span> <span class="o">!=</span> <span class="n">shard_id</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;use </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">shards</span><span class="p">[</span><span class="n">shard_id</span><span class="p">])</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;current_shard&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shard_id</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
@@ -593,10 +593,10 @@ the <code class="docutils literal notranslate"><span class="pre">contextual_conn
 from <code class="xref py py-meth docutils literal notranslate"><span class="pre">_engine.Engine.contextual_connect()</span></code> as the first argument,
 followed by the given *args and **kwargs.</p>
 <p>e.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def do_something(conn, x, y):
-    conn.execute(&quot;some statement&quot;, {&#39;x&#39;:x, &#39;y&#39;:y})
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_something</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;some statement&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="n">y</span><span class="p">})</span>
 
-engine.transaction(do_something, 5, 10)
+<span class="n">engine</span><span class="o">.</span><span class="n">transaction</span><span class="p">(</span><span class="n">do_something</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The operations inside the function are all invoked within the
@@ -609,8 +609,8 @@ before propagating the exception.</p>
 <p>The <a class="reference internal" href="#sqlalchemy.engine.base.Engine.transaction" title="sqlalchemy.engine.base.Engine.transaction"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transaction()</span></code></a> method is superseded by
 the usage of the Python <code class="docutils literal notranslate"><span class="pre">with:</span></code> statement, which can
 be used with <code class="xref py py-meth docutils literal notranslate"><span class="pre">_engine.Engine.begin()</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>with engine.begin() as conn:
-    conn.execute(&quot;some statement&quot;, {&#39;x&#39;:5, &#39;y&#39;:10})
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;some statement&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span><span class="mi">10</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
@@ -1145,7 +1145,7 @@ implementations of <a class="reference internal" href="#sqlalchemy.orm.Session.g
 <em class="property">property </em><code class="sig-name descname">dirty</code><a class="headerlink" href="#sqlalchemy.orm.Session.dirty" title="Permalink to this definition">¶</a></dt>
 <dd><p>The set of all persistent instances considered dirty.</p>
 <p>E.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>some_mapped_object in session.dirty
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">some_mapped_object</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">dirty</span>
 </pre></div>
 </div>
 <p>Instances are considered dirty when they were modified but not
@@ -1222,9 +1222,9 @@ results of the statement execution, in the same manner as that of an
 <code class="xref py py-class docutils literal notranslate"><span class="pre">_engine.Engine</span></code> or
 <code class="xref py py-class docutils literal notranslate"><span class="pre">_engine.Connection</span></code>.</p>
 <p>E.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = session.execute(
-            user_table.select().where(user_table.c.id == 5)
-        )
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">user_table</span><span class="o">.</span><span class="n">select</span><span class="p">()</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">user_table</span><span class="o">.</span><span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="#sqlalchemy.orm.Session.execute" title="sqlalchemy.orm.Session.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code></a> accepts any executable clause construct,
@@ -1236,18 +1236,18 @@ such as <code class="xref py py-func docutils literal notranslate"><span class="
 as well, which in the case of <a class="reference internal" href="#sqlalchemy.orm.Session.execute" title="sqlalchemy.orm.Session.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Session.execute()</span></code></a> only
 will be interpreted the same as if it were passed via a
 <code class="xref py py-func docutils literal notranslate"><span class="pre">_expression.text()</span></code> construct.  That is, the following usage:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = session.execute(
-            &quot;SELECT * FROM user WHERE id=:param&quot;,
-            {&quot;param&quot;:5}
-        )
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;SELECT * FROM user WHERE id=:param&quot;</span><span class="p">,</span>
+            <span class="p">{</span><span class="s2">&quot;param&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">}</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 <p>is equivalent to:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from sqlalchemy import text
-result = session.execute(
-            text(&quot;SELECT * FROM user WHERE id=:param&quot;),
-            {&quot;param&quot;:5}
-        )
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">text</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="n">text</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM user WHERE id=:param&quot;</span><span class="p">),</span>
+            <span class="p">{</span><span class="s2">&quot;param&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">}</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 <p>The second positional argument to <a class="reference internal" href="#sqlalchemy.orm.Session.execute" title="sqlalchemy.orm.Session.execute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Session.execute()</span></code></a> is an
@@ -1256,16 +1256,16 @@ optional parameter set.  Similar to that of
 dictionary, or a sequence of dictionaries, determines whether the DBAPI
 cursor’s <code class="docutils literal notranslate"><span class="pre">execute()</span></code> or <code class="docutils literal notranslate"><span class="pre">executemany()</span></code> is used to execute the
 statement.   An INSERT construct may be invoked for a single row:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = session.execute(
-    users.insert(), {&quot;id&quot;: 7, &quot;name&quot;: &quot;somename&quot;})
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+    <span class="n">users</span><span class="o">.</span><span class="n">insert</span><span class="p">(),</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;somename&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 <p>or for multiple rows:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result = session.execute(users.insert(), [
-                        {&quot;id&quot;: 7, &quot;name&quot;: &quot;somename7&quot;},
-                        {&quot;id&quot;: 8, &quot;name&quot;: &quot;somename8&quot;},
-                        {&quot;id&quot;: 9, &quot;name&quot;: &quot;somename9&quot;}
-                    ])
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">insert</span><span class="p">(),</span> <span class="p">[</span>
+                        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;somename7&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;somename8&quot;</span><span class="p">},</span>
+                        <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;somename9&quot;</span><span class="p">}</span>
+                    <span class="p">])</span>
 </pre></div>
 </div>
 <p>The statement is executed within the current transactional context of
@@ -1554,16 +1554,16 @@ on all <code class="xref py py-class docutils literal notranslate"><span class="
 the database is known to be in a state where the connections are
 no longer safe to be used.</p>
 <p>E.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>try:
-    sess = Session()
-    sess.add(User())
-    sess.commit()
-except gevent.Timeout:
-    sess.invalidate()
-    raise
-except:
-    sess.rollback()
-    raise
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">sess</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">User</span><span class="p">())</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="k">except</span> <span class="n">gevent</span><span class="o">.</span><span class="n">Timeout</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">invalidate</span><span class="p">()</span>
+    <span class="k">raise</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+    <span class="k">raise</span>
 </pre></div>
 </div>
 <p>This clears all items and ends any transaction in progress.</p>
@@ -1639,7 +1639,7 @@ version of checking for the given instance in the
 <a class="reference internal" href="#sqlalchemy.orm.Session.dirty" title="sqlalchemy.orm.Session.dirty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Session.dirty</span></code></a> collection; a full test for
 each attribute’s net “dirty” status is performed.</p>
 <p>E.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>return session.is_modified(someobject)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">is_modified</span><span class="p">(</span><span class="n">someobject</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A few caveats to this method apply:</p>
@@ -1756,12 +1756,12 @@ means of “merging” a single object into the <a class="reference internal" hr
 <em class="property">property </em><code class="sig-name descname">no_autoflush</code><a class="headerlink" href="#sqlalchemy.orm.Session.no_autoflush" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a context manager that disables autoflush.</p>
 <p>e.g.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>with session.no_autoflush:
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">session</span><span class="o">.</span><span class="n">no_autoflush</span><span class="p">:</span>
 
-    some_object = SomeClass()
-    session.add(some_object)
-    # won&#39;t autoflush
-    some_object.related_thing = session.query(SomeRelated).first()
+    <span class="n">some_object</span> <span class="o">=</span> <span class="n">SomeClass</span><span class="p">()</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">some_object</span><span class="p">)</span>
+    <span class="c1"># won&#39;t autoflush</span>
+    <span class="n">some_object</span><span class="o">.</span><span class="n">related_thing</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">SomeRelated</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Operations that proceed within the <code class="docutils literal notranslate"><span class="pre">with:</span></code> block
