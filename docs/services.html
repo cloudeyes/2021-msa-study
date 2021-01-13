@@ -30,14 +30,13 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="SQLAlchemy" href="vendor.html" />
+    <link rel="next" title="routes" href="routes.html" />
     <link rel="prev" title="adapters" href="adapters.html" /> 
 </head>
 
@@ -103,6 +102,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps.html">apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Library Reference</span></p>
 <ul>
@@ -205,7 +207,8 @@
 <dl class="py exception">
 <dt id="app.services.batch.InvalidSku">
 <em class="property">exception </em><code class="sig-name descname">InvalidSku</code><a class="headerlink" href="#app.services.batch.InvalidSku" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>배치의 SKU와 다른 SKU를 할당하려 할 때 발생하는 예외입니다.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt id="app.services.batch.allocate">
@@ -214,6 +217,17 @@
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.services.batch.is_valid_sku">
+<code class="sig-name descname">is_valid_sku</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sku</span></em>, <em class="sig-param"><span class="n">batches</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.is_valid_sku" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>batches</cite> 에서 <cite>sku</cite> 와 일치하는 품목이 하나라도 있으며 참을 리턴합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -231,7 +245,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="vendor.html" class="btn btn-neutral float-right" title="SQLAlchemy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="routes.html" class="btn btn-neutral float-right" title="routes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="adapters.html" class="btn btn-neutral float-left" title="adapters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -30,7 +30,6 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -101,7 +100,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Integration-Tests-vs-Functional-Tests">Integration Tests vs Functional Tests</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Sanity-Check-for-the-Project">Sanity Check for the Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Sanity-Checks-for-the-Project">Sanity Checks for the Project</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#How-is-our-Test-Pyramid-Looking?">How is our Test Pyramid Looking?</a></li>
@@ -124,6 +123,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adapters.html">adapters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../services.html">services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps.html">apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests.html">tests</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Library Reference</span></p>
 <ul>
@@ -515,10 +517,30 @@ div.rendered_html tbody tr:hover {
 </ul>
 </div>
 </div>
-<div class="section" id="Sanity-Check-for-the-Project">
-<h3>Sanity Check for the Project<a class="headerlink" href="#Sanity-Check-for-the-Project" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="Sanity-Checks-for-the-Project">
+<h3>Sanity Checks for the Project<a class="headerlink" href="#Sanity-Checks-for-the-Project" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[51]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>git checkout <span class="m">05</span>-tdd-low-high-gears
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+M       05-tdd-in-high-and-low-gears/05-tdd-in-high-and-low-gears.ipynb
+M       docs/guide.html
+Already on &#39;05-tdd-low-high-gears&#39;
+Your branch is up to date with &#39;origin/05-tdd-low-high-gears&#39;.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -535,7 +557,7 @@ div.rendered_html tbody tr:hover {
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -561,11 +583,11 @@ app/tests/unit/test_allocate.py <span class="ansi-green-fg">.</span><span class=
 app/tests/unit/test_batch.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                   [ 88%]</span>
 app/tests/unit/test_services.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                      [100%]</span>
 
-<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">25 passed</span><span class="ansi-green-fg"> in 0.79s</span><span class="ansi-green-fg"> ==============================</span>
+<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">25 passed</span><span class="ansi-green-fg"> in 0.78s</span><span class="ansi-green-fg"> ==============================</span>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[52]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -578,88 +600,9 @@ app/tests/unit/test_services.py <span class="ansi-green-fg">.</span><span class=
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-************* Module app.utils
-app/utils.py:6:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/utils.py:6:0: R0914: Too many local variables (23/15) (too-many-locals)
-************* Module app.__main__
-app/__main__.py:2:10: C0303: Trailing whitespace (trailing-whitespace)
-app/__main__.py:6:0: C0305: Trailing newlines (trailing-newlines)
-app/__main__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-app/__main__.py:2:0: W0611: Unused import sys (unused-import)
-app/__main__.py:2:0: C0411: standard import &#34;import sys&#34; should be placed before &#34;from .apps.flask import init_app&#34; (wrong-import-order)
-************* Module app.domain.__init__
-app/domain/__init__.py:1:0: C0304: Final newline missing (missing-final-newline)
-************* Module app.domain
-app/domain/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-************* Module app.domain.models
-app/domain/models.py:17:4: C0103: Attribute name &#34;id&#34; doesn&#39;t conform to snake_case naming style (invalid-name)
-app/domain/models.py:72:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/domain/models.py:77:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/domain/models.py:81:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/domain/models.py:84:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/domain/models.py:103:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/domain/models.py:109:8: W0707: Consider explicitly re-raising using the &#39;from&#39; keyword (raise-missing-from)
-************* Module app.tests.conftest
-app/tests/conftest.py:26:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/conftest.py:36:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/conftest.py:41:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/conftest.py:46:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/conftest.py:58:0: C0116: Missing function or method docstring (missing-function-docstring)
-************* Module app.tests.__init__
-app/tests/__init__.py:102:0: C0304: Final newline missing (missing-final-newline)
-************* Module app.tests
-app/tests/__init__.py:4:0: C0410: Multiple imports on one line (os, sys, inspect, traceback, types) (multiple-imports)
-app/tests/__init__.py:24:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/__init__.py:29:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/__init__.py:35:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/tests/__init__.py:61:16: R1705: Unnecessary &#34;else&#34; after &#34;return&#34; (no-else-return)
-app/tests/__init__.py:80:16: W0150: return statement in finally block may swallow exception (lost-exception)
-app/tests/__init__.py:86:0: C0115: Missing class docstring (missing-class-docstring)
-app/tests/__init__.py:87:4: C0415: Import outside toplevel (flask.Flask) (import-outside-toplevel)
-app/tests/__init__.py:100:4: C0116: Missing function or method docstring (missing-function-docstring)
-************* Module app.tests.unit.__init__
-app/tests/unit/__init__.py:3:0: C0304: Final newline missing (missing-final-newline)
-************* Module app.tests.unit
-app/tests/unit/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-************* Module app.routes.flask
-app/routes/flask.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-app/routes/flask.py:10:0: C0116: Missing function or method docstring (missing-function-docstring)
-************* Module app.apps.fastapi
-app/apps/fastapi.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-app/apps/fastapi.py:1:0: W0611: Unused Optional imported from typing (unused-import)
-************* Module app.apps.flask
-app/apps/flask.py:23:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/apps/flask.py:26:4: C0415: Import outside toplevel (sqlalchemy.orm.sessionmaker) (import-outside-toplevel)
-app/apps/flask.py:27:4: C0103: Constant name &#34;get_session&#34; doesn&#39;t conform to UPPER_CASE naming style (invalid-name)
-app/apps/flask.py:43:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/apps/flask.py:47:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/apps/flask.py:53:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/apps/flask.py:3:0: W0611: Unused TypeVar imported from typing (unused-import)
-app/apps/flask.py:3:0: W0611: Unused Tuple imported from typing (unused-import)
-************* Module app.services.batch
-app/services/batch.py:10:0: C0115: Missing class docstring (missing-class-docstring)
-app/services/batch.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
-app/services/batch.py:2:0: W0611: Unused Protocol imported from typing (unused-import)
-app/services/batch.py:6:0: W0611: Unused Batch imported from domain.models (unused-import)
-************* Module app.services.__init__
-app/services/__init__.py:1:0: C0304: Final newline missing (missing-final-newline)
-************* Module app.services
-app/services/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
-************* Module app.adapters.orm
-app/adapters/orm.py:37:2: W0511: TODO: 설명을 좀더 자세하게 적어주세요. (fixme)
-************* Module app.adapters.repository
-app/adapters/repository.py:26:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/adapters/repository.py:30:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/adapters/repository.py:34:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/adapters/repository.py:38:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/adapters/repository.py:42:4: C0116: Missing function or method docstring (missing-function-docstring)
-app/adapters/repository.py:53:8: C0103: Attribute name &#34;db&#34; doesn&#39;t conform to snake_case naming style (invalid-name)
-app/adapters/repository.py:51:0: C0115: Missing class docstring (missing-class-docstring)
-************* Module app.adapters.__init__
-app/adapters/__init__.py:1:0: R0401: Cyclic import (app.apps.flask -&gt; app.routes.flask) (cyclic-import)
 
-------------------------------------------------------------------
-Your code has been rated at 8.42/10 (previous run: 7.90/10, +0.52)
+--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 
 
 </pre></div></div>
@@ -669,7 +612,7 @@ Your code has been rated at 8.42/10 (previous run: 7.90/10, +0.52)
 <div class="section" id="How-is-our-Test-Pyramid-Looking?">
 <h2>How is our Test Pyramid Looking?<a class="headerlink" href="#How-is-our-Test-Pyramid-Looking?" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -688,6 +631,7 @@ app/tests/unit/test_services.py:3
 app/tests/integration/test_orm.py:6
 app/tests/integration/test_repository.py:2
 app/tests/e2e/test_flask_api.py:1
+app/tests/__init__.py:2
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -712,7 +656,7 @@ app/tests/e2e/test_flask_api.py:1
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;unit&#39;: 16, &#39;integration&#39;: 8, &#39;e2e&#39;: 1}
+{&#39;unit&#39;: 16, &#39;integration&#39;: 8, &#39;e2e&#39;: 1, &#39;__init__.py&#39;: 2}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -730,7 +674,7 @@ app/tests/e2e/test_flask_api.py:1
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/guide_05_13_0.svg" src="../_images/guide_05_13_0.svg" /></div>
+<img alt="../_images/guide_05_14_0.svg" src="../_images/guide_05_14_0.svg" /></div>
 </div>
 </div>
 <div class="section" id="Should-Domain-Layer-Tests-Move-to-the-Service-Layer?">

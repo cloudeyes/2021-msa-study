@@ -17,13 +17,16 @@ Architecture Patterns with Python
    :members:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Modules
 
    config
    domain
    adapters
    services
+   routes
+   apps
+   tests
 
 
 .. toctree::

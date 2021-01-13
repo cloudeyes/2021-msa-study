@@ -30,7 +30,6 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -96,6 +95,9 @@
 <li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adapters.html">adapters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="services.html">services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps.html">apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Library Reference</span></p>
 <ul>
@@ -208,12 +210,24 @@
 </li>
       <li><a href="vendor.html#sqlalchemy.pool.base.Pool.add_listener">add_listener() (Pool method)</a>
 </li>
+      <li><a href="tests.html#app.tests.conftest.add_stock">add_stock() (in module app.tests.conftest)</a>
+</li>
+      <li><a href="tests.html#app.tests.conftest.AddStockFunc">AddStockFunc (in module app.tests.conftest)</a>
+</li>
+      <li><a href="tests.html#app.tests.conftest.AddStockLines">AddStockLines (in module app.tests.conftest)</a>
+</li>
       <li><a href="domain.html#app.domain.models.Batch.allocate">allocate() (Batch method)</a>
 
       <ul>
+        <li><a href="domain.html#app.domain.models.allocate">(in module app.domain.models)</a>
+</li>
         <li><a href="services.html#app.services.batch.allocate">(in module app.services.batch)</a>
 </li>
       </ul></li>
+      <li><a href="routes.html#app.routes.flask.allocate_endpoint">allocate_endpoint() (in module app.routes.flask)</a>
+</li>
+      <li><a href="domain.html#app.domain.models.Batch.allocated_quantity">allocated_quantity() (Batch property)</a>
+</li>
       <li>
     app
 
@@ -221,8 +235,6 @@
         <li><a href="index.html#module-app">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     app.adapters.orm
 
@@ -230,11 +242,20 @@
         <li><a href="adapters.html#module-app.adapters.orm">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     app.adapters.repository
 
       <ul>
         <li><a href="adapters.html#module-app.adapters.repository">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.apps.flask
+
+      <ul>
+        <li><a href="apps.html#module-app.apps.flask">module</a>
 </li>
       </ul></li>
       <li>
@@ -252,12 +273,35 @@
 </li>
       </ul></li>
       <li>
+    app.routes.flask
+
+      <ul>
+        <li><a href="routes.html#module-app.routes.flask">module</a>
+</li>
+      </ul></li>
+      <li>
     app.services.batch
 
       <ul>
         <li><a href="services.html#module-app.services.batch">module</a>
 </li>
       </ul></li>
+      <li>
+    app.tests.__init__
+
+      <ul>
+        <li><a href="tests.html#module-app.tests.__init__">module</a>
+</li>
+      </ul></li>
+      <li>
+    app.tests.conftest
+
+      <ul>
+        <li><a href="tests.html#module-app.tests.conftest">module</a>
+</li>
+      </ul></li>
+      <li><a href="domain.html#app.domain.models.Batch.available_quantity">available_quantity() (Batch property)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -292,6 +336,8 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="domain.html#app.domain.models.Batch.can_allocate">can_allocate() (Batch method)</a>
+</li>
       <li><a href="adapters.html#app.adapters.repository.AbstractRepository.clear">clear() (AbstractRepository method)</a>
 
       <ul>
@@ -332,6 +378,8 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="domain.html#app.domain.models.Batch.deallocate">deallocate() (Batch method)</a>
+</li>
       <li><a href="adapters.html#app.adapters.repository.AbstractRepository.delete">delete() (AbstractRepository method)</a>
 
       <ul>
@@ -340,10 +388,10 @@
         <li><a href="adapters.html#app.adapters.repository.SqlAlchemyRepository.delete">(SqlAlchemyRepository method)</a>
 </li>
       </ul></li>
-      <li><a href="vendor.html#sqlalchemy.orm.Session.deleted">deleted() (Session property)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vendor.html#sqlalchemy.orm.Session.deleted">deleted() (Session property)</a>
+</li>
       <li><a href="vendor.html#sqlalchemy.orm.Session.dirty">dirty() (Session property)</a>
 </li>
       <li><a href="vendor.html#sqlalchemy.engine.base.Engine.dispose">dispose() (Engine method)</a>
@@ -390,6 +438,10 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tests.html#app.tests.__init__.mytest.fixture">fixture() (mytest class method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="vendor.html#sqlalchemy.orm.Session.flush">flush() (Session method)</a>
 </li>
   </ul></td>
@@ -410,19 +462,27 @@
 </li>
       <li><a href="config.html#app.config.get_api_url">get_api_url() (in module app.config)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="vendor.html#sqlalchemy.orm.Session.get_bind">get_bind() (Session method)</a>
 </li>
       <li><a href="config.html#app.config.get_db_connect_args">get_db_connect_args() (in module app.config)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="config.html#app.config.get_db_poolclass">get_db_poolclass() (in module app.config)</a>
 </li>
       <li><a href="config.html#app.config.get_db_url">get_db_url() (in module app.config)</a>
 </li>
       <li><a href="vendor.html#sqlalchemy.engine.base.Engine.get_execution_options">get_execution_options() (Engine method)</a>
 </li>
+      <li><a href="apps.html#app.apps.flask.get_repo">get_repo() (in module app.apps.flask)</a>
+
+      <ul>
+        <li><a href="tests.html#app.tests.conftest.get_repo">(in module app.tests.conftest)</a>
+</li>
+      </ul></li>
       <li><a href="adapters.html#app.adapters.orm.get_scoped_session">get_scoped_session() (in module app.adapters.orm)</a>
+</li>
+      <li><a href="tests.html#app.tests.conftest.get_session">get_session() (in module app.tests.conftest)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -444,10 +504,14 @@
 </li>
       <li><a href="vendor.html#sqlalchemy.orm.Session.info">info (Session attribute)</a>
 </li>
-      <li><a href="adapters.html#app.adapters.orm.init_engine">init_engine() (in module app.adapters.orm)</a>
+      <li><a href="apps.html#app.apps.flask.init_app">init_app() (in module app.apps.flask)</a>
+</li>
+      <li><a href="apps.html#app.apps.flask.init_db">init_db() (in module app.apps.flask)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="adapters.html#app.adapters.orm.init_engine">init_engine() (in module app.adapters.orm)</a>
+</li>
       <li><a href="vendor.html#sqlalchemy.orm.Session.invalidate">invalidate() (Session method)</a>
 </li>
       <li><a href="services.html#app.services.batch.InvalidSku">InvalidSku</a>
@@ -455,6 +519,8 @@
       <li><a href="vendor.html#sqlalchemy.orm.Session.is_active">is_active() (Session property)</a>
 </li>
       <li><a href="vendor.html#sqlalchemy.orm.Session.is_modified">is_modified() (Session method)</a>
+</li>
+      <li><a href="services.html#app.services.batch.is_valid_sku">is_valid_sku() (in module app.services.batch)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -486,11 +552,19 @@
 </li>
         <li><a href="adapters.html#module-app.adapters.repository">app.adapters.repository</a>
 </li>
+        <li><a href="apps.html#module-app.apps.flask">app.apps.flask</a>
+</li>
         <li><a href="config.html#module-app.config">app.config</a>
 </li>
         <li><a href="domain.html#module-app.domain.models">app.domain.models</a>
 </li>
+        <li><a href="routes.html#module-app.routes.flask">app.routes.flask</a>
+</li>
         <li><a href="services.html#module-app.services.batch">app.services.batch</a>
+</li>
+        <li><a href="tests.html#module-app.tests.__init__">app.tests.__init__</a>
+</li>
+        <li><a href="tests.html#module-app.tests.conftest">app.tests.conftest</a>
 </li>
         <li><a href="vendor.html#module-sqlalchemy.engine.base">sqlalchemy.engine.base</a>
 </li>
@@ -499,6 +573,10 @@
         <li><a href="vendor.html#module-sqlalchemy.pool.base">sqlalchemy.pool.base</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tests.html#app.tests.__init__.mytest">mytest (class in app.tests.__init__)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -561,12 +639,18 @@
 </li>
       <li><a href="vendor.html#sqlalchemy.pool.base.Pool.recreate">recreate() (Pool method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="vendor.html#sqlalchemy.orm.Session.refresh">refresh() (Session method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="vendor.html#sqlalchemy.orm.Session.rollback">rollback() (Session method)</a>
 </li>
+      <li><a href="tests.html#app.tests.__init__.mytest.run">run() (mytest class method)</a>
+
+      <ul>
+        <li><a href="tests.html#app.tests.__init__.ServerThread.run">(ServerThread method)</a>
+</li>
+      </ul></li>
       <li><a href="vendor.html#sqlalchemy.engine.base.Engine.run_callable">run_callable() (Engine method)</a>
 </li>
   </ul></td>
@@ -583,8 +667,20 @@
       </ul></li>
       <li><a href="vendor.html#sqlalchemy.engine.base.Engine.schema_for_object">schema_for_object (Engine attribute)</a>
 </li>
+      <li><a href="tests.html#app.tests.conftest.server">server() (in module app.tests.conftest)</a>
+</li>
+      <li><a href="tests.html#app.tests.__init__.ServerThread">ServerThread (class in app.tests.__init__)</a>
+</li>
       <li><a href="vendor.html#sqlalchemy.orm.Session">Session (class in sqlalchemy.orm)</a>
 </li>
+      <li><a href="tests.html#app.tests.conftest.session">session() (in module app.tests.conftest)</a>
+</li>
+      <li><a href="adapters.html#app.adapters.orm.SessionMaker">SessionMaker (in module app.adapters.orm)</a>
+</li>
+      <li><a href="tests.html#app.tests.__init__.ServerThread.shutdown">shutdown() (ServerThread method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="domain.html#app.domain.models.Batch.sku">sku (Batch attribute)</a>
 
       <ul>
@@ -598,8 +694,6 @@
         <li><a href="vendor.html#module-sqlalchemy.engine.base">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     sqlalchemy.orm
 
@@ -625,6 +719,8 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="vendor.html#sqlalchemy.engine.base.Engine.table_names">table_names() (Engine method)</a>
+</li>
+      <li><a href="tests.html#app.tests.__init__.mytest.test">test() (mytest class method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
