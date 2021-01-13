@@ -1,18 +1,20 @@
 """Batch 서비스."""
-from typing import Sequence, Protocol, Any
+from typing import Sequence
 
 from ..adapters.repository import AbstractRepository
 from ..adapters.orm import AbstractSession
-from ..domain.models import Batch, OrderLine
+from ..domain.models import OrderLine, Batch
 from ..domain import models
 
 
 class InvalidSku(Exception):
+    """배치의 SKU와 다른 SKU를 할당하려 할 때 발생하는 예외입니다."""
     ...
 
 
-def is_valid_sku(sku: str, items: Sequence[Any]) -> bool:
-    return sku in {it.sku for it in items}
+def is_valid_sku(sku: str, batches: Sequence[Batch]) -> bool:
+    """`batches` 에서 `sku` 와 일치하는 품목이 하나라도 있으며 참을 리턴합니다."""
+    return sku in {it.sku for it in batches}
 
 
 def allocate(line: OrderLine, repo: AbstractRepository,

@@ -7,5 +7,14 @@
         "--strict",
         "--allow-untyped-decorators"
     ],
-    "python.linting.mypyEnabled": true
+    "python.linting.mypyEnabled": true,
+    "restructuredtext.languageServer.disabled": true,
+    "python.linting.pylintUseMinimalCheckers": false,
+    "[git-commit]": {"editor.rulers": [50]},
+    "[python]": {
+        "editor.rulers": [
+            79,
+            120
+        ]
+    }
 }

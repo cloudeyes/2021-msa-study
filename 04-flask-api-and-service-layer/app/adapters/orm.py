@@ -24,17 +24,17 @@ from sqlalchemy.orm.session import Session
 from ..domain.models import Batch, OrderLine
 
 SessionMaker = Callable[[], Session]
+"""Session 팩토리 타입."""
 ScopedSession = AbstractContextManager[Session]
 
 metadata: MetaData = None
 
 
 class AbstractSession(abc.ABC):
-    """세션의 일반적인 작업(`commit`, `)."""
+    """세션의 일반적인 작업(`commit`, `rollback`) 을 추상화한 클래스."""
     @abc.abstractmethod
     def commit(self) -> None:
         """트랜잭션을 커밋합니다."""
-        # TODO: 설명을 좀더 자세하게 적어주세요.
         raise NotImplementedError
 
 

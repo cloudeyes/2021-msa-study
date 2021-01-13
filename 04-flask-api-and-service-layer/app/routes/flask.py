@@ -1,5 +1,5 @@
+"""Flask 엔드포인트 라우팅 모듈입니다."""
 from __future__ import annotations
-
 from flask import request, jsonify
 
 from ..apps.flask import (route, get_repo, FlaskResponse)
@@ -8,6 +8,7 @@ from ..domain import models
 
 @route("/allocate", methods=['POST'])
 def allocate_endpoint() -> FlaskResponse:
+    """``POST /allocate`` 엔트포인트 요청을 처리합니다."""
     with get_repo() as repo:
         batches = repo.list()
         line = models.OrderLine(
