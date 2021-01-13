@@ -11,4 +11,4 @@ book/
 node_modules/
 SAP/
 target/
-docs/
+docs/*.html
