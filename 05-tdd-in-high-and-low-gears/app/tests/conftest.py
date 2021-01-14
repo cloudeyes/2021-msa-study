@@ -15,7 +15,7 @@ from ..adapters.repository import SqlAlchemyRepository, AbstractRepository
 from ..domain.models import Batch
 
 from ..apps.flask import init_app, init_db
-from . import ServerThread
+from .e2e import FlaskServerThread
 
 # types
 
@@ -61,7 +61,8 @@ def get_repo(get_session: SessionMaker) -> AbstractRepoMaker:
 
 @pytest.fixture
 # pylint: disable=unused-argument
-def server(get_session: SessionMaker) -> Generator[ServerThread, None, None]:
+def server(
+        get_session: SessionMaker) -> Generator[FlaskServerThread, None, None]:
     # noqa
     """:class:`ServerThread` 로 구현된 재시작 가능한 멀티스레드 Flask 서버를
     리턴하는 픽스쳐입니다.
@@ -69,7 +70,7 @@ def server(get_session: SessionMaker) -> Generator[ServerThread, None, None]:
     픽스쳐 사용후에는 `shutdown`을 통해 서버를 종료합니다.
     """
     test_app = init_app()
-    server = ServerThread(test_app)
+    server = FlaskServerThread(test_app)
     server.start()
 
     yield server

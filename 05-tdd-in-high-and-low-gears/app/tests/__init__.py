@@ -5,12 +5,7 @@ import os
 import sys
 import inspect
 import traceback
-import threading
 import types
-
-from werkzeug.serving import make_server
-from flask import Flask
-from app import config
 
 FAIL = '\033[91m'
 VIOLET = '\033[95m'
@@ -111,23 +106,3 @@ class mytest:  #pylint: disable=invalid-name
 
         cls.tests[func] = unit
         return unit()
-
-
-class ServerThread(threading.Thread):
-    """여러 다른 Flask App 컨텍스트를 교체하고 재시작 가능한 멀티스레드 서버."""
-    def __init__(self, app: Flask):
-        threading.Thread.__init__(self)
-        self.srv = make_server(config.get_api_host(), config.get_api_port(),
-                               app)
-        self.ctx = app.app_context()
-        self.ctx.push()
-
-    def run(self) -> None:
-        """서버를 실행합니다."""
-        print('starting server... ', end='')
-        self.srv.serve_forever()
-
-    def shutdown(self) -> None:
-        """서버를 종료합니다."""
-        print('shutting down server...')
-        self.srv.shutdown()
