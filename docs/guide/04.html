@@ -119,6 +119,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../adapters.html">adapters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../services.html">services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../apps.html">apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tests.html">tests</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Library Reference</span></p>
 <ul>
@@ -532,7 +535,7 @@ Requirement already satisfied: flask in /home/ykkim/conda/envs/lab/lib/python3.9
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -545,14 +548,14 @@ Requirement already satisfied: flask in /home/ykkim/conda/envs/lab/lib/python3.9
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-## production
+# production
 requests
 sqlalchemy
 flask
 fastapi
 fastalchemy
 
-## development
+# development
 pytest
 pytest-flask
 pytest-watch
@@ -560,14 +563,16 @@ pydocstyle
 git+https://github.com/AllanDaemon/mypy.git@0edf1233672117c4555759c5a91461a502ddce5d
 git+https://github.com/PyCQA/pylint.git
 
-## documentation
+# documentation
 sphinx
 sphinx_rtd_theme
+sphinx-autodoc-typehints
+sphinxcontrib-plantuml
 livereload
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -593,6 +598,7 @@ livereload
 │   ├── __init__.py
 │   └── models.py
 ├── <span class="ansi-blue-intense-fg ansi-bold">routes</span>
+│   ├── __init__.py
 │   └── flask.py
 ├── <span class="ansi-blue-intense-fg ansi-bold">services</span>
 │   ├── __init__.py
@@ -616,16 +622,17 @@ livereload
 ├── __init__.py
 ├── __main__.py
 ├── config.py
-└── requirements.txt
+├── requirements.txt
+└── utils.py
 
-9 directories, 27 files
+9 directories, 29 files
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="E2E-테스트-구현해보기">
 <h2>E2E 테스트 구현해보기<a class="headerlink" href="#E2E-테스트-구현해보기" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -634,7 +641,7 @@ livereload
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -671,8 +678,8 @@ livereload
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Traceback (most recent call last):
-  File &#34;/home/ykkim/notebooks/2021-msa-study/04-flask-api-and-service-layer/app/tests/__init__.py&#34;, line 44, in unwrap
-    assert fixname in cls.modules, \
+  File &#34;/home/ykkim/notebooks/2021-msa-study/04-flask-api-and-service-layer/app/tests/__init__.py&#34;, line 75, in unwrap
+    assert fixname in cls.fixtures, \
 AssertionError: name &#34;add_stock&#34; should be registered first with @mytest.fixture
 </pre></div></div>
 </div>
@@ -950,7 +957,7 @@ CREATE TABLE allocation (
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-UUID(&#39;aea5360d-f295-4c5a-b5ab-5942d4efd42c&#39;)
+UUID(&#39;74ddb5bd-4f37-4c5f-9ee1-8d61b306e600&#39;)
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -968,7 +975,7 @@ UUID(&#39;aea5360d-f295-4c5a-b5ab-5942d4efd42c&#39;)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&#39;2d75e60e047f482fb795330717aac585&#39;
+&#39;d9dc8811505d4b8096dff3f7f01ace23&#39;
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1235,7 +1242,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:18] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
+127.0.0.1 - - [15/Jan/2021 14:07:53] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1291,7 +1298,7 @@ request.json={&#39;hello&#39;: &#39;world&#39;}
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:19] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
+127.0.0.1 - - [15/Jan/2021 14:07:53] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 501 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1299,7 +1306,7 @@ request.json={&#39;hello&#39;: &#39;world&#39;}
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-request.json={&#39;orderid&#39;: &#39;order--896e2c&#39;, &#39;sku&#39;: &#39;sku--591de1&#39;, &#39;qty&#39;: 3}
+request.json={&#39;orderid&#39;: &#39;order--8d23da&#39;, &#39;sku&#39;: &#39;sku--759706&#39;, &#39;qty&#39;: 3}
 ❌ <span class="ansi-red-intense-fg">test_api_returns_allocation</span>
 </pre></div></div>
 </div>
@@ -1375,7 +1382,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:20] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:53] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1443,7 +1450,7 @@ batches=[], lines=[], allocs=[]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:22] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:53] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1451,7 +1458,7 @@ batches=[], lines=[], allocs=[]
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-batch=&lt;app.domain.models.Batch object at 0x7f147c0991c0&gt;, lines=[], allocs=[], batch._allocations=InstrumentedSet()
+batch=&lt;app.domain.models.Batch object at 0x7fc11d013760&gt;, lines=[], allocs=[], batch._allocations=InstrumentedSet()
 ✅ <span class="ansi-magenta-intense-fg">test_api_returns_allocation_debug</span>
 </pre></div></div>
 </div>
@@ -1493,8 +1500,8 @@ batch=&lt;app.domain.models.Batch object at 0x7f147c0991c0&gt;, lines=[], allocs
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:23] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [11/Jan/2021 23:51:23] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:54] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:54] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1565,8 +1572,8 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:24] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [11/Jan/2021 23:51:24] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:54] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:54] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1625,7 +1632,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:25] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
+127.0.0.1 - - [15/Jan/2021 14:07:54] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1645,7 +1652,7 @@ Traceback (most recent call last):
   File &#34;&lt;ipython-input-36-cc008ae5764d&gt;&#34;, line 14, in test_400_message_for_out_of_stock
     assert 400 == r.status_code
 AssertionError
-127.0.0.1 - - [11/Jan/2021 23:51:25] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
+127.0.0.1 - - [15/Jan/2021 14:07:54] &#34;<span class="ansi-magenta-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 500 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1729,7 +1736,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:26] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+127.0.0.1 - - [15/Jan/2021 14:07:55] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -1745,7 +1752,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:27] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+127.0.0.1 - - [15/Jan/2021 14:07:55] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -2130,7 +2137,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:33] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [15/Jan/2021 14:07:55] &#34;<span class="ansi-white-fg">POST /allocate HTTP/1.1</span>&#34; 201 -
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -2146,7 +2153,7 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [11/Jan/2021 23:51:33] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
+127.0.0.1 - - [15/Jan/2021 14:07:55] &#34;<span class="ansi-red-intense-fg ansi-bold">POST /allocate HTTP/1.1</span>&#34; 400 -
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
