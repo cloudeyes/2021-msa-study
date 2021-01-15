@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>config &mdash; 2021 Microservices Architecture Study  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="domain" href="domain.html" />
+    <link rel="prev" title="05. TDD in High and Low Gears" href="guide/05.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 2021 Microservices Architecture Study
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="guide/00.html">00. Kick-Off</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/01.html">01. Domain Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/02.html">02. Repository Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/03.html">03. Coupling and Abstractions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/04.html">04. Flask API and Service Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/05.html">05. TDD in High and Low Gears</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">config</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="adapters.html">adapters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="services.html">services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="routes.html">routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apps.html">apps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Library Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="vendor.html">SQLAlchemy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vendor.html#flask">Flask</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">2021 Microservices Architecture Study</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>config</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/config.rst" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="module-app.config">
+<span id="config"></span><h1>config<a class="headerlink" href="#module-app.config" title="Permalink to this headline">¶</a></h1>
+<p>App Configurations.</p>
+<dl class="py function">
+<dt id="app.config.get_api_host">
+<code class="sig-name descname">get_api_host</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.config.get_api_host" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get API server’s host address.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.config.get_api_port">
+<code class="sig-name descname">get_api_port</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.config.get_api_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get API server’s host port.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.config.get_api_url">
+<code class="sig-name descname">get_api_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.config.get_api_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get API server’s full url.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.config.get_db_connect_args">
+<code class="sig-name descname">get_db_connect_args</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.config.get_db_connect_args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get db connection arguments for SQLAlchemy’s engine creation.</p>
+<p class="rubric">Example</p>
+<p>For SQLite dbs, it could be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;check_same_thread&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.config.get_db_poolclass">
+<code class="sig-name descname">get_db_poolclass</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.config.get_db_poolclass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get db poolclass arguemnt for SQLAlchemy’s engine creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="vendor.html#sqlalchemy.pool.base.Pool" title="sqlalchemy.pool.base.Pool"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pool</span></code></a>]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pool class</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.config.get_db_url">
+<code class="sig-name descname">get_db_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.config.get_db_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get API server’s db url.</p>
+<p>The url format should conform the SQLAlchemy’s url scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="domain.html" class="btn btn-neutral float-right" title="domain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="guide/05.html" class="btn btn-neutral float-left" title="05. TDD in High and Low Gears" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, Joseph Kim &lt;cloudeyes@gmail.com&gt;
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
