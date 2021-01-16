@@ -2,8 +2,8 @@
 from typing import cast
 from sqlalchemy.orm import Session
 
-from ...domain import models
-from ...adapters.repository import SqlAlchemyRepository
+from app.domain import models
+from app.adapters.repository import SqlAlchemyRepository
 
 
 def test_repository_can_save_a_batch(session: Session) -> None:

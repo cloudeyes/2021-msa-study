@@ -21,7 +21,7 @@ from sqlalchemy.orm import (
 )
 from sqlalchemy.orm.session import Session
 
-from ..domain.models import Batch, OrderLine
+from app.domain.models import Batch, OrderLine
 
 SessionMaker = Callable[[], Session]
 """Session 팩토리 타입."""

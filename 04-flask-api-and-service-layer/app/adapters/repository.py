@@ -6,7 +6,7 @@ import abc
 
 from sqlalchemy.orm import Session
 
-from ..domain.models import Batch, OrderLine
+from app.domain.models import Batch, OrderLine
 
 
 class AbstractRepository(abc.ABC, ContextDecorator):

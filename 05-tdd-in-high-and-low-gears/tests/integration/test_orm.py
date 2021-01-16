@@ -1,6 +1,6 @@
 from datetime import date
 
-from ...domain import models
+from app.domain import models
 from sqlalchemy.orm import Session
 
 

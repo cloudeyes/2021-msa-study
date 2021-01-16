@@ -11,15 +11,15 @@ from sqlalchemy.pool import StaticPool
 import pytest
 
 from app.adapters.orm import start_mappers, SessionMaker
-from app.adapters.repository import SqlAlchemyRepository, AbstractRepository
+from app.adapters.repository import SqlAlchemyRepository
 from app.domain.models import Batch
 
 from app.apps.flask import init_app, init_db
-from . import ServerThread
+from .e2e import FlaskServerThread
 
 # types
 
-AbstractRepoMaker = Callable[[], AbstractRepository]
+SqlAlchemyRepoMaker = Callable[[], SqlAlchemyRepository]
 AddStockLines = List[Tuple[str, str, int, Optional[str]]]
 """:meth:`add_stock` 함수의 인자 타입."""
 AddStockFunc = Callable[[AddStockLines], None]
@@ -54,14 +54,15 @@ def get_session() -> SessionMaker:
 
 
 @pytest.fixture
-def get_repo(get_session: SessionMaker) -> AbstractRepoMaker:
+def get_repo(get_session: SessionMaker) -> SqlAlchemyRepoMaker:
     """:class:`SqlAlchemyRepository` 팩토리 함수를 리턴하는 픽스쳐입니다."""
     return lambda: SqlAlchemyRepository(get_session())
 
 
 @pytest.fixture
 # pylint: disable=unused-argument
-def server(get_session: SessionMaker) -> Generator[ServerThread, None, None]:
+def server(
+        get_session: SessionMaker) -> Generator[FlaskServerThread, None, None]:
     # noqa
     """:class:`ServerThread` 로 구현된 재시작 가능한 멀티스레드 Flask 서버를
     리턴하는 픽스쳐입니다.
@@ -69,7 +70,7 @@ def server(get_session: SessionMaker) -> Generator[ServerThread, None, None]:
     픽스쳐 사용후에는 `shutdown`을 통해 서버를 종료합니다.
     """
     test_app = init_app()
-    server = ServerThread(test_app)
+    server = FlaskServerThread(test_app)
     server.start()
 
     yield server
@@ -79,7 +80,7 @@ def server(get_session: SessionMaker) -> Generator[ServerThread, None, None]:
 
 @pytest.fixture
 def add_stock(
-    get_repo: AbstractRepoMaker
+    get_repo: SqlAlchemyRepoMaker
 ) -> Generator[AddStockFunc, None, AddStockFunc]:
     """:meth:`get_repo` 픽스쳐를 이용해 레포지터리에 배치를 추가하는 `add_stock`
     함수를 리턴하는 픽스쳐입니다.
@@ -101,15 +102,21 @@ def add_stock(
                 batch = Batch(ref, sku, qty, eta_date)
                 repo.add(batch)
                 batches_added.add(batch)
+            repo.session.commit()
 
         yield inner
 
         # Fixture 사용 이후 clean up 코드
         for batch in batches_added:
             lines = list(batch._allocations)
-            batch._allocations.clear()
+            repo.session.execute('DELETE FROM allocation WHERE batch_id=:id',
+                                 {'id': batch.id})
             for line in lines:
-                repo.delete(line)
-            repo.delete(batch)
+                line_id = getattr(line, 'id')
+                repo.session.execute('DELETE FROM order_line WHERE id=:id',
+                                     {'id': line_id})
+            repo.session.execute('DELETE FROM batch WHERE id=:id',
+                                 {'id': batch.id})
+            repo.session.commit()
 
         return inner

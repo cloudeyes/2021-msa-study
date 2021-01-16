@@ -1,9 +1,10 @@
 """Batch 서비스."""
-from typing import Sequence
+from typing import Sequence, Optional
+from datetime import date
 
 from app.adapters.repository import AbstractRepository
 from app.adapters.orm import AbstractSession
-from app.domain.models import OrderLine, Batch
+from app.domain.models import Batch
 from app.domain import models
 
 
@@ -17,9 +18,27 @@ def is_valid_sku(sku: str, batches: Sequence[Batch]) -> bool:
     return sku in {it.sku for it in batches}
 
 
-def allocate(line: OrderLine, repo: AbstractRepository,
+def add(
+    ref: str,
+    sku: str,
+    qty: int,
+    eta: Optional[date],
+    repo: AbstractRepository,
+    session: AbstractSession,
+) -> None:
+    """배치를 추가합니다."""
+    repo.add(models.Batch(ref, sku, qty, eta))
+    session.commit()
+
+
+def allocate(orderid: str, sku: str, qty: int, repo: AbstractRepository,
              session: AbstractSession) -> str:
-    """Find an earliest batch and allocate an :class:`.OrderLine` to it."""
+    """ETA가 가장 빠른 배치를 찾아 :class:`.OrderLine` 을 할당합니다.
+
+    Raises:
+        InvalidSku: ``SKU`` 가 잘못 지정되어 할당하는한 배치가 없을 경우 발생하는 예외
+    """
+    line = models.OrderLine(orderid, sku, qty)
     batches = repo.list()
     if not is_valid_sku(line.sku, batches):
         raise InvalidSku(f'Invalid sku {line.sku}')
