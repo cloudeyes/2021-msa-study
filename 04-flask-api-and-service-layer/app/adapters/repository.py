@@ -57,30 +57,30 @@ class AbstractRepository(abc.ABC, ContextDecorator):
 
 class SqlAlchemyRepository(AbstractRepository):
     """SqlAlchemy ORM을 저장소로 하는 :class:`AbstractRepository` 구현입니다."""
-    def __init__(self, db: Session):
-        self.db = db  # pylint: disable=invalid-name
+    def __init__(self, session: Session):
+        self.session = session  # pylint: disable=invalid-name
 
     def close(self) -> None:
-        self.db.close()
+        self.session.close()
 
     def add(self, batch: Batch) -> None:
-        self.db.add(batch)
-        self.db.commit()
+        self.session.add(batch)
+        self.session.commit()
 
     def get(self, reference: str) -> Optional[Batch]:
         return cast(
             Optional[Batch],
-            self.db.query(Batch).filter_by(reference=reference).first())
+            self.session.query(Batch).filter_by(reference=reference).first())
 
     def delete(self, item: Union[Batch, OrderLine]) -> None:
-        self.db.delete(item)
-        self.db.commit()
+        self.session.delete(item)
+        self.session.commit()
 
     def list(self) -> list[Batch]:
-        return cast(list[Batch], self.db.query(Batch).all())
+        return cast(list[Batch], self.session.query(Batch).all())
 
     def clear(self) -> None:
-        self.db.execute('DELETE FROM allocation')
-        self.db.execute('DELETE FROM batch')
-        self.db.execute('DELETE FROM order_line')
-        self.db.commit()
+        self.session.execute('DELETE FROM allocation')
+        self.session.execute('DELETE FROM batch')
+        self.session.execute('DELETE FROM order_line')
+        self.session.commit()
