@@ -5,7 +5,7 @@ import uuid
 
 import pytest
 import requests
-from ...config import get_api_url
+from app.config import get_api_url
 
 
 def random_suffix() -> str:
