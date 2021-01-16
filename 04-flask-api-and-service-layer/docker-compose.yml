@@ -1,12 +1,13 @@
 version: "3"
 services:
   app:
+    container_name: microlab
     image: cloudeyes/micropy-lab:3.9
     depends_on:
       - postgres
     environment:
       - DB_HOST=localhost
-      - DB_PASSWORD=p@ssw0rd
+      - DB_PASSWORD=test
     volumes:
       - ~/notebooks:/users/smprc/notebooks
     ports:
@@ -15,9 +16,10 @@ services:
       - "18888:8888"
 
   postgres:
+    container_name: pgsql-test
     image: postgres:9.6-alpine
     environment:
       - POSTGRES_USER=smprc
-      - POSTGRES_PASSWORD=p@ssw0rd
+      - POSTGRES_PASSWORD=test
     ports:
       - "5432:5432"

@@ -2,8 +2,8 @@
 from __future__ import annotations
 from flask import request, jsonify
 
-from ..apps.flask import (route, get_repo, FlaskResponse)
-from ..domain import models
+from app.apps.flask import (route, get_repo, FlaskResponse)
+from app.domain import models
 
 
 @route("/allocate", methods=['POST'])

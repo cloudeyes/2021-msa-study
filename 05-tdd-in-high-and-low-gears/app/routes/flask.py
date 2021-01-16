@@ -2,8 +2,8 @@
 from __future__ import annotations
 from flask import request, jsonify
 
-from ..apps.flask import (route, get_repo, FlaskResponse)
-from ..domain import models
+from app.apps.flask import (route, get_repo, FlaskResponse)
+from app.domain import models
 
 
 @route("/allocate", methods=['POST'])
@@ -17,5 +17,6 @@ def allocate_endpoint() -> FlaskResponse:
             request.json['qty'],
         )
         batchref = models.allocate(line, batches)
+        repo.session.commit()
 
     return jsonify({'batchref': batchref}), 201

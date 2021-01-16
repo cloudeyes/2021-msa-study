@@ -5,11 +5,11 @@ from typing import Callable, Optional, Any, cast
 from flask import Flask
 from sqlalchemy.orm import sessionmaker
 
-from ..adapters import orm
-from ..adapters.orm import SessionMaker
-from ..adapters.repository import SqlAlchemyRepository, AbstractRepository
+from app.adapters import orm
+from app.adapters.orm import SessionMaker
+from app.adapters.repository import SqlAlchemyRepository, AbstractRepository
 
-from .. import config
+from app import config
 
 # types
 _AnyFunc = Callable[..., Any]

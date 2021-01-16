@@ -2,6 +2,7 @@
 target/debug
 bin
 obj
+.ropeproject
 .mypy_cache
 .pytest_cache
 .ipynb_checkpoints
