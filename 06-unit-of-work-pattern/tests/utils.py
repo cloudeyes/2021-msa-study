@@ -1,6 +1,21 @@
-"""Utility functions."""
+"""테스트 유틸리티 함수."""
+from subprocess import Popen, PIPE
+from collections import defaultdict
 
 from IPython.display import SVG
+
+
+def get_test_counts(path: str = 'tests') -> dict[str, int]:
+    """unit, integration, e2e 테스트 갯수를 셉니다."""
+    proc = Popen(
+        f"grep -c test_ -R {path} | grep -vE '__init__|utils|conftest|__pycache__|.ipynb'",
+        shell=True,
+        stdout=PIPE)
+    output = proc.stdout.read().decode().strip()
+    stats = defaultdict(lambda: 0)
+    for k, v in (it.split(':') for it in output.split('\n')):
+        stats[k.split('/')[1]] += int(v)
+    return dict(stats)
 
 
 # pylint: disable=too-many-locals
