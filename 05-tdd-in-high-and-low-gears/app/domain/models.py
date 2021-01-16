@@ -112,7 +112,7 @@ def allocate(line: OrderLine, batches: list[Batch]) -> str:
     """주어진 배치들 중 할당 가능하고  가장 ETA가 빠른 배치를 주문선 `line`에 할당합니다.
 
     Raises:
-        :class:`OutOfStock` 할당 가능한 배치가 없을 때 발생하는 예외.
+        :class:`OutOfStock`: 할당 가능한 배치가 없을 때 발생하는 예외.
     """
     try:
         batch = next(b for b in sorted(batches) if b.can_allocate(line))
