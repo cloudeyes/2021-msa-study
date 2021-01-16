@@ -493,15 +493,16 @@ div.rendered_html tbody tr:hover {
 <span class="ansi-blue-intense-fg ansi-bold">.</span>
 ├── 02-repository-pattern.ipynb
 ├── <span class="ansi-blue-intense-fg ansi-bold">app</span>
+│   ├── <span class="ansi-blue-intense-fg ansi-bold">domain</span>
+│   │   └── models.py
 │   ├── __init__.py
-│   ├── models.py
-│   ├── services.py
-│   └── <span class="ansi-blue-intense-fg ansi-bold">tests</span>
-│       ├── __init__.py
-│       └── test_models.py
-└── requirements.txt
+│   └── services.py
+├── requirements.txt
+└── <span class="ansi-blue-intense-fg ansi-bold">tests</span>
+    ├── __init__.py
+    └── test_models.py
 
-2 directories, 7 files
+3 directories, 7 files
 </pre></div></div>
 </div>
 </div>
@@ -526,28 +527,6 @@ pytest
 git+https://github.com/AllanDaemon/mypy.git@0edf1233672117c4555759c5a91461a502ddce5d
 </pre></div></div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>pip install -r ./requirements.txt
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Requirement already satisfied: sqlalchemy in /home/ykkim/conda/envs/lab/lib/python3.9/site-packages (from -r ./requirements.txt (line 1)) (1.3.22)
-Requirement already satisfied: pytest in /home/ykkim/conda/envs/lab/lib/python3.9/site-packages (from -r ./requirements.txt (line 2)) (6.1.2)
-Collecting git+https://github.com/AllanDaemon/mypy.git@0edf1233672117c4555759c5a91461a502ddce5d (from -r ./requirements.txt (line 3))
-  Cloning https://github.com/AllanDaemon/mypy.git (to revision 0edf1233672117c4555759c5a91461a502ddce5d) to /tmp/pip-req-build-_1nxx5c3
-^C
-<span class="ansi-red-fg">ERROR: Operation cancelled by user</span>
-</pre></div></div>
-</div>
 </div>
 <div class="section" id="Tests">
 <h3>Tests<a class="headerlink" href="#Tests" title="Permalink to this headline">¶</a></h3>
@@ -566,13 +545,14 @@ Collecting git+https://github.com/AllanDaemon/mypy.git@0edf1233672117c4555759c5a
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-bold">============================= test session starts ==============================</span>
-platform linux -- Python 3.9.1, pytest-6.1.2, py-1.9.0, pluggy-0.13.1
+platform linux -- Python 3.9.1, pytest-6.1.2, py-1.10.0, pluggy-0.13.1
 rootdir: /home/ykkim/notebooks/2021-msa-study/02-repository-pattern
+plugins: flask-1.1.0, anyio-2.0.2
 collected 12 items
 
-app/tests/test_models.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                    [100%]</span>
+tests/test_models.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                        [100%]</span>
 
-<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">12 passed</span><span class="ansi-green-fg"> in 0.17s</span><span class="ansi-green-fg"> ==============================</span>
+<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">12 passed</span><span class="ansi-green-fg"> in 0.04s</span><span class="ansi-green-fg"> ==============================</span>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -589,7 +569,10 @@ app/tests/test_models.py <span class="ansi-green-fg">.</span><span class="ansi-g
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-green-intense-fg ansi-bold">Success: no issues found in 5 source files</span>
+app/services.py:3: <span class="ansi-red-intense-fg ansi-bold">error:</span> Cannot find implementation or library stub for module named &#39;app.domain.models&#39;
+app/services.py:3: <span class="ansi-blue-fg">note:</span> See <span class="ansi-underline">https://mypy.readthedocs.io/en/latest/running_mypy.html#missing-imports</span>
+app/services.py:10: <span class="ansi-red-intense-fg ansi-bold">error:</span> Returning Any from function declared to return <span class="ansi-bold">&#34;str&#34;</span>
+<span class="ansi-red-intense-fg ansi-bold">Found 2 errors in 1 file (checked 2 source files)</span>
 </pre></div></div>
 </div>
 </div>
@@ -600,7 +583,7 @@ app/tests/test_models.py <span class="ansi-green-fg">.</span><span class="ansi-g
 <div class="section" id="Reminder:-Our-Model">
 <h2>Reminder: Our Model<a class="headerlink" href="#Reminder:-Our-Model" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -643,7 +626,7 @@ Batch::_allocations o--&gt; OrderLine
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -685,7 +668,7 @@ Batch::_allocations o--&gt; OrderLine
 <div class="section" id="The-“Normal”-ORM-Way:-Model-Depends-on-ORM">
 <h3>The “Normal” ORM Way: Model Depends on ORM<a class="headerlink" href="#The-“Normal”-ORM-Way:-Model-Depends-on-ORM" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -732,14 +715,14 @@ Batch::id ||..|{ Allocation::batch_id
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <img alt="../_images/guide_02_15_0.svg" src="../_images/guide_02_15_0.svg" /></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -779,7 +762,7 @@ Batch::id ||..|{ Allocation::batch_id
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -845,13 +828,13 @@ CREATE TABLE allocation (
 <h3>Inverting the Dependency: ORM Depends on Model<a class="headerlink" href="#Inverting-the-Dependency:-ORM-Depends-on-Model" title="Permalink to this headline">¶</a></h3>
 <p>Using SQLAlchemy’s “classical mapping”.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">Date</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">relationship</span>
-<span class="kn">from</span> <span class="nn">app.models</span> <span class="kn">import</span> <span class="n">Batch</span><span class="p">,</span> <span class="n">OrderLine</span>
+<span class="kn">from</span> <span class="nn">app.domain.models</span> <span class="kn">import</span> <span class="n">Batch</span><span class="p">,</span> <span class="n">OrderLine</span>
 
 <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
 
@@ -890,7 +873,7 @@ CREATE TABLE allocation (
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -951,7 +934,7 @@ CREATE TABLE allocation (
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -986,7 +969,7 @@ CREATE TABLE allocation (
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1019,7 +1002,7 @@ CREATE TABLE allocation (
 <li><p>Hides details of data access by <em>pretending that all of data is in memory</em>.</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1043,7 +1026,7 @@ CREATE TABLE allocation (
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1052,7 +1035,7 @@ CREATE TABLE allocation (
 <div class="section" id="The-Repository-in-the-Abstract">
 <h3>The Repository in the Abstract<a class="headerlink" href="#The-Repository-in-the-Abstract" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1113,7 +1096,7 @@ CREATE TABLE allocation (
 <div class="section" id="Concrete-repository-:-SqlAlchemyRepository">
 <h4>Concrete repository : <code class="docutils literal notranslate"><span class="pre">SqlAlchemyRepository</span></code><a class="headerlink" href="#Concrete-repository-:-SqlAlchemyRepository" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1151,7 +1134,7 @@ CREATE TABLE allocation (
 <div class="section" id="Repository-test-for-saving-an-object">
 <h4>Repository test for saving an object<a class="headerlink" href="#Repository-test-for-saving-an-object" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1183,7 +1166,7 @@ CREATE TABLE allocation (
 <div class="section" id="Repository-test-for-retrieving-a-complex-object">
 <h4>Repository test for retrieving a complex object<a class="headerlink" href="#Repository-test-for-retrieving-a-complex-object" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1258,7 +1241,7 @@ CREATE TABLE allocation (
 <div class="section" id="Building-a-Fake-Repository-for-Tests-is-Now-Trivial!">
 <h2>Building a Fake Repository for Tests is Now Trivial!<a class="headerlink" href="#Building-a-Fake-Repository-for-Tests-is-Now-Trivial!" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1285,7 +1268,7 @@ CREATE TABLE allocation (
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1306,7 +1289,7 @@ CREATE TABLE allocation (
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>

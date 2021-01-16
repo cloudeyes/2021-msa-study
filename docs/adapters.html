@@ -30,6 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -364,7 +365,7 @@
 
 <dl class="py class">
 <dt id="app.adapters.repository.SqlAlchemyRepository">
-<em class="property">class </em><code class="sig-name descname">SqlAlchemyRepository</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.repository.SqlAlchemyRepository" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">SqlAlchemyRepository</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.repository.SqlAlchemyRepository" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#app.adapters.repository.AbstractRepository" title="app.adapters.repository.AbstractRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">app.adapters.repository.AbstractRepository</span></code></a></p>
 <p>SqlAlchemy ORM을 저장소로 하는 <a class="reference internal" href="#app.adapters.repository.AbstractRepository" title="app.adapters.repository.AbstractRepository"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractRepository</span></code></a> 구현입니다.</p>
 <dl class="py method">

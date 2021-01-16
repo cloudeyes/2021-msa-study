@@ -30,6 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -204,8 +205,19 @@
 <span id="routes-flask"></span><h2>routes.flask<a class="headerlink" href="#module-app.routes.flask" title="Permalink to this headline">¶</a></h2>
 <p>Flask 엔드포인트 라우팅 모듈입니다.</p>
 <dl class="py function">
-<dt id="app.routes.flask.allocate_endpoint">
-<code class="sig-name descname">allocate_endpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.flask.allocate_endpoint" title="Permalink to this definition">¶</a></dt>
+<dt id="app.routes.flask.add_batch">
+<code class="sig-name descname">add_batch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.flask.add_batch" title="Permalink to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/batches</span></code> 요청을 처리하여 새로운 배치를 저장소에 추가합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.routes.flask.allocate_batch">
+<code class="sig-name descname">allocate_batch</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.routes.flask.allocate_batch" title="Permalink to this definition">¶</a></dt>
 <dd><p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/allocate</span></code> 엔트포인트 요청을 처리합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>

@@ -30,6 +30,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -528,7 +529,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>tree app -I <span class="s1">&#39;__init__.py|__pycache__&#39;</span>
+<span></span><span class="o">!</span>tree app -I <span class="s2">&quot;__pycache__&quot;</span> --sort<span class="o">=</span>version
 </pre></div>
 </div>
 </div>
@@ -538,38 +539,55 @@ div.rendered_html tbody tr:hover {
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-blue-intense-fg ansi-bold">app</span>
+├── __init__.py
+├── __main__.py
 ├── <span class="ansi-blue-intense-fg ansi-bold">adapters</span>
+│   ├── __init__.py
 │   ├── orm.py
 │   └── repository.py
 ├── <span class="ansi-blue-intense-fg ansi-bold">apps</span>
+│   ├── __init__.py
 │   ├── fastapi.py
 │   └── flask.py
 ├── config.py
 ├── <span class="ansi-blue-intense-fg ansi-bold">domain</span>
+│   ├── __init__.py
 │   └── models.py
-├── __main__.py
 ├── requirements.txt
 ├── <span class="ansi-blue-intense-fg ansi-bold">routes</span>
+│   ├── __init__.py
 │   └── flask.py
 ├── <span class="ansi-blue-intense-fg ansi-bold">services</span>
-│   ├── batch.py
-│   └── _fail.py
-├── <span class="ansi-blue-intense-fg ansi-bold">tests</span>
-│   ├── conftest.py
-│   ├── <span class="ansi-blue-intense-fg ansi-bold">e2e</span>
-│   │   └── test_api.py
-│   ├── <span class="ansi-blue-intense-fg ansi-bold">integration</span>
-│   │   ├── test_orm.py
-│   │   └── test_repository.py
-│   └── <span class="ansi-blue-intense-fg ansi-bold">unit</span>
-│       ├── test_allocate.py
-│       ├── test_batch.py
-│       └── test_services.py
+│   ├── __init__.py
+│   └── batch.py
 └── utils.py
 
-9 directories, 19 files
+5 directories, 17 files
 </pre></div></div>
 </div>
+<p><strong>[팁]</strong> 왜 <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> 파일이 필요할까요? - <a class="reference external" href="https://stackoverflow.com/questions/62831486/requirement-for-init-py-just-to-satisfy-pylint-and-mypy">https://stackoverflow.com/questions/62831486/requirement-for-init-py-just-to-satisfy-pylint-and-mypy</a></p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> used to be required to make directory a package Namespace packages are packages without the <code class="docutils literal notranslate"><span class="pre">__init__.py.</span></code></p>
+<p>For an example of a simple package, if you have a directory:</p>
+<div class="highlight-root notranslate"><div class="highlight"><pre><span></span>+--package
+  +--file1.py
+  +--file2.py
+  ...
+</pre></div>
+</div>
+<p>While you could run these files independently in the package directory, e.g. with python2 file1.py, under Python 2 you wouldn’t be able to import the files as modules in the root directory, e.g.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">package.file1</span>
+</pre></div>
+</div>
+<p>would fail, and in order for it to work, you at least need this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">package</span>
+ <span class="o">+--</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span>
+ <span class="o">+--</span><span class="n">file1</span><span class="o">.</span><span class="n">py</span>
+ <span class="o">+--</span><span class="n">file2</span><span class="o">.</span><span class="n">py</span>
+ <span class="o">...</span>
+</pre></div>
+</div>
+</div></blockquote>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -584,7 +602,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-green-intense-fg ansi-bold">Success: no issues found in 28 source files</span>
+<span class="ansi-green-intense-fg ansi-bold">Success: no issues found in 16 source files</span>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -592,7 +610,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>pytest app/tests
+<span></span><span class="o">!</span>pytest tests
 </pre></div>
 </div>
 </div>
@@ -607,14 +625,14 @@ rootdir: /home/ykkim/notebooks/2021-msa-study/05-tdd-in-high-and-low-gears
 plugins: flask-1.1.0, anyio-2.0.2
 collected 25 items
 
-app/tests/e2e/test_api.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                              [  4%]</span>
-app/tests/integration/test_orm.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                 [ 28%]</span>
-app/tests/integration/test_repository.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                              [ 36%]</span>
-app/tests/unit/test_allocate.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                     [ 52%]</span>
-app/tests/unit/test_batch.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                   [ 88%]</span>
-app/tests/unit/test_services.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                      [100%]</span>
+tests/e2e/test_api.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                                  [  4%]</span>
+tests/integration/test_orm.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                     [ 28%]</span>
+tests/integration/test_repository.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                  [ 36%]</span>
+tests/unit/test_allocate.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                         [ 52%]</span>
+tests/unit/test_batch.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                       [ 88%]</span>
+tests/unit/test_services.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                          [100%]</span>
 
-<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">25 passed</span><span class="ansi-green-fg"> in 0.78s</span><span class="ansi-green-fg"> ==============================</span>
+<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">25 passed</span><span class="ansi-green-fg"> in 0.77s</span><span class="ansi-green-fg"> ==============================</span>
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -647,7 +665,7 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>grep -c test_ -R app/tests <span class="p">|</span> grep -vE <span class="s1">&#39;:0|conftest|.pyc|.ipynb&#39;</span>
+<span></span><span class="o">!</span>grep -c test_ -R tests <span class="p">|</span> grep -vE <span class="s1">&#39;__init__|conftest|__pycache__|.ipynb&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -656,13 +674,12 @@ Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-app/tests/unit/test_batch.py:9
-app/tests/unit/test_allocate.py:4
-app/tests/unit/test_services.py:3
-app/tests/integration/test_orm.py:6
-app/tests/integration/test_repository.py:2
-app/tests/e2e/test_api.py:1
-app/tests/__init__.py:2
+tests/unit/test_batch.py:9
+tests/unit/test_allocate.py:4
+tests/unit/test_services.py:3
+tests/integration/test_orm.py:6
+tests/integration/test_repository.py:2
+tests/e2e/test_api.py:1
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -672,11 +689,11 @@ app/tests/__init__.py:2
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">Popen</span><span class="p">,</span> <span class="n">PIPE</span><span class="p">,</span> <span class="n">STDOUT</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="n">proc</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">(</span><span class="s2">&quot;grep -c test_ -R app/tests | grep -vE &#39;:0|conftest|.pyc|.ipynb&#39;&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
+<span class="n">proc</span> <span class="o">=</span> <span class="n">Popen</span><span class="p">(</span><span class="s2">&quot;grep -c test_ -R tests | grep -vE &#39;__init__|conftest|__pycache__|.ipynb&#39;&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">PIPE</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 <span class="n">stats</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">it</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)):</span>
-    <span class="n">stats</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="n">stats</span><span class="p">[</span><span class="n">k</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 <span class="nb">dict</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -687,7 +704,7 @@ app/tests/__init__.py:2
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;unit&#39;: 16, &#39;integration&#39;: 8, &#39;e2e&#39;: 1, &#39;__init__.py&#39;: 2}
+{&#39;unit&#39;: 16, &#39;integration&#39;: 8, &#39;e2e&#39;: 1}
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -705,7 +722,7 @@ app/tests/__init__.py:2
 </pre></div>
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/guide_05_14_0.svg" src="../_images/guide_05_14_0.svg" /></div>
+<img alt="../_images/guide_05_15_0.svg" src="../_images/guide_05_15_0.svg" /></div>
 </div>
 </div>
 <div class="section" id="Should-Domain-Layer-Tests-Move-to-the-Service-Layer?">
@@ -758,24 +775,41 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 
 </pre></div></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">batch.allocate</span></code> 서비스 함수 파라메터가 도메인 객체를 의존하고 있습. 파라메터 타입을 원시 타입으로 바꿔 봅시다.</p>
+<p><code class="docutils literal notranslate"><span class="pre">services.batch.allocate</span></code> 서비스 함수 파라메터가 도메인 객체를 의존하고 있습니다. 파라메터 타입을 원시 타입으로 바꿔 봅시다.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">app.adapters.repository</span> <span class="kn">import</span> <span class="n">AbstractRepository</span>
+<span class="kn">from</span> <span class="nn">app.adapters.orm</span> <span class="kn">import</span> <span class="n">AbstractSession</span>
 <span class="kn">from</span> <span class="nn">app.domain</span> <span class="kn">import</span> <span class="n">models</span>
-
-<span class="k">def</span> <span class="nf">allocate</span><span class="p">(</span><span class="n">orderid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sku</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">qty</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">repo</span><span class="p">:</span> <span class="n">AbstractRepository</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="kn">from</span> <span class="nn">app.services.batch</span> <span class="kn">import</span> <span class="n">is_valid_sku</span><span class="p">,</span> <span class="n">InvalidSku</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># services/batch.py</span>
+<span class="k">def</span> <span class="nf">allocate</span><span class="p">(</span><span class="n">orderid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sku</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">qty</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">repo</span><span class="p">:</span> <span class="n">AbstractRepository</span><span class="p">,</span>
+             <span class="n">session</span><span class="p">:</span> <span class="n">AbstractSession</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Find an earliest batch and allocate an :class:`.OrderLine` to it.&quot;&quot;&quot;</span>
     <span class="n">line</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">OrderLine</span><span class="p">(</span><span class="n">orderid</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">qty</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+    <span class="n">batches</span> <span class="o">=</span> <span class="n">repo</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_valid_sku</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">sku</span><span class="p">,</span> <span class="n">batches</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">InvalidSku</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid sku </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">sku</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">batchref</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">batches</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">batchref</span>
 </pre></div>
 </div>
 </div>
 <p>개선한 서비스 함수를 성공시키도록 테스트를 재작성해봅시다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -785,20 +819,28 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 </pre></div>
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">app.tests</span> <span class="kn">import</span> <span class="n">mytest</span>
-<span class="kn">from</span> <span class="nn">app.tests.unit</span> <span class="kn">import</span> <span class="n">test_services</span>
-<span class="kn">from</span> <span class="nn">app.tests.unit.test_services</span> <span class="kn">import</span> <span class="n">FakeSession</span>
+<span></span><span class="kn">from</span> <span class="nn">tests</span> <span class="kn">import</span> <span class="n">mytest</span>
+<span class="kn">from</span> <span class="nn">tests.unit</span> <span class="kn">import</span> <span class="n">test_services</span>
+<span class="kn">from</span> <span class="nn">tests.unit.test_services</span> <span class="kn">import</span> <span class="n">FakeSession</span><span class="p">,</span> <span class="n">FakeRepository</span>
 <span class="kn">from</span> <span class="nn">app.domain</span> <span class="kn">import</span> <span class="n">models</span>
-
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># tests/unit/test_services.py</span>
 <span class="nd">@mytest</span><span class="o">.</span><span class="n">test</span>
 <span class="k">def</span> <span class="nf">test_returns_allocation</span><span class="p">():</span>
     <span class="n">batch</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Batch</span><span class="p">(</span><span class="s2">&quot;batch1&quot;</span><span class="p">,</span> <span class="s2">&quot;COMPLICATED-LAMP&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="n">repo</span> <span class="o">=</span> <span class="n">test_services</span><span class="o">.</span><span class="n">FakeRepository</span><span class="p">([</span><span class="n">batch</span><span class="p">])</span>
+    <span class="n">repo</span> <span class="o">=</span> <span class="n">FakeRepository</span><span class="p">([</span><span class="n">batch</span><span class="p">])</span>
 
     <span class="n">result</span> <span class="o">=</span> <span class="n">services</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="s2">&quot;o1&quot;</span><span class="p">,</span> <span class="s2">&quot;COMPLICATED-LAMP&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">repo</span><span class="p">,</span> <span class="n">test_services</span><span class="o">.</span><span class="n">FakeSession</span><span class="p">())</span>
     <span class="k">assert</span> <span class="s2">&quot;batch1&quot;</span> <span class="o">==</span> <span class="n">result</span>
@@ -818,7 +860,7 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 <h3>Mitigation: Keep All Domain Dependencies in Fixture Functions<a class="headerlink" href="#Mitigation:-Keep-All-Domain-Dependencies-in-Fixture-Functions" title="Permalink to this headline">¶</a></h3>
 <p>이를 개선하기 위해 <code class="docutils literal notranslate"><span class="pre">FakeRepository</span></code> 에 <code class="docutils literal notranslate"><span class="pre">Batch</span></code> 모델 생성을 위임해봅시다. 이제 테스트가 더이상 도메인 객체에 의존하지 않게 되어 좀더 강건한 테스트가 되었습니다.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -853,11 +895,12 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 <p>생각해보면, <code class="docutils literal notranslate"><span class="pre">Batch</span></code> 추가 작업 자체를 서비스로 함수로 정의하면 서비스 계층 테스트를 실제 서비스를 사용하는 방식으로 재작성할 수 있습니다. 이러면 도메인에 대한 의존이 완전히 제거됩니다.</p>
 <p>일반적으로 서비스 계층 테스트가 도메인 객체를 참조한다면 이는 서비스 계층이 불완전하다는 조짐일 수 있습니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span></span><span class="c1"># services/batch.py</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
 
 <span class="k">def</span> <span class="nf">add_batch</span><span class="p">(</span>
@@ -873,7 +916,7 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -897,7 +940,7 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 </div>
 <p>이제 모든 서비스 계층 테스트를 서비스로만 나타낼 수 있습니다.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -938,16 +981,16 @@ batch<span class="ansi-blue-fg">.</span>allocate<span class="ansi-blue-fg">(</sp
 <h2>Carrying the Improvment Through to the E2E Tests<a class="headerlink" href="#Carrying-the-Improvment-Through-to-the-E2E-Tests" title="Permalink to this headline">¶</a></h2>
 <p>같은 방식으로 지저분한 <code class="docutils literal notranslate"><span class="pre">add_stock</span></code> 픽스쳐 대신 <code class="docutils literal notranslate"><span class="pre">Batch</span></code> 를 추가하는 엔드포인트를 만들어 E2E 테스트가 SQL과 DB에 의존하지 않도록 리팩토링할 수 있습니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">app.tests.e2e</span> <span class="kn">import</span> <span class="n">restart_flask_server</span><span class="p">,</span> <span class="n">CustomFlask</span>
+<span></span><span class="kn">from</span> <span class="nn">tests.e2e</span> <span class="kn">import</span> <span class="n">restart_flask_server</span><span class="p">,</span> <span class="n">stop_flask_server</span><span class="p">,</span> <span class="n">CustomFlask</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -966,7 +1009,7 @@ starting server... started.
 </div>
 <p>RESTful 한 엔드포인트로 바꾸기 위해 책에서의 경로 <code class="docutils literal notranslate"><span class="pre">/add_batch</span></code> 대신 <code class="docutils literal notranslate"><span class="pre">/batches</span></code> 로 경로를 바꿨습니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -981,7 +1024,7 @@ starting server... started.
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -997,7 +1040,7 @@ starting server... started.
             <span class="n">eta</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">eta</span><span class="p">)</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
         <span class="n">services</span><span class="o">.</span><span class="n">batch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
             <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;ref&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;sku&#39;</span><span class="p">],</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;qty&#39;</span><span class="p">],</span> <span class="n">eta</span><span class="p">,</span>
-            <span class="n">repo</span><span class="p">,</span> <span class="n">repo</span><span class="o">.</span><span class="n">db</span>
+            <span class="n">repo</span><span class="p">,</span> <span class="n">repo</span><span class="o">.</span><span class="n">session</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="s1">&#39;OK&#39;</span><span class="p">,</span> <span class="mi">201</span>
 
@@ -1023,13 +1066,13 @@ starting server... started.
 </div>
 <p>리팩토링된 테스트는 서비스 API 엔드포인트 호출 외에는 의존이 전부 제거되어 진정한 의미의 E2E 테스트가 되었습니다.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="kn">from</span> <span class="nn">app.tests.e2e.test_api</span> <span class="kn">import</span> <span class="n">random_batchref</span><span class="p">,</span> <span class="n">random_sku</span><span class="p">,</span> <span class="n">random_orderid</span>
+<span class="kn">from</span> <span class="nn">tests.e2e.test_api</span> <span class="kn">import</span> <span class="n">random_batchref</span><span class="p">,</span> <span class="n">random_sku</span><span class="p">,</span> <span class="n">random_orderid</span>
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">config</span>
 
 <span class="k">def</span> <span class="nf">post_to_add_batch</span><span class="p">(</span><span class="n">ref</span><span class="p">,</span> <span class="n">sku</span><span class="p">,</span> <span class="n">qty</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
@@ -1065,10 +1108,10 @@ starting server... started.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-127.0.0.1 - - [15/Jan/2021 00:19:41] &#34;<span class="ansi-white-fg">POST /batches HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [15/Jan/2021 00:19:41] &#34;<span class="ansi-white-fg">POST /batches HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [15/Jan/2021 00:19:41] &#34;<span class="ansi-white-fg">POST /batches HTTP/1.1</span>&#34; 201 -
-127.0.0.1 - - [15/Jan/2021 00:19:41] &#34;<span class="ansi-white-fg">POST /batches/allocate HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [16/Jan/2021 12:28:34] &#34;<span class="ansi-white-fg">POST /batches HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [16/Jan/2021 12:28:34] &#34;<span class="ansi-white-fg">POST /batches HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [16/Jan/2021 12:28:34] &#34;<span class="ansi-white-fg">POST /batches HTTP/1.1</span>&#34; 201 -
+127.0.0.1 - - [16/Jan/2021 12:28:34] &#34;<span class="ansi-white-fg">POST /batches/allocate HTTP/1.1</span>&#34; 201 -
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
