@@ -30,7 +30,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -995,17 +995,17 @@ True
 </pre></div>
 </div>
 <div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="c1">// `ValueObject` 구현 방법은 별도 노트북을 참조하세요.</span>
-<span class="kr">interface</span> <span class="nx">UserProps</span> <span class="p">{</span>
+<span class="kd">interface</span> <span class="nx">UserProps</span> <span class="p">{</span>
     <span class="nx">name</span>: <span class="kt">String</span>
     <span class="nx">age</span>: <span class="kt">number</span>
 <span class="p">}</span>
 
-<span class="kr">class</span> <span class="nx">User</span> <span class="kr">extends</span> <span class="nx">ValueObject</span><span class="o">&lt;</span><span class="nx">UserProps</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="kr">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span> <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span>
+<span class="kd">class</span> <span class="nx">User</span> <span class="k">extends</span> <span class="nx">ValueObject</span><span class="o">&lt;</span><span class="nx">UserProps</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span> <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kr">const</span> <span class="nx">user1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">16</span><span class="p">})</span>
-<span class="kr">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span><span class="nx">age</span>: <span class="kt">16</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">})</span>
+<span class="kd">const</span> <span class="nx">user1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">,</span> <span class="nx">age</span>: <span class="kt">16</span><span class="p">})</span>
+<span class="kd">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">User</span><span class="p">({</span><span class="nx">age</span>: <span class="kt">16</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;John&#39;</span><span class="p">})</span>
 
 <span class="nx">user1</span> <span class="o">===</span> <span class="nx">user2</span> <span class="c1">// false</span>
 <span class="nx">user1</span><span class="p">.</span><span class="nx">equals</span><span class="p">(</span><span class="nx">user2</span><span class="p">)</span> <span class="c1">// true</span>
