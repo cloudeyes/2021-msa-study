@@ -32,7 +32,7 @@ class AbstractRepository(abc.ABC, ContextDecorator):
         raise NotImplementedError
 
     @abc.abstractmethod
-    def get(self, reference: str) -> Optional[Batch]:
+    def get(self, reference: str = '', **kwargs: str) -> Optional[Batch]:
         """주어진 레퍼런스 문자열에 해당하는 :class:`Batch` 객체를 조회합니다.
 
         해당하는 배치를 못 찾을 경우 ``None`` 을 리턴합니다.
@@ -70,10 +70,14 @@ class SqlAlchemyRepository(AbstractRepository):
     def add(self, batch: Batch) -> None:
         self.session.add(batch)
 
-    def get(self, reference: str) -> Optional[Batch]:
-        return cast(
-            Optional[Batch],
-            self.session.query(Batch).filter_by(reference=reference).first())
+    def get(self, reference: str = '', **kwargs: str) -> Optional[Batch]:
+        filter_by = {
+            k: v
+            for k, v in dict(reference=reference, **kwargs).items()
+            if v is not None
+        }
+        return cast(Optional[Batch],
+                    self.session.query(Batch).filter_by(**filter_by).first())
 
     def delete(self, item: Union[Batch, OrderLine]) -> None:
         self.session.delete(item)

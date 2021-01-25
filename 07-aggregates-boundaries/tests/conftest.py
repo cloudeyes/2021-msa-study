@@ -13,6 +13,7 @@ import pytest
 from app.adapters.orm import start_mappers, SessionMaker
 from app.adapters.repository import SqlAlchemyRepository
 from app.domain.models import Batch
+from app.services.uow import AbstractUnitOfWork, SqlAlchemyUnitOfWork
 
 from app.apps.flask import init_app, init_db
 from .e2e import FlaskServerThread
@@ -57,6 +58,11 @@ def get_session() -> SessionMaker:
 def get_repo(get_session: SessionMaker) -> SqlAlchemyRepoMaker:
     """:class:`SqlAlchemyRepository` 팩토리 함수를 리턴하는 픽스쳐입니다."""
     return lambda: SqlAlchemyRepository(get_session())
+
+
+@pytest.fixture
+def get_uow(get_session: SessionMaker) -> AbstractUnitOfWork:
+    return lambda: SqlAlchemyUnitOfWork(get_session)
 
 
 @pytest.fixture

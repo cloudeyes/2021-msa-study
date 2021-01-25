@@ -22,7 +22,7 @@ def get_api_url() -> str:
 
 
 def get_db_url() -> str:
-    """Get API server's db url.
+    """Get API server's db uri.
 
     The url format should conform the SQLAlchemy's url scheme.
     """

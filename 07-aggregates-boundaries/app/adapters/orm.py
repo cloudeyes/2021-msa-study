@@ -1,8 +1,7 @@
-"""ORM 구현."""
-
+"""ORM 어댑터 모듈"""
 from __future__ import annotations
 
-from typing import Callable, Generator, Optional, Union, Any
+from typing import Callable, Generator, Optional, Union, Any, cast
 from contextlib import contextmanager, AbstractContextManager
 import abc
 import io
@@ -22,6 +21,7 @@ from sqlalchemy.orm import (
 from sqlalchemy.orm.session import Session
 
 from app.domain.models import Batch, OrderLine
+from app import config
 
 SessionMaker = Callable[[], Session]
 """Session 팩토리 타입."""
@@ -135,6 +135,12 @@ def init_engine(meta: MetaData,
     return engine
 
 
+def get_session() -> SessionMaker:
+    '''기본설정으로 SqlAlchemy Session 팩토리를 만듭니다.'''
+    engine = init_engine(start_mappers(), config.get_db_url())
+    return cast(SessionMaker, sessionmaker(engine))
+
+
 def get_scoped_session(engine: Engine) -> Callable[[], ScopedSession]:
     """``with...`` 문으로 자동 리소스가 반환되는 세션을 리턴합니다.
 
@@ -148,15 +154,15 @@ def get_scoped_session(engine: Engine) -> Callable[[], ScopedSession]:
         engine: Engine.
 
     """
-    get_session = sessionmaker(engine)
+    session_factory = sessionmaker(engine)
 
     @contextmanager
     def scoped_session() -> Generator[Session, None, None]:
-        sess: Session = None
+        session: Optional[Session] = None
         try:
-            yield (sess := get_session())  # pylint: disable=superfluous-parens
+            yield (session := session_factory())  # pylint: disable=superfluous-parens
         finally:
-            if sess:
-                sess.close()
+            if session:
+                session.close()  # pylint: disable=no-member
 
     return scoped_session

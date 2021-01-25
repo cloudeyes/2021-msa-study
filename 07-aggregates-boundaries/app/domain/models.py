@@ -60,6 +60,10 @@ class Batch:
         self._purchased_quantity = qty
         self._allocations = set[OrderLine]()
 
+    def change_purchased_quantity(self, new_qty: int) -> None:
+        """구매 수량을 변경합니다."""
+        self._purchased_quantity = new_qty
+
     def allocate(self, line: OrderLine) -> None:
         """지정된 :class:`OrderLine` 을 현재 :class:`Batch` 에 추가합니다.
 
@@ -73,6 +77,15 @@ class Batch:
         """주문선 `line` 을 할당 취소 합니다."""
         if line in self._allocations:
             self._allocations.remove(line)
+
+    def deallocate_one(self) -> Optional[OrderLine]:
+        """주문선 `line` 을 할당 취소 합니다."""
+        if not self._allocations:
+            return None
+
+        line = next(iter(self._allocations))
+        self._allocations.remove(line)
+        return line
 
     @property
     def allocated_quantity(self) -> int:
