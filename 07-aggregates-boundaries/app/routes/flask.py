@@ -6,7 +6,7 @@ from flask import request, jsonify
 
 from app.apps.flask import route, FlaskResponse
 from app.services.uow import SqlAlchemyUnitOfWork
-from app.domain.models import OrderLine, Batch, allocate
+from app.domain.models import OrderLine, allocate
 from app import services
 
 
