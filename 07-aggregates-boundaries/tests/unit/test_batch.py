@@ -6,6 +6,12 @@ from app.domain.models import Batch, OrderLine
 today = date.today()
 
 
+def make_batch_and_line(sku: str, batch_qty: int,
+                        line_qty: int) -> tuple[Batch, OrderLine]:
+    return (Batch("batch-001", sku, batch_qty,
+                  eta=today), OrderLine("order-123", sku, line_qty))
+
+
 def test_batch_equality() -> None:
     batch1 = Batch('batch-001', 'SIMPLE-TABLE', 10, eta=today)
     batch2 = Batch('batch-001', 'SIMPLE-CHAIR', 5, eta=today)
@@ -20,12 +26,6 @@ def test_allocating_to_a_batch_reduces_the_available_quantity() -> None:
     batch.allocate(line)
 
     assert batch.available_quantity == 18
-
-
-def make_batch_and_line(sku: str, batch_qty: int,
-                        line_qty: int) -> tuple[Batch, OrderLine]:
-    return (Batch("batch-001", sku, batch_qty,
-                  eta=today), OrderLine("order-123", sku, line_qty))
 
 
 def test_can_allocate_if_available_greater_than_required() -> None:

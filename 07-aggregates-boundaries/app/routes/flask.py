@@ -5,8 +5,8 @@ from datetime import datetime
 from flask import request, jsonify
 
 from app.apps.flask import route, FlaskResponse
-from app.domain import models
 from app.services.uow import SqlAlchemyUnitOfWork
+from app.domain.models import OrderLine, Batch, allocate
 from app import services
 
 
@@ -19,20 +19,38 @@ def add_batch() -> FlaskResponse:
             eta = datetime.fromisoformat(eta).date()
         services.batch.add(request.json['ref'], request.json['sku'],
                            request.json['qty'], eta, uow)
-    return 'OK', 201
+        return 'OK', 201
+
+
+@route("/batches", methods=['DELETE'])
+def delete_batches() -> FlaskResponse:
+    """``DELETE /allocate`` 엔트포인트 요청을 처리합니다.
+
+    주어진 레퍼런스 문자열 리스트를 이용해 배치들을 삭제합니다.
+    """
+    refs: list[str] = request.json['refs']
+
+    with SqlAlchemyUnitOfWork() as uow:
+        batches = [it for it in uow.batches.list() if it.reference in refs]
+        for batch in batches:
+            uow.batches.delete(batch)
+        print('batches delete:', batches)
+        uow.commit()
+
+        return jsonify({'deleted': len(batches)}), 201
 
 
 @route("/batches/allocate", methods=['POST'])
-def allocate_batch() -> FlaskResponse:
+def post_allocate_batch() -> FlaskResponse:
     """``POST /allocate`` 엔트포인트 요청을 처리합니다."""
     with SqlAlchemyUnitOfWork() as uow:
         batches = uow.batches.list()
-        line = models.OrderLine(
+        line = OrderLine(
             request.json['orderid'],
             request.json['sku'],
             request.json['qty'],
         )
-        batchref = models.allocate(line, batches)
+        batchref = allocate(line, batches)
         uow.commit()
 
     return jsonify({'batchref': batchref}), 201
