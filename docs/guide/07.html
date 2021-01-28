@@ -593,222 +593,13 @@ collected 32 items
 
 tests/e2e/test_api.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                                  [  3%]</span>
 tests/integration/test_orm.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                     [ 21%]</span>
-tests/integration/test_repository.py <span class="ansi-green-fg">.</span><span class="ansi-red-fg">F</span><span class="ansi-red-fg">                                  [ 28%]</span>
-tests/integration/test_uow.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-red-fg">                                       [ 40%]</span>
-tests/unit/test_allocate.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-red-fg">                                         [ 53%]</span>
-tests/unit/test_batch.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-red-fg">                                       [ 81%]</span>
-tests/unit/test_services.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-red-fg">                                       [100%]</span>
+tests/integration/test_repository.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                  [ 28%]</span>
+tests/integration/test_uow.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                       [ 40%]</span>
+tests/unit/test_allocate.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                         [ 53%]</span>
+tests/unit/test_batch.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                       [ 81%]</span>
+tests/unit/test_services.py <span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">.</span><span class="ansi-green-fg">                                       [100%]</span>
 
-=================================== FAILURES ===================================
-<span class="ansi-red-intense-fg ansi-bold">____________ test_repository_can_retrieve_a_batch_with_allocations _____________</span>
-
-self = &lt;sqlalchemy.engine.base.Connection object at 0x7fc2b3c76370&gt;
-dialect = &lt;sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fc2b3c6e310&gt;
-constructor = &lt;bound method DefaultExecutionContext._init_compiled of &lt;class &#39;sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext&#39;&gt;&gt;
-statement = &lt;sqlalchemy.dialects.sqlite.base.SQLiteCompiler object at 0x7fc2b3c76730&gt;
-parameters = [{&#39;ref&#39;: &#39;batch1&#39;, &#39;sku&#39;: &#39;sku--a769b6&#39;}]
-args = (&lt;sqlalchemy.dialects.sqlite.base.SQLiteCompiler object at 0x7fc2b3c76730&gt;, [{&#39;ref&#39;: &#39;batch1&#39;, &#39;sku&#39;: &#39;sku--a769b6&#39;}])
-conn = &lt;sqlalchemy.pool.base._ConnectionFairy object at 0x7fc2b3c76490&gt;
-
-    <span class="ansi-blue-intense-fg">def</span> <span class="ansi-green-intense-fg">_execute_context</span>(
-        <span class="ansi-cyan-intense-fg">self</span>, dialect, constructor, statement, parameters, *args
-    ):
-        <span class="ansi-yellow-fg">&#34;&#34;&#34;Create an :class:`.ExecutionContext` and execute, returning</span>
-    <span class="ansi-yellow-fg">    a :class:`_engine.ResultProxy`.</span>
-
-    <span class="ansi-yellow-fg">    &#34;&#34;&#34;</span>
-
-        <span class="ansi-blue-intense-fg">try</span>:
-            <span class="ansi-blue-intense-fg">try</span>:
-                conn = <span class="ansi-cyan-intense-fg">self</span>.__connection
-            <span class="ansi-blue-intense-fg">except</span> <span class="ansi-cyan-intense-fg">AttributeError</span>:
-                <span class="ansi-black-intense-fg"># escape &#34;except AttributeError&#34; before revalidating</span>
-                <span class="ansi-black-intense-fg"># to prevent misleading stacktraces in Py3K</span>
-                conn = <span class="ansi-blue-intense-fg">None</span>
-            <span class="ansi-blue-intense-fg">if</span> conn <span class="ansi-magenta-intense-fg">is</span> <span class="ansi-blue-intense-fg">None</span>:
-                conn = <span class="ansi-cyan-intense-fg">self</span>._revalidate_connection()
-
-&gt;           context = constructor(dialect, <span class="ansi-cyan-intense-fg">self</span>, conn, *args)
-
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/base.py</span>:1204:
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-cls = &lt;class &#39;sqlalchemy.dialects.sqlite.base.SQLiteExecutionContext&#39;&gt;
-dialect = &lt;sqlalchemy.dialects.sqlite.pysqlite.SQLiteDialect_pysqlite object at 0x7fc2b3c6e310&gt;
-connection = &lt;sqlalchemy.engine.base.Connection object at 0x7fc2b3c76370&gt;
-dbapi_connection = &lt;sqlalchemy.pool.base._ConnectionFairy object at 0x7fc2b3c76490&gt;
-compiled = &lt;sqlalchemy.dialects.sqlite.base.SQLiteCompiler object at 0x7fc2b3c76730&gt;
-parameters = [{&#39;ref&#39;: &#39;batch1&#39;, &#39;sku&#39;: &#39;sku--a769b6&#39;}]
-
-    <span class="ansi-white-fg">@classmethod</span>
-    <span class="ansi-blue-intense-fg">def</span> <span class="ansi-green-intense-fg">_init_compiled</span>(
-        <span class="ansi-cyan-intense-fg">cls</span>, dialect, connection, dbapi_connection, compiled, parameters
-    ):
-        <span class="ansi-yellow-fg">&#34;&#34;&#34;Initialize execution context for a Compiled construct.&#34;&#34;&#34;</span>
-
-        <span class="ansi-cyan-intense-fg">self</span> = <span class="ansi-cyan-intense-fg">cls</span>.<span class="ansi-green-intense-fg">__new__</span>(<span class="ansi-cyan-intense-fg">cls</span>)
-        <span class="ansi-cyan-intense-fg">self</span>.root_connection = connection
-        <span class="ansi-cyan-intense-fg">self</span>._dbapi_connection = dbapi_connection
-        <span class="ansi-cyan-intense-fg">self</span>.dialect = connection.dialect
-
-        <span class="ansi-cyan-intense-fg">self</span>.compiled = compiled
-
-        <span class="ansi-black-intense-fg"># this should be caught in the engine before</span>
-        <span class="ansi-black-intense-fg"># we get here</span>
-        <span class="ansi-blue-intense-fg">assert</span> compiled.can_execute
-
-        <span class="ansi-cyan-intense-fg">self</span>.execution_options = compiled.execution_options.union(
-            connection._execution_options
-        )
-
-        <span class="ansi-cyan-intense-fg">self</span>.result_column_struct = (
-            compiled._result_columns,
-            compiled._ordered_columns,
-            compiled._textual_ordered_columns,
-        )
-
-        <span class="ansi-cyan-intense-fg">self</span>.unicode_statement = util.text_type(compiled)
-        <span class="ansi-blue-intense-fg">if</span> <span class="ansi-magenta-intense-fg">not</span> dialect.supports_unicode_statements:
-            <span class="ansi-cyan-intense-fg">self</span>.statement = <span class="ansi-cyan-intense-fg">self</span>.unicode_statement.encode(
-                <span class="ansi-cyan-intense-fg">self</span>.dialect.encoding
-            )
-        <span class="ansi-blue-intense-fg">else</span>:
-            <span class="ansi-cyan-intense-fg">self</span>.statement = <span class="ansi-cyan-intense-fg">self</span>.unicode_statement
-
-        <span class="ansi-cyan-intense-fg">self</span>.isinsert = compiled.isinsert
-        <span class="ansi-cyan-intense-fg">self</span>.isupdate = compiled.isupdate
-        <span class="ansi-cyan-intense-fg">self</span>.isdelete = compiled.isdelete
-        <span class="ansi-cyan-intense-fg">self</span>.is_text = compiled.isplaintext
-
-        <span class="ansi-blue-intense-fg">if</span> <span class="ansi-magenta-intense-fg">not</span> parameters:
-            <span class="ansi-cyan-intense-fg">self</span>.compiled_parameters = [compiled.construct_params()]
-        <span class="ansi-blue-intense-fg">else</span>:
-&gt;           <span class="ansi-cyan-intense-fg">self</span>.compiled_parameters = [
-                compiled.construct_params(m, _group_number=grp)
-                <span class="ansi-blue-intense-fg">for</span> grp, m <span class="ansi-magenta-intense-fg">in</span> <span class="ansi-cyan-intense-fg">enumerate</span>(parameters)
-            ]
-
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/default.py</span>:815:
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-.0 = &lt;enumerate object at 0x7fc2b3c7ae00&gt;
-
-    <span class="ansi-cyan-intense-fg">self</span>.compiled_parameters = [
-&gt;       compiled.construct_params(m, _group_number=grp)
-        <span class="ansi-blue-intense-fg">for</span> grp, m <span class="ansi-magenta-intense-fg">in</span> <span class="ansi-cyan-intense-fg">enumerate</span>(parameters)
-    ]
-
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/default.py</span>:816:
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = &lt;sqlalchemy.dialects.sqlite.base.SQLiteCompiler object at 0x7fc2b3c76730&gt;
-params = {&#39;ref&#39;: &#39;batch1&#39;, &#39;sku&#39;: &#39;sku--a769b6&#39;}, _group_number = 0
-_check = True
-
-    <span class="ansi-blue-intense-fg">def</span> <span class="ansi-green-intense-fg">construct_params</span>(<span class="ansi-cyan-intense-fg">self</span>, params=<span class="ansi-blue-intense-fg">None</span>, _group_number=<span class="ansi-blue-intense-fg">None</span>, _check=<span class="ansi-blue-intense-fg">True</span>):
-        <span class="ansi-yellow-fg">&#34;&#34;&#34;return a dictionary of bind parameter keys and values&#34;&#34;&#34;</span>
-
-        <span class="ansi-blue-intense-fg">if</span> params:
-            pd = {}
-            <span class="ansi-blue-intense-fg">for</span> bindparam <span class="ansi-magenta-intense-fg">in</span> <span class="ansi-cyan-intense-fg">self</span>.bind_names:
-                name = <span class="ansi-cyan-intense-fg">self</span>.bind_names[bindparam]
-                <span class="ansi-blue-intense-fg">if</span> bindparam.key <span class="ansi-magenta-intense-fg">in</span> params:
-                    pd[name] = params[bindparam.key]
-                <span class="ansi-blue-intense-fg">elif</span> name <span class="ansi-magenta-intense-fg">in</span> params:
-                    pd[name] = params[name]
-
-                <span class="ansi-blue-intense-fg">elif</span> _check <span class="ansi-magenta-intense-fg">and</span> bindparam.required:
-                    <span class="ansi-blue-intense-fg">if</span> _group_number:
-                        <span class="ansi-blue-intense-fg">raise</span> exc.InvalidRequestError(
-                            <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">A value is required for bind parameter </span><span class="ansi-yellow-fg">%r</span><span class="ansi-yellow-fg">, </span><span class="ansi-yellow-fg">&#34;</span>
-                            <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">in parameter group </span><span class="ansi-yellow-fg">%d</span><span class="ansi-yellow-fg">&#34;</span>
-                            % (bindparam.key, _group_number),
-                            code=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">cd3x</span><span class="ansi-yellow-fg">&#34;</span>,
-                        )
-                    <span class="ansi-blue-intense-fg">else</span>:
-&gt;                       <span class="ansi-blue-intense-fg">raise</span> exc.InvalidRequestError(
-                            <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">A value is required for bind parameter </span><span class="ansi-yellow-fg">%r</span><span class="ansi-yellow-fg">&#34;</span>
-                            % bindparam.key,
-                            code=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">cd3x</span><span class="ansi-yellow-fg">&#34;</span>,
-                        )
-<span class="ansi-red-intense-fg ansi-bold">E                       sqlalchemy.exc.InvalidRequestError: A value is required for bind parameter &#39;batch_ref&#39; (Background on this error at: http://sqlalche.me/e/13/cd3x)</span>
-
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/sql/compiler.py</span>:730: InvalidRequestError
-
-<span class="ansi-yellow-fg">The above exception was the direct cause of the following exception:</span>
-
-session = &lt;sqlalchemy.orm.session.Session object at 0x7fc2b3c6efa0&gt;
-
-    <span class="ansi-blue-intense-fg">def</span> <span class="ansi-green-intense-fg">test_repository_can_retrieve_a_batch_with_allocations</span>(
-            session: Session) -&gt; <span class="ansi-blue-intense-fg">None</span>:
-        orderline_id = insert_order_line(session)
-&gt;       batch1_id = insert_batch(session, <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">batch1</span><span class="ansi-yellow-fg">&#34;</span>)
-
-<span class="ansi-red-intense-fg ansi-bold">tests/integration/test_repository.py</span>:26:
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-<span class="ansi-red-intense-fg ansi-bold">tests/integration/__init__.py</span>:28: in insert_batch
-    [[batch_id]] = session.execute(
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/orm/session.py</span>:1295: in execute
-    <span class="ansi-blue-intense-fg">return</span> <span class="ansi-cyan-intense-fg">self</span>._connection_for_bind(bind, close_with_result=<span class="ansi-blue-intense-fg">True</span>).execute(
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/base.py</span>:1011: in execute
-    <span class="ansi-blue-intense-fg">return</span> meth(<span class="ansi-cyan-intense-fg">self</span>, multiparams, params)
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/sql/elements.py</span>:298: in _execute_on_connection
-    <span class="ansi-blue-intense-fg">return</span> connection._execute_clauseelement(<span class="ansi-cyan-intense-fg">self</span>, multiparams, params)
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/base.py</span>:1124: in _execute_clauseelement
-    ret = <span class="ansi-cyan-intense-fg">self</span>._execute_context(
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/base.py</span>:1206: in _execute_context
-    <span class="ansi-cyan-intense-fg">self</span>._handle_dbapi_exception(
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/base.py</span>:1510: in _handle_dbapi_exception
-    util.raise_(
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/util/compat.py</span>:182: in raise_
-    <span class="ansi-blue-intense-fg">raise</span> exception
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/base.py</span>:1204: in _execute_context
-    context = constructor(dialect, <span class="ansi-cyan-intense-fg">self</span>, conn, *args)
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/default.py</span>:815: in _init_compiled
-    <span class="ansi-cyan-intense-fg">self</span>.compiled_parameters = [
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/engine/default.py</span>:816: in &lt;listcomp&gt;
-    compiled.construct_params(m, _group_number=grp)
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = &lt;sqlalchemy.dialects.sqlite.base.SQLiteCompiler object at 0x7fc2b3c76730&gt;
-params = {&#39;ref&#39;: &#39;batch1&#39;, &#39;sku&#39;: &#39;sku--a769b6&#39;}, _group_number = 0
-_check = True
-
-    <span class="ansi-blue-intense-fg">def</span> <span class="ansi-green-intense-fg">construct_params</span>(<span class="ansi-cyan-intense-fg">self</span>, params=<span class="ansi-blue-intense-fg">None</span>, _group_number=<span class="ansi-blue-intense-fg">None</span>, _check=<span class="ansi-blue-intense-fg">True</span>):
-        <span class="ansi-yellow-fg">&#34;&#34;&#34;return a dictionary of bind parameter keys and values&#34;&#34;&#34;</span>
-
-        <span class="ansi-blue-intense-fg">if</span> params:
-            pd = {}
-            <span class="ansi-blue-intense-fg">for</span> bindparam <span class="ansi-magenta-intense-fg">in</span> <span class="ansi-cyan-intense-fg">self</span>.bind_names:
-                name = <span class="ansi-cyan-intense-fg">self</span>.bind_names[bindparam]
-                <span class="ansi-blue-intense-fg">if</span> bindparam.key <span class="ansi-magenta-intense-fg">in</span> params:
-                    pd[name] = params[bindparam.key]
-                <span class="ansi-blue-intense-fg">elif</span> name <span class="ansi-magenta-intense-fg">in</span> params:
-                    pd[name] = params[name]
-
-                <span class="ansi-blue-intense-fg">elif</span> _check <span class="ansi-magenta-intense-fg">and</span> bindparam.required:
-                    <span class="ansi-blue-intense-fg">if</span> _group_number:
-                        <span class="ansi-blue-intense-fg">raise</span> exc.InvalidRequestError(
-                            <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">A value is required for bind parameter </span><span class="ansi-yellow-fg">%r</span><span class="ansi-yellow-fg">, </span><span class="ansi-yellow-fg">&#34;</span>
-                            <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">in parameter group </span><span class="ansi-yellow-fg">%d</span><span class="ansi-yellow-fg">&#34;</span>
-                            % (bindparam.key, _group_number),
-                            code=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">cd3x</span><span class="ansi-yellow-fg">&#34;</span>,
-                        )
-                    <span class="ansi-blue-intense-fg">else</span>:
-&gt;                       <span class="ansi-blue-intense-fg">raise</span> exc.InvalidRequestError(
-                            <span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">A value is required for bind parameter </span><span class="ansi-yellow-fg">%r</span><span class="ansi-yellow-fg">&#34;</span>
-                            % bindparam.key,
-                            code=<span class="ansi-yellow-fg">&#34;</span><span class="ansi-yellow-fg">cd3x</span><span class="ansi-yellow-fg">&#34;</span>,
-                        )
-<span class="ansi-red-intense-fg ansi-bold">E                       sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) A value is required for bind parameter &#39;batch_ref&#39;</span>
-<span class="ansi-red-intense-fg ansi-bold">E                       [SQL: SELECT id FROM batch WHERE reference=? AND sku=?]</span>
-<span class="ansi-red-intense-fg ansi-bold">E                       [parameters: [{&#39;ref&#39;: &#39;batch1&#39;, &#39;sku&#39;: &#39;sku--a769b6&#39;}]]</span>
-<span class="ansi-red-intense-fg ansi-bold">E                       (Background on this error at: http://sqlalche.me/e/13/cd3x)</span>
-
-<span class="ansi-red-intense-fg ansi-bold">../../../conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/sql/compiler.py</span>:730: StatementError
-=========================== short test summary info ============================
-FAILED tests/integration/test_repository.py::test_repository_can_retrieve_a_batch_with_allocations
-<span class="ansi-red-fg">========================= </span><span class="ansi-red-intense-fg ansi-bold">1 failed</span>, <span class="ansi-green-fg">31 passed</span><span class="ansi-red-fg"> in 1.49s</span><span class="ansi-red-fg"> =========================</span>
+<span class="ansi-green-fg">============================== </span><span class="ansi-green-intense-fg ansi-bold">32 passed</span><span class="ansi-green-fg"> in 1.06s</span><span class="ansi-green-fg"> ==============================</span>
 </pre></div></div>
 </div>
 </div>
@@ -1373,7 +1164,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 </div>
 <p>이 매핑을 이용한 기본 Session 팩토리를 만듭니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1393,7 +1184,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 </div>
 <p>마지막으로 기존에 만들었더 SqlAlchemy ORM 기반의 레포지터리와 와 UoW를 Aggregate 를 사용한 구현으로 수정합니다</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1433,7 +1224,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 <p>우선 해야 할 작업은 트랜잭션 작업 사이에 Sleep을 두어 “느린” 트랜잭션을 흉내내보는 겁니다.</p>
 <p>다음 <code class="docutils literal notranslate"><span class="pre">try_to_allocate</span></code> 함수는 앞에서 봤던 시퀀스 다이어그램에서 한 Transaction이 하던 작업과 유사한 작업을 합니다. 데이터베이스에서 제품 정보를 조회한 후, 제품을 할당하고, 제품의 버전을 증가시킵니다. 단, 버전을 증가시키는 작업은 <code class="docutils literal notranslate"><span class="pre">Product.allocate</span></code> 에서 암시적으로 이루어집니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1457,7 +1248,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 </div>
 <p>테스트 픽스처 <code class="docutils literal notranslate"><span class="pre">uow_with_product</span></code>를 만들어 보겠습니다. 이 픽스쳐는 임의의 SKU로 테스트 데이터를 셋업한 뒤 UoW를 리턴합니다. 뿐만아니라 테스트가 끝나면 테스트 데이터를 자동으로 클리어 합니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1502,7 +1293,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 </div>
 <p>이 픽스처를 이용해 <code class="docutils literal notranslate"><span class="pre">try_to_allocate</span></code> 사용법을 테스트해봅시다.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1545,12 +1336,30 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+❌ <span class="ansi-red-intense-fg">test_try_to_allocate</span>
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Traceback (most recent call last):
+  File &#34;/home/ykkim/conda/envs/lab/lib/python3.9/site-packages/sqlalchemy/orm/mapper.py&#34;, line 1289, in _configure_class_instrumentation
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Class &#39;&lt;class &#39;app.domain.models.OrderLine&#39;&gt;&#39; already has a primary mapper defined. Use non_primary=True to create a non primary Mapper.  clear_mappers() will remove *all* current mappers from all classes.
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-✅ <span class="ansi-magenta-intense-fg">test_try_to_allocate</span>
 ✅ <span class="ansi-magenta-intense-fg">test_cleanup_completed</span>
 </pre></div></div>
 </div>
@@ -1563,7 +1372,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 </ol>
 <p>이 작업을 테스트 코드로 작성해서 실행해보겠습니다.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1624,7 +1433,7 @@ AttributeError: &#39;FakeUnitOfWork&#39; object has no attribute &#39;batches&#3
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Traceback (most recent call last):
-  File &#34;&lt;ipython-input-39-574c15b3038f&gt;&#34;, line 25, in test_concurrent_updates_to_version_are_not_allowed
+  File &#34;&lt;ipython-input-28-fb4d46c3a766&gt;&#34;, line 28, in test_concurrent_updates_to_version_are_not_allowed
     [exception] = exceptions
 ValueError: not enough values to unpack (expected 1, got 0)
 </pre></div></div>
@@ -1639,7 +1448,7 @@ ValueError: not enough values to unpack (expected 1, got 0)
 </ul>
 <p>이제 격리 레벨을 지원하도록 <code class="docutils literal notranslate"><span class="pre">get_session</span></code> 픽스처를 변경한 뒤 다시 테스트 해보겠습니다.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1667,7 +1476,7 @@ ValueError: not enough values to unpack (expected 1, got 0)
 <p>비관적인 동시성 제어방법을 사용할 수 도 있습니다. 동시에 두 트랜잭션이 동일 SKU에 대한 <code class="docutils literal notranslate"><span class="pre">Product</span></code> 를 가져올 수 없도록 락을 걸어 막는 방법입니다.</p>
 <p>이 방법을 사용하면 한 트랜잭션이 커밋후 락을 릴리즈하기 전까지 다른 트랜잭션은 대기하게 됩니다. 이 방법을 사용하면 별도의 예외처리는 필요하지 않겠지만 대신 성능 저하가 발생할 것입니다.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1695,15 +1504,6 @@ ValueError: not enough values to unpack (expected 1, got 0)
 <p>우리는 Aggregate를 특정 컨텍스트에서 모델 덩어리를 다루는 진입점으로 명시적으로 모델링하고, 모든 객체에 적용되는 불변성 및 비즈니스 규칙을 담당하도록 했습니다.</p>
 <p>상황에 따라 올바른 Aggregate를 선택하는 것이 핵심이며, 시간이 지남에 따라 재검토가 필요한 결정 사항입니다.</p>
 <p>여러 DDD 책에서 Aggregate를 다루고 있습니다. 본 버논(“red book”)의 효과적인 Aggregate 설계에 관한온라인 논문들을 읽기를 추천합니다.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
 <script type="application/vnd.jupyter.widget-state+json">
 {"state": {}, "version_major": 2, "version_minor": 0}
 </script></div>
