@@ -26,14 +26,14 @@ def insert_batch(session: Session, ref: str = '', sku: str = '') -> int:
         "INSERT INTO batch (reference, sku, _purchased_quantity, eta)"
         " VALUES (:ref, :sku, 100, null)", dict(ref=ref, sku=sku))
     [[batch_id]] = session.execute(
-        "SELECT id FROM batch WHERE reference=:batch_ref AND sku=:sku",
+        "SELECT id FROM batch WHERE reference=:ref AND sku=:sku",
         dict(ref=ref, sku=sku))
 
     return cast(int, batch_id)
 
 
-def insert_allocation(session: Session, orderline_id: str,
-                      batch_id: str) -> None:
+def insert_allocation(session: Session, orderline_id: int,
+                      batch_id: int) -> None:
     session.execute(
         "INSERT INTO allocation (orderline_id, batch_id)"
         " VALUES (:orderline_id, :batch_id)",
