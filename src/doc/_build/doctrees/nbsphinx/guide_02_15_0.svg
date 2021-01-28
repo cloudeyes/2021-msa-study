@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="364px" preserveAspectRatio="none" style="width:497px;height:364px;" version="1.1" viewBox="0 0 497 364" width="497px" zoomAndPan="magnify"><defs><filter height="300%" id="f16jy4v9ar41n" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class Order--><rect fill="#B5E2FA" filter="url(#f16jy4v9ar41n)" height="71.2617" id="Order" style="stroke: #0FA3B1; stroke-width: 1.5;" width="85" x="14" y="222.5"/><ellipse cx="35.55" cy="238.8154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M37.4406,242.8154 L32.4563,242.8154 L32.4563,234.7998 L37.4406,234.7998 L37.4406,236.1904 L34.0344,236.1904 L34.0344,237.9248 L37.1281,237.9248 L37.1281,239.3154 L34.0344,239.3154 L34.0344,241.4248 L37.4406,241.4248 L37.4406,242.8154 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="30" x="53.45" y="243.3701">Order</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="15" x2="98" y1="255.1309" y2="255.1309"/><ellipse cx="25" cy="271.9463" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="10" x="36" y="275.001">id</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="43" x="46" y="275.001">: Integer</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="15" x2="98" y1="285.7617" y2="285.7617"/><!--class Batch--><rect fill="#B5E2FA" filter="url(#f16jy4v9ar41n)" height="139.1543" id="Batch" style="stroke: #0FA3B1; stroke-width: 1.5;" width="141" x="175" y="12"/><ellipse cx="223.75" cy="28.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M225.6406,32.3154 L220.6563,32.3154 L220.6563,24.2998 L225.6406,24.2998 L225.6406,25.6904 L222.2344,25.6904 L222.2344,27.4248 L225.3281,27.4248 L225.3281,28.8154 L222.2344,28.8154 L222.2344,30.9248 L225.6406,30.9248 L225.6406,32.3154 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="28" x="245.25" y="32.8701">Batch</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="176" x2="315" y1="44.6309" y2="44.6309"/><ellipse cx="186" cy="61.4463" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="10" x="197" y="64.501">id</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="43" x="207" y="64.501">: Integer</text><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="176" x2="315" y1="75.2617" y2="75.2617"/><ellipse cx="186" cy="92.0771" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="48" x="197" y="95.1318">reference</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="61" x="245" y="95.1318">: String(255)</text><ellipse cx="186" cy="114.708" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="79" x="197" y="117.7627">sku: String(255)</text><ellipse cx="186" cy="137.3389" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="59" x="197" y="140.3936">qty: Integer</text><!--class Allocation--><rect fill="#B5E2FA" filter="url(#f16jy4v9ar41n)" height="93.8926" id="Allocation" style="stroke: #0FA3B1; stroke-width: 1.5;" width="94" x="392" y="91.5"/><ellipse cx="407.7" cy="107.8154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M409.5906,111.8154 L404.6063,111.8154 L404.6063,103.7998 L409.5906,103.7998 L409.5906,105.1904 L406.1844,105.1904 L406.1844,106.9248 L409.2781,106.9248 L409.2781,108.3154 L406.1844,108.3154 L406.1844,110.4248 L409.5906,110.4248 L409.5906,111.8154 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="52" x="424.3" y="112.3701">Allocation</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="393" x2="485" y1="124.1309" y2="124.1309"/><ellipse cx="403" cy="140.9463" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="44" x="414" y="144.001">batch_id</text><ellipse cx="403" cy="163.5771" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="62" x="414" y="166.6318">orderline_id</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="393" x2="485" y1="177.3926" y2="177.3926"/><!--class OrderLine--><rect fill="#B5E2FA" filter="url(#f16jy4v9ar41n)" height="161.7852" id="OrderLine" style="stroke: #0FA3B1; stroke-width: 1.5;" width="118" x="186.5" y="192"/><ellipse cx="213.45" cy="208.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M215.3406,212.3154 L210.3563,212.3154 L210.3563,204.2998 L215.3406,204.2998 L215.3406,205.6904 L211.9344,205.6904 L211.9344,207.4248 L215.0281,207.4248 L215.0281,208.8154 L211.9344,208.8154 L211.9344,210.9248 L215.3406,210.9248 L215.3406,212.3154 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="51" x="232.55" y="212.8701">OrderLine</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="187.5" x2="303.5" y1="224.6309" y2="224.6309"/><ellipse cx="197.5" cy="241.4463" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="10" x="208.5" y="244.501">id</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="43" x="218.5" y="244.501">: Integer</text><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="187.5" x2="303.5" y1="255.2617" y2="255.2617"/><ellipse cx="197.5" cy="272.0771" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="86" x="208.5" y="275.1318">order_id: Integer</text><ellipse cx="197.5" cy="294.708" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="79" x="208.5" y="297.7627">sku: String(255)</text><ellipse cx="197.5" cy="317.3389" fill="#000000" rx="3" ry="3" style="stroke: #000000; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="59" x="208.5" y="320.3936">qty: Integer</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="46" x="208.5" y="343.0244">eta: Date</text><!--link Order to OrderLine--><path d="M108.86,269.5 C137.38,269.5 148.77,269.5 177.39,269.5 " fill="none" id="Order-OrderLine" style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="177.5" x2="185.5" y1="269.5" y2="263.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="177.5" x2="185.5" y1="269.5" y2="275.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="177.5" x2="185.5" y1="269.5" y2="269.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="175.5" x2="175.5" y1="265.5" y2="273.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="104.5" x2="104.5" y1="273.5" y2="265.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="107.5" x2="107.5" y1="273.5" y2="265.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="108.5" x2="100.5" y1="269.5" y2="269.5"/><!--link OrderLine to Allocation--><path d="M313.65,238.77 C352.81,231.3 343.63,169.04 382.55,161.29 " fill="none" id="OrderLine-Allocation" style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="383.036" x2="390.4317" y1="161.2578" y2="154.527"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="383.036" x2="391.5683" y1="161.2578" y2="166.473"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="383.036" x2="391" y1="161.2578" y2="160.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="380.6661" x2="381.4239" y1="157.4652" y2="165.4293"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="309.8416" x2="309.1264" y1="243.1264" y2="235.1584"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="312.8296" x2="312.1143" y1="242.8581" y2="234.8902"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="313.468" x2="305.5" y1="238.7847" y2="239.5"/><!--link Batch to Allocation--><path d="M325.7,60.39 C360.46,68.49 348.04,129.55 382.83,137.62 " fill="none" id="Batch-Allocation" style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="383.046" x2="391.6426" y1="137.6432" y2="132.5345"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="383.046" x2="390.3574" y1="137.6432" y2="144.4655"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="383.046" x2="391" y1="137.6432" y2="138.5"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="381.4859" x2="380.6291" y1="133.452" y2="141.406"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="321.0477" x2="321.9061" y1="63.9061" y2="55.9523"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="324.0304" x2="324.8888" y1="64.2279" y2="56.2741"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="325.4538" x2="317.5" y1="60.3583" y2="59.5"/><!--
+@startuml
+skinparam default {
+    FontName "Segoe UI"
+    FontSize 11
+    FontColor Black
+}
+
+skinparam class {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+
+skinparam CircledCharacter {
+    FontColor Black
+}
+
+skinparam stereotypeC {
+    BackgroundColor #eddea4 
+}
+
+skinparam package {
+    FontName "Segoe UI"
+}
+
+skinparam sequencelifeline {
+    BorderColor #0fa3b1
+}
+skinparam arrow {
+    Color #0fa3b1
+}
+skinparam participant {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam entity {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam collections {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam database {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam boundary {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam actor {
+    Color DeepSkyBlue
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam sequencegroupheader {
+    FontName "Segoe UI"
+}
+skinparam sequencebox {
+    BackgroundColor PowderBlue
+    BorderColor #0fa3b1
+}
+skinparam padding 4
+
+left to right direction
+
+entity Order {
+    * **id**: Integer
+}
+
+entity Batch {
+    * **id**: Integer
+    - -
+    * **reference**: String(255)
+    * sku: String(255)
+    * qty: Integer
+}
+
+entity Allocation {
+    * **batch_id**
+    * **orderline_id**
+}
+
+entity OrderLine {
+    * **id**: Integer
+    - -
+    * **order_id: Integer**
+    * sku: String(255)
+    * qty: Integer
+    eta: Date
+}
+
+
+Order::id ||..|{ OrderLine::order_id
+OrderLine::id ||..|{ Allocation::orderline_id 
+Batch::id ||..|{ Allocation::batch_id 
+
+
+@enduml
+
+PlantUML version 1.2018.13(Tue Nov 27 02:11:51 KST 2018)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.9.1+1-Ubuntu-0ubuntu1.20.04
+Operating System: Linux
+OS Version: 5.4.0-1032-azure
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

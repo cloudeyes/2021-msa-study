@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="266" shape-rendering="geometricPrecision" version="1.0">
+  <defs>
+    <filter id="f2" x="0" y="0" width="200%" height="200%">
+      <feOffset result="offOut" in="SourceGraphic" dx="5" dy="5"/>
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="3"/>
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
+    </filter>
+  </defs>
+  <g stroke-width="1" stroke-linecap="square" stroke-linejoin="round">
+    <rect x="0" y="0" width="460" height="266" style="fill: #ffffff"/>
+    <path stroke="gray" fill="gray" filter="url(#f2)" d="M25.0 35.0 L25.0 63.0 L435.0 63.0 L435.0 35.0 z"/>
+    <path stroke="gray" fill="gray" filter="url(#f2)" d="M25.0 133.0 L25.0 161.0 L435.0 161.0 L435.0 133.0 z"/>
+    <path stroke="gray" fill="gray" filter="url(#f2)" d="M435.0 203.0 L435.0 231.0 L25.0 231.0 L25.0 203.0 z"/>
+    <path stroke="gray" fill="gray" filter="url(#f2)" d="M255.0 112.0 Q255.0 119.0 260.0 119.0 L420.0 119.0 Q425.0 119.0 425.0 112.0 L425.0 84.0 L425.0 84.0 Q425.0 77.0 420.0 77.0 L260.0 77.0 L260.0 77.0 Q255.0 77.0 255.0 84.0 L255.0 112.0 z"/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="white" d="M25.0 35.0 L25.0 63.0 L435.0 63.0 L435.0 35.0 z"/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="white" d="M25.0 133.0 L25.0 161.0 L435.0 161.0 L435.0 133.0 z"/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="white" d="M435.0 203.0 L435.0 231.0 L25.0 231.0 L25.0 203.0 z"/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="white" d="M255.0 112.0 Q255.0 119.0 260.0 119.0 L420.0 119.0 Q425.0 119.0 425.0 112.0 L425.0 84.0 L425.0 84.0 Q425.0 77.0 420.0 77.0 L260.0 77.0 L260.0 77.0 Q255.0 77.0 255.0 84.0 L255.0 112.0 z"/>
+    <path stroke="none" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="#000000" d="M185.0 70.0 L180.0 84.0 L190.0 84.0 z"/>
+    <path stroke="none" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="#000000" d="M170.0 112.0 L175.0 126.0 L180.0 112.0 z"/>
+    <path stroke="none" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="#000000" d="M180.0 182.0 L185.0 196.0 L190.0 182.0 z"/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M185.0 168.0 L185.0 189.0 "/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M175.0 77.0 L175.0 119.0 "/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M185.0 77.0 L185.0 119.0 "/>
+    <path stroke="#000000" stroke-width="1.000000" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M195.0 91.0 L245.0 91.0 "/>
+    <text x="165" y="54" font-family="Sans" font-weight="bold" font-size="15" stroke="none" fill="#000000"><![CDATA[Application Layer]]></text>
+    <text x="186" y="152" font-family="Sans" font-weight="bold" font-size="15" stroke="none" fill="#000000"><![CDATA[Repository]]></text>
+    <text x="175" y="222" font-family="Sans" font-weight="bold" font-size="15" stroke="none" fill="#000000"><![CDATA[Database Layer]]></text>
+    <text x="283" y="96" font-family="Sans" font-weight="bold" font-size="15" stroke="none" fill="#000000"><![CDATA[Domain Model]]></text>
+    <text x="314" y="110" font-family="Sans" font-weight="bold" font-size="15" stroke="none" fill="#000000"><![CDATA[Objects]]></text>
+  </g>
+</svg>

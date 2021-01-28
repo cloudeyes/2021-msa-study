@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="296px" preserveAspectRatio="none" style="width:545px;height:296px;" version="1.1" viewBox="0 0 545 296" width="545px" zoomAndPan="magnify"><defs><filter height="300%" id="f1x4w11c5xqrle" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--class Product--><rect fill="#B5E2FA" filter="url(#f1x4w11c5xqrle)" height="71.2617" id="Product" style="stroke: #0FA3B1; stroke-width: 1.5;" width="76" x="458" y="111"/><ellipse cx="471" cy="127.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M472.3125,131.0811 Q471.9375,131.2842 471.5156,131.3779 Q471.1094,131.4717 470.6406,131.4717 Q469.0313,131.4717 468.1719,130.4092 Q467.3125,129.3311 467.3125,127.3154 Q467.3125,125.2842 468.1719,124.2217 Q469.0313,123.1436 470.6406,123.1436 Q471.1094,123.1436 471.5156,123.2529 Q471.9375,123.3467 472.3125,123.5342 L472.3125,125.2998 Q471.8906,124.9248 471.5,124.7529 Q471.125,124.5811 470.7188,124.5811 Q469.8594,124.5811 469.4063,125.2686 Q468.9688,125.9561 468.9688,127.3154 Q468.9688,128.6748 469.4063,129.3623 Q469.8594,130.0498 470.7188,130.0498 Q471.125,130.0498 471.5,129.8779 Q471.8906,129.7061 472.3125,129.3154 L472.3125,131.0811 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="40" x="487" y="131.8701">Product</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="459" x2="533" y1="143.6309" y2="143.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="44" x="468" y="163.501">sku: SKU</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="459" x2="533" y1="174.2617" y2="174.2617"/><!--class Order--><rect fill="#B5E2FA" filter="url(#f1x4w11c5xqrle)" height="93.8926" id="Order" style="stroke: #0FA3B1; stroke-width: 1.5;" width="155" x="14" y="192"/><ellipse cx="68.75" cy="208.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M70.0625,212.0811 Q69.6875,212.2842 69.2656,212.3779 Q68.8594,212.4717 68.3906,212.4717 Q66.7813,212.4717 65.9219,211.4092 Q65.0625,210.3311 65.0625,208.3154 Q65.0625,206.2842 65.9219,205.2217 Q66.7813,204.1436 68.3906,204.1436 Q68.8594,204.1436 69.2656,204.2529 Q69.6875,204.3467 70.0625,204.5342 L70.0625,206.2998 Q69.6406,205.9248 69.25,205.7529 Q68.875,205.5811 68.4688,205.5811 Q67.6094,205.5811 67.1563,206.2686 Q66.7188,206.9561 66.7188,208.3154 Q66.7188,209.6748 67.1563,210.3623 Q67.6094,211.0498 68.4688,211.0498 Q68.875,211.0498 69.25,210.8779 Q69.6406,210.7061 70.0625,210.3154 L70.0625,212.0811 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="30" x="90.25" y="212.8701">Order</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="15" x2="168" y1="224.6309" y2="224.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="135" x="24" y="244.501">reference: OrderReference</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="125" x="24" y="267.1318">_order_lines: [OrderLine]</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="15" x2="168" y1="277.8926" y2="277.8926"/><!--class OrderLine--><rect fill="#B5E2FA" filter="url(#f1x4w11c5xqrle)" height="116.5234" id="OrderLine" style="stroke: #0FA3B1; stroke-width: 1.5;" width="145" x="245" y="140"/><ellipse cx="284.25" cy="156.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M285.5625,160.0811 Q285.1875,160.2842 284.7656,160.3779 Q284.3594,160.4717 283.8906,160.4717 Q282.2813,160.4717 281.4219,159.4092 Q280.5625,158.3311 280.5625,156.3154 Q280.5625,154.2842 281.4219,153.2217 Q282.2813,152.1436 283.8906,152.1436 Q284.3594,152.1436 284.7656,152.2529 Q285.1875,152.3467 285.5625,152.5342 L285.5625,154.2998 Q285.1406,153.9248 284.75,153.7529 Q284.375,153.5811 283.9688,153.5811 Q283.1094,153.5811 282.6563,154.2686 Q282.2188,154.9561 282.2188,156.3154 Q282.2188,157.6748 282.6563,158.3623 Q283.1094,159.0498 283.9688,159.0498 Q284.375,159.0498 284.75,158.8779 Q285.1406,158.7061 285.5625,158.3154 L285.5625,160.0811 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="51" x="305.75" y="160.8701">OrderLine</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="246" x2="389" y1="172.6309" y2="172.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="125" x="255" y="192.501">orderid: OrderReference</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="44" x="255" y="215.1318">sku: SKU</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="36" x="255" y="237.7627">qty: int</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="246" x2="389" y1="248.5234" y2="248.5234"/><!--class Batch--><rect fill="#B5E2FA" filter="url(#f1x4w11c5xqrle)" height="139.1543" id="Batch" style="stroke: #0FA3B1; stroke-width: 1.5;" width="153" x="15" y="12"/><ellipse cx="69.75" cy="28.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M71.0625,32.0811 Q70.6875,32.2842 70.2656,32.3779 Q69.8594,32.4717 69.3906,32.4717 Q67.7813,32.4717 66.9219,31.4092 Q66.0625,30.3311 66.0625,28.3154 Q66.0625,26.2842 66.9219,25.2217 Q67.7813,24.1436 69.3906,24.1436 Q69.8594,24.1436 70.2656,24.2529 Q70.6875,24.3467 71.0625,24.5342 L71.0625,26.2998 Q70.6406,25.9248 70.25,25.7529 Q69.875,25.5811 69.4688,25.5811 Q68.6094,25.5811 68.1563,26.2686 Q67.7188,26.9561 67.7188,28.3154 Q67.7188,29.6748 68.1563,30.3623 Q68.6094,31.0498 69.4688,31.0498 Q69.875,31.0498 70.25,30.8779 Q70.6406,30.7061 71.0625,30.3154 L71.0625,32.0811 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="28" x="91.25" y="32.8701">Batch</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="16" x2="167" y1="44.6309" y2="44.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="133" x="25" y="64.501">reference: BatchReference</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="44" x="25" y="87.1318">sku: SKU</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="63" x="25" y="109.7627">quantity: int</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="124" x="25" y="132.3936">_allocations: [OrderLine]</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="16" x2="167" y1="143.1543" y2="143.1543"/><!--link Order to OrderLine--><path d="M183.51,261.81 C201.84,259.89 220.12,254.19 236.99,246.93 " fill="none" id="Order-OrderLine" style="stroke: #0FA3B1; stroke-width: 1.0;"/><polygon fill="#FFFFFF" points="170.5,262.5,176.7026,266.178,182.4833,261.8672,176.2807,258.1892,170.5,262.5" style="stroke: #0FA3B1; stroke-width: 1.0;"/><!--link Batch to OrderLine--><path d="M182.5,127.23 C201.25,129.29 219.83,135.54 236.91,143.51 " fill="none" id="Batch-OrderLine" style="stroke: #0FA3B1; stroke-width: 1.0;"/><polygon fill="#FFFFFF" points="169.5,126.5,175.2662,130.8302,181.4811,127.1729,175.7149,122.8428,169.5,126.5" style="stroke: #0FA3B1; stroke-width: 1.0;"/><!--link OrderLine to Product--><path d="M391.5,210.5 C416.43,210.5 440.37,196.9 458.93,182.24 " fill="none" id="OrderLine-Product" style="stroke: #0FA3B1; stroke-width: 1.0;"/><!--link Batch to Product--><path d="M169.5,82.5 C275.76,82.5 397.92,115.74 457.88,134.31 " fill="none" id="Batch-Product" style="stroke: #0FA3B1; stroke-width: 1.0;"/><!--
+@startuml domain-model
+skinparam default {
+    FontName "Segoe UI"
+    FontSize 11
+    FontColor Black
+}
+
+skinparam class {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+
+skinparam CircledCharacter {
+    FontColor Black
+}
+
+skinparam stereotypeC {
+    BackgroundColor #eddea4 
+}
+
+skinparam package {
+    FontName "Segoe UI"
+}
+
+skinparam sequencelifeline {
+    BorderColor #0fa3b1
+}
+skinparam arrow {
+    Color #0fa3b1
+}
+skinparam participant {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam entity {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam collections {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam database {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam boundary {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam actor {
+    Color DeepSkyBlue
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam sequencegroupheader {
+    FontName "Segoe UI"
+}
+skinparam sequencebox {
+    BackgroundColor PowderBlue
+    BorderColor #0fa3b1
+}
+skinparam padding 4
+
+left to right direction
+
+class Product {
+    sku: SKU
+}
+
+class Order {
+    reference: OrderReference
+    _order_lines: [OrderLine]
+}
+
+class OrderLine {
+    orderid: OrderReference
+    sku: SKU
+    qty: int
+}
+
+class Batch {
+    reference: BatchReference
+    sku: SKU
+    quantity: int
+    _allocations: [OrderLine]
+}
+
+Order::_order_lines o- - OrderLine
+Batch::_allocations o- - OrderLine
+OrderLine::sku - - Product
+Batch::sku - - Product
+
+@enduml
+
+PlantUML version 1.2018.13(Tue Nov 27 02:11:51 KST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 15.0.1+9-18
+Operating System: Linux
+OS Version: 5.4.0-1036-azure
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
