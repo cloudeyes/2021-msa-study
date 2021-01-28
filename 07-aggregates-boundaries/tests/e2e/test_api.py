@@ -1,30 +1,13 @@
 """API 테스트."""
 from __future__ import annotations
 from typing import Callable, Optional
-import uuid
 
 import pytest
 import requests
 
 from app import config
-from app.domain.models import Batch
 
-
-def random_suffix() -> str:
-    return uuid.uuid4().hex[:6]
-
-
-def random_sku(name: str = '') -> str:
-    return f'sku-{name}-{random_suffix()}'
-
-
-def random_batchref(num: int = 1) -> str:
-    return f'batch-{num}-{random_suffix()}'
-
-
-def random_orderid(name: str = '') -> str:
-    return f'order-{name}-{random_suffix()}'
-
+from tests import random_batchref, random_orderid, random_sku
 
 AddStockFunc = Callable[[list[tuple[str, str, int, Optional[str]]]], None]
 

@@ -1,0 +1,32 @@
+@startuml ../images/ch7-seq-diagram-1
+
+entity Model
+collections Transaction1
+collections Transaction2
+database Database
+
+hide footbox
+
+Transaction1 -> Database : get product
+Transaction1 <- Database : Product(version=3)
+
+Transaction2 -> Database : get product
+Transaction2 <- Database : Product(version=3)
+
+Model <- Transaction1 : Product.allocate()
+Model -> Transaction1 : Product(version=4)
+    
+Model <- Transaction2 : Product.allocate()
+Model -> Transaction2 : Product(version=2)
+
+group critical
+    Transaction1 -> Database : commit Product(version=4)
+    Transaction1 <[#green]- Database : OK
+end group
+
+group critical
+    Transaction2 -> Database : commit Product(version=4)
+    Transaction2 x[#red]- Database : Error! version is already 4
+end group
+                
+@enduml

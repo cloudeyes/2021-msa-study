@@ -1,0 +1,10 @@
+@startuml ../images/orderline-relation
+hide members
+left to right direction
+
+class OrderLine
+class Batch
+
+OrderLine --> "0..1" Batch
+
+@enduml

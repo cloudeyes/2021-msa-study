@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="312px" preserveAspectRatio="none" style="width:387px;height:312px;" version="1.1" viewBox="0 0 387 312" width="387px" zoomAndPan="magnify"><defs><filter height="300%" id="f2aedmbc9x955" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--cluster ServiceLayer--><polygon fill="#FFFFFF" filter="url(#f2aedmbc9x955)" points="22,34,103,34,110,62.6309,128,62.6309,128,134,22,134,22,34" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="110" y1="62.6309" y2="62.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="67" x="30" y="51.8701">Service Layer</text><!--cluster Repositories--><polygon fill="#FFFFFF" filter="url(#f2aedmbc9x955)" points="213,24,291,24,298,52.6309,365,52.6309,365,144,213,144,213,24" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="213" x2="298" y1="52.6309" y2="52.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="221" y="41.8701">Repositories</text><!--cluster DomainModel--><polygon fill="#FFFFFF" filter="url(#f2aedmbc9x955)" points="22,200,114,200,121,228.6309,227,228.6309,227,300,22,300,22,200" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="22" x2="121" y1="228.6309" y2="228.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="78" x="30" y="217.8701">Domain Model</text><!--entity service_allocate--><rect fill="#B5E2FA" filter="url(#f2aedmbc9x955)" height="42.6309" style="stroke: #0FA3B1; stroke-width: 1.5;" width="74" x="38" y="75"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="46" x="52" y="100.8701">allocate()</text><!--class BatchRepository--><rect fill="#B5E2FA" filter="url(#f2aedmbc9x955)" height="63.2617" id="BatchRepository" style="stroke: #0FA3B1; stroke-width: 1.5;" width="119" x="229.5" y="65"/><ellipse cx="242.5" cy="81.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M243.8125,85.0811 Q243.4375,85.2842 243.0156,85.3779 Q242.6094,85.4717 242.1406,85.4717 Q240.5313,85.4717 239.6719,84.4092 Q238.8125,83.3311 238.8125,81.3154 Q238.8125,79.2842 239.6719,78.2217 Q240.5313,77.1436 242.1406,77.1436 Q242.6094,77.1436 243.0156,77.2529 Q243.4375,77.3467 243.8125,77.5342 L243.8125,79.2998 Q243.3906,78.9248 243,78.7529 Q242.625,78.5811 242.2188,78.5811 Q241.3594,78.5811 240.9063,79.2686 Q240.4688,79.9561 240.4688,81.3154 Q240.4688,82.6748 240.9063,83.3623 Q241.3594,84.0498 242.2188,84.0498 Q242.625,84.0498 243,83.8779 Q243.3906,83.7061 243.8125,83.3154 L243.8125,85.0811 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="83" x="258.5" y="85.8701">BatchRepository</text><line style="stroke: #0FA3B1; stroke-width: 1.5;" x1="230.5" x2="347.5" y1="97.6309" y2="97.6309"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="21" x="239.5" y="117.501">list()</text><!--entity domain_allocate--><rect fill="#B5E2FA" filter="url(#f2aedmbc9x955)" height="42.6309" style="stroke: #0FA3B1; stroke-width: 1.5;" width="74" x="38" y="241"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="46" x="52" y="266.8701">allocate()</text><!--class Batch--><rect fill="#B5E2FA" filter="url(#f2aedmbc9x955)" height="32.6309" id="Batch" style="stroke: #0FA3B1; stroke-width: 1.5;" width="64" x="147" y="246"/><ellipse cx="160" cy="262.3154" fill="#EDDEA4" rx="9" ry="9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><path d="M161.3125,266.0811 Q160.9375,266.2842 160.5156,266.3779 Q160.1094,266.4717 159.6406,266.4717 Q158.0313,266.4717 157.1719,265.4092 Q156.3125,264.3311 156.3125,262.3154 Q156.3125,260.2842 157.1719,259.2217 Q158.0313,258.1436 159.6406,258.1436 Q160.1094,258.1436 160.5156,258.2529 Q160.9375,258.3467 161.3125,258.5342 L161.3125,260.2998 Q160.8906,259.9248 160.5,259.7529 Q160.125,259.5811 159.7188,259.5811 Q158.8594,259.5811 158.4063,260.2686 Q157.9688,260.9561 157.9688,262.3154 Q157.9688,263.6748 158.4063,264.3623 Q158.8594,265.0498 159.7188,265.0498 Q160.125,265.0498 160.5,264.8779 Q160.8906,264.7061 161.3125,264.3154 L161.3125,266.0811 Z "/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="28" x="176" y="266.8701">Batch</text><!--link domain_allocate to Batch--><!--link service_allocate to BatchRepository--><path d="M112.28,96.5 C142.98,96.5 187.25,96.5 223.8,96.5 " fill="none" id="service_allocate-BatchRepository" style="stroke: #0FA3B1; stroke-width: 1.0;"/><polygon fill="#0FA3B1" points="229.13,96.5,220.13,92.5,224.13,96.5,220.13,100.5,229.13,96.5" style="stroke: #0FA3B1; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="73" x="134.25" y="86.3701">list all batches</text><!--link service_allocate to domain_allocate--><path d="M75,118.27 C75,148.21 75,203.47 75,235.9 " fill="none" id="service_allocate-domain_allocate" style="stroke: #0FA3B1; stroke-width: 1.0;"/><polygon fill="#0FA3B1" points="75,240.9,79,231.9,75,235.9,71,231.9,75,240.9" style="stroke: #0FA3B1; stroke-width: 1.0;"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="139" x="80" y="176.8701">allocate(orderline, batches)</text><!--
+@startuml ../images/before_aggregate
+skinparam default {
+    FontName "Segoe UI"
+    FontSize 11
+    FontColor Black
+}
+
+skinparam class {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+
+skinparam rectangle {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+
+skinparam CircledCharacter {
+    FontColor Black
+}
+
+skinparam stereotypeC {
+    BackgroundColor #eddea4 
+}
+
+skinparam package {
+    FontName "Segoe UI"
+}
+
+skinparam sequencelifeline {
+    BorderColor #0fa3b1
+}
+skinparam arrow {
+    Color #0fa3b1
+}
+skinparam participant {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam entity {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam collections {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam database {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam boundary {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam actor {
+    Color DeepSkyBlue
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam sequencegroupheader {
+    FontName "Segoe UI"
+}
+skinparam sequencebox {
+    BackgroundColor PowderBlue
+    BorderColor #0fa3b1
+}
+skinparam padding 4
+
+hide members
+allowmixing
+
+package "Service Layer" as ServiceLayer {
+    rectangle "allocate()" as service_allocate
+}
+
+show members
+hide class fields
+
+package Repositories {
+    class BatchRepository {
+        list()
+    }
+}
+
+package "Domain Model" as DomainModel {
+    rectangle "allocate()" as domain_allocate
+
+    class Batch
+    
+    domain_allocate -[hidden]> Batch
+}
+
+hide Batch members
+
+service_allocate -> BatchRepository: list all batches
+service_allocate - -> domain_allocate: allocate(orderline, batches)
+
+@enduml
+
+PlantUML version 1.2018.13(Tue Nov 27 02:11:51 KST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 15.0.1+9-18
+Operating System: Linux
+OS Version: 5.4.0-1036-azure
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

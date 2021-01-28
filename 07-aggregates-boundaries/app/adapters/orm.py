@@ -105,6 +105,7 @@ def init_engine(meta: MetaData,
                 connect_args: Optional[dict[str, Any]] = None,
                 poolclass: Optional[Pool] = None,
                 show_log: Union[bool, dict[str, Any]] = False,
+                isolation_level: Optional[str] = None,
                 drop_all: bool = False) -> Engine:
     """ORM Engine을 초기화 합니다.
 
@@ -116,7 +117,8 @@ def init_engine(meta: MetaData,
     engine = create_engine(url,
                            connect_args=connect_args or {},
                            poolclass=poolclass,
-                           echo=show_log)
+                           echo=show_log,
+                           isolation_level=isolation_level)
 
     if drop_all:
         meta.drop_all(engine)
