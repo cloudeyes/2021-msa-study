@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="620px" preserveAspectRatio="none" style="width:487px;height:620px;" version="1.1" viewBox="0 0 487 620" width="487px" zoomAndPan="magnify"><defs><filter height="300%" id="flnmga3sv2j9i" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#flnmga3sv2j9i)" height="97.8926" style="stroke: #000000; stroke-width: 2.0;" width="374" x="102.5" y="381.6777"/><rect fill="#FFFFFF" filter="url(#flnmga3sv2j9i)" height="97.8926" style="stroke: #000000; stroke-width: 2.0;" width="268" x="208.5" y="493.5703"/><line style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="31" x2="31" y1="71.6309" y2="608.4629"/><line style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="160.5" x2="160.5" y1="71.6309" y2="608.4629"/><line style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="266.5" x2="266.5" y1="71.6309" y2="608.4629"/><line style="stroke: #0FA3B1; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="435.5" x2="435.5" y1="71.6309" y2="608.4629"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="33" x="12" y="64.8701">Model</text><ellipse cx="31.5" cy="33" fill="#B5E2FA" filter="url(#flnmga3sv2j9i)" rx="12" ry="12" style="stroke: #0FA3B1; stroke-width: 2.0;"/><line style="stroke: #0FA3B1; stroke-width: 2.0;" x1="19.5" x2="43.5" y1="47" y2="47"/><rect fill="#B5E2FA" filter="url(#flnmga3sv2j9i)" height="36.6309" style="stroke: #0FA3B1; stroke-width: 1.5;" width="88" x="116.5" y="26"/><rect fill="#B5E2FA" filter="url(#flnmga3sv2j9i)" height="36.6309" style="stroke: #0FA3B1; stroke-width: 1.5;" width="88" x="112.5" y="30"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="66" x="123.5" y="52.8701">Transaction1</text><rect fill="#B5E2FA" filter="url(#flnmga3sv2j9i)" height="36.6309" style="stroke: #0FA3B1; stroke-width: 1.5;" width="88" x="222.5" y="26"/><rect fill="#B5E2FA" filter="url(#flnmga3sv2j9i)" height="36.6309" style="stroke: #0FA3B1; stroke-width: 1.5;" width="88" x="218.5" y="30"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="66" x="229.5" y="52.8701">Transaction2</text><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="48" x="408.5" y="64.8701">Database</text><path d="M417.5,13 C417.5,3 435.5,3 435.5,3 C435.5,3 453.5,3 453.5,13 L453.5,39 C453.5,49 435.5,49 435.5,49 C435.5,49 417.5,49 417.5,39 L417.5,13 " fill="#B5E2FA" filter="url(#flnmga3sv2j9i)" style="stroke: #0FA3B1; stroke-width: 1.5;"/><path d="M417.5,13 C417.5,23 435.5,23 435.5,23 C435.5,23 453.5,23 453.5,13 " fill="none" style="stroke: #0FA3B1; stroke-width: 1.5;"/><polygon fill="#0FA3B1" points="423.5,106.2617,433.5,110.2617,423.5,114.2617,427.5,110.2617" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="160.5" x2="429.5" y1="110.2617" y2="110.2617"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="61" x="171.5" y="101.501">get product</text><polygon fill="#0FA3B1" points="171.5,142.8926,161.5,146.8926,171.5,150.8926,167.5,146.8926" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="165.5" x2="434.5" y1="146.8926" y2="146.8926"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="181.5" y="138.1318">Product(version=3)</text><polygon fill="#0FA3B1" points="423.5,179.5234,433.5,183.5234,423.5,187.5234,427.5,183.5234" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="266.5" x2="429.5" y1="183.5234" y2="183.5234"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="61" x="277.5" y="174.7627">get product</text><polygon fill="#0FA3B1" points="277.5,216.1543,267.5,220.1543,277.5,224.1543,273.5,220.1543" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="271.5" x2="434.5" y1="220.1543" y2="220.1543"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="287.5" y="211.3936">Product(version=3)</text><polygon fill="#0FA3B1" points="42.5,252.7852,32.5,256.7852,42.5,260.7852,38.5,256.7852" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="36.5" x2="159.5" y1="256.7852" y2="256.7852"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="89" x="52.5" y="248.0244">Product.allocate()</text><polygon fill="#0FA3B1" points="148.5,289.416,158.5,293.416,148.5,297.416,152.5,293.416" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="31.5" x2="154.5" y1="293.416" y2="293.416"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="42.5" y="284.6553">Product(version=4)</text><polygon fill="#0FA3B1" points="42.5,326.0469,32.5,330.0469,42.5,334.0469,38.5,330.0469" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="36.5" x2="265.5" y1="330.0469" y2="330.0469"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="89" x="52.5" y="321.2861">Product.allocate()</text><polygon fill="#0FA3B1" points="254.5,362.6777,264.5,366.6777,254.5,370.6777,258.5,366.6777" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="31.5" x2="260.5" y1="366.6777" y2="366.6777"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="97" x="42.5" y="357.917">Product(version=2)</text><path d="M102.5,381.6777 L188.5,381.6777 L188.5,395.6777 L178.5,405.6777 L102.5,405.6777 L102.5,381.6777 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="97.8926" style="stroke: #000000; stroke-width: 2.0;" width="374" x="102.5" y="381.6777"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="33" x="121.5" y="398.5479">critical</text><polygon fill="#0FA3B1" points="423.5,430.9395,433.5,434.9395,423.5,438.9395,427.5,434.9395" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="160.5" x2="429.5" y1="434.9395" y2="434.9395"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="137" x="171.5" y="426.1787">commit Product(version=4)</text><polygon fill="#008000" points="171.5,467.5703,161.5,471.5703,171.5,475.5703,167.5,471.5703" style="stroke: #008000; stroke-width: 1.0;"/><line style="stroke: #008000; stroke-width: 1.0;" x1="165.5" x2="434.5" y1="471.5703" y2="471.5703"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="15" x="181.5" y="462.8096">OK</text><path d="M208.5,493.5703 L294.5,493.5703 L294.5,507.5703 L284.5,517.5703 L208.5,517.5703 L208.5,493.5703 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="97.8926" style="stroke: #000000; stroke-width: 2.0;" width="268" x="208.5" y="493.5703"/><text fill="#000000" font-family="Segoe UI" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="33" x="227.5" y="510.4404">critical</text><polygon fill="#0FA3B1" points="423.5,542.832,433.5,546.832,423.5,550.832,427.5,546.832" style="stroke: #0FA3B1; stroke-width: 1.0;"/><line style="stroke: #0FA3B1; stroke-width: 1.0;" x1="266.5" x2="429.5" y1="546.832" y2="546.832"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="137" x="277.5" y="538.0713">commit Product(version=4)</text><line style="stroke: #FF0000; stroke-width: 2.0;" x1="272.5" x2="282.5" y1="578.4629" y2="588.4629"/><line style="stroke: #FF0000; stroke-width: 2.0;" x1="272.5" x2="282.5" y1="588.4629" y2="578.4629"/><line style="stroke: #FF0000; stroke-width: 1.0;" x1="278.5" x2="434.5" y1="583.4629" y2="583.4629"/><text fill="#000000" font-family="Segoe UI" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="128" x="287.5" y="574.7021">Error! version is already 4</text><!--
+@startuml ../images/ch7-seq-diagram-1
+skinparam default {
+    FontName "Segoe UI"
+    FontSize 11
+    FontColor Black
+}
+
+skinparam class {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+
+skinparam rectangle {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+
+skinparam CircledCharacter {
+    FontColor Black
+}
+
+skinparam stereotypeC {
+    BackgroundColor #eddea4 
+}
+
+skinparam package {
+    FontName "Segoe UI"
+}
+
+skinparam sequencelifeline {
+    BorderColor #0fa3b1
+}
+skinparam arrow {
+    Color #0fa3b1
+}
+skinparam participant {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam entity {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam collections {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam database {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam boundary {
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam actor {
+    Color DeepSkyBlue
+    BackgroundColor #b5e2fa
+    BorderColor #0fa3b1
+}
+skinparam sequencegroupheader {
+    FontName "Segoe UI"
+}
+skinparam sequencebox {
+    BackgroundColor PowderBlue
+    BorderColor #0fa3b1
+}
+skinparam padding 4
+
+entity Model
+collections Transaction1
+collections Transaction2
+database Database
+
+hide footbox
+
+Transaction1 -> Database : get product
+Transaction1 <- Database : Product(version=3)
+
+Transaction2 -> Database : get product
+Transaction2 <- Database : Product(version=3)
+
+Model <- Transaction1 : Product.allocate()
+Model -> Transaction1 : Product(version=4)
+    
+Model <- Transaction2 : Product.allocate()
+Model -> Transaction2 : Product(version=2)
+
+group critical
+    Transaction1 -> Database : commit Product(version=4)
+    Transaction1 <[#green]- Database : OK
+end group
+
+group critical
+    Transaction2 -> Database : commit Product(version=4)
+    Transaction2 x[#red]- Database : Error! version is already 4
+end group
+                
+@enduml
+
+PlantUML version 1.2018.13(Tue Nov 27 02:11:51 KST 2018)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 15.0.1+9-18
+Operating System: Linux
+OS Version: 5.4.0-1036-azure
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

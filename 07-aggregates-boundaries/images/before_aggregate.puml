@@ -1,0 +1,32 @@
+@startuml ../images/before_aggregate
+
+hide members
+allowmixing
+
+package "Service Layer" as ServiceLayer {
+    rectangle "allocate()" as service_allocate
+}
+
+show members
+hide class fields
+
+package Repositories {
+    class BatchRepository {
+        list()
+    }
+}
+
+package "Domain Model" as DomainModel {
+    rectangle "allocate()" as domain_allocate
+
+    class Batch
+    
+    domain_allocate -[hidden]> Batch
+}
+
+hide Batch members
+
+service_allocate -> BatchRepository: list all batches
+service_allocate --> domain_allocate: allocate(orderline, batches)
+
+@enduml

@@ -1,0 +1,13 @@
+[MASTER]
+ignore-patterns=test_.*?py
+
+[DESIGN]
+
+max-args=7
+min-public-methods=1
+
+
+[TYPECHECK]
+
+ignored-modules=sqlalchemy
+ignored-classes=Session

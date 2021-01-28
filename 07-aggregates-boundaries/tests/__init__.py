@@ -1,4 +1,5 @@
 """테스트 기본 설정 및 헬퍼 함수를 정의합니다."""
+from __future__ import annotations
 from typing import Callable, Any, Optional
 from types import ModuleType
 import os

@@ -1,0 +1,34 @@
+@startuml ../images/after_aggregate
+
+hide members
+allowmixing
+
+package "Service Layer" as ServiceLayer {
+    rectangle "allocate()" as service_allocate
+}
+
+show members
+hide class fields
+
+package Repositories {
+    class ProductRepository {
+        get()
+    }
+}
+
+package "Domain Model" as DomainModel {
+    class Product {
+        allocate()
+    }
+
+    class Batch
+    
+    Product -[hidden]> Batch
+}
+
+hide Batch members
+
+service_allocate -> ProductRepository: "get me the product\nfor this SKU"
+service_allocate --> Product: product.allocate(orderline)
+
+@enduml

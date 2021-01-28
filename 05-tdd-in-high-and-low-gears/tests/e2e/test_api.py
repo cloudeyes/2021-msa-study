@@ -6,23 +6,7 @@ import uuid
 import pytest
 import requests
 from app.config import get_api_url
-
-
-def random_suffix() -> str:
-    return uuid.uuid4().hex[:6]
-
-
-def random_sku(name: str = '') -> str:
-    return f'sku-{name}-{random_suffix()}'
-
-
-def random_batchref(num: int = 1) -> str:
-    return f'batch-{num}-{random_suffix()}'
-
-
-def random_orderid(name: str = '') -> str:
-    return f'order-{name}-{random_suffix()}'
-
+from app.tests import random_batchref, random_sku, random_orderid
 
 AddStockFunc = Callable[[list[tuple[str, str, int, Optional[str]]]], None]
 
