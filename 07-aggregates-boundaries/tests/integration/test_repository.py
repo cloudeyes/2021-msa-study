@@ -23,7 +23,7 @@ def test_repository_can_save_a_batch(session: Session) -> None:
 def test_repository_can_retrieve_a_batch_with_allocations(
         session: Session) -> None:
     orderline_id = insert_order_line(session)
-    batch1_id = insert_batch(session, "batch1")
+    batch1_id = insert_batch(session, "batch1", "GENERIC-SOFA")
     insert_batch(session, "batch2")
     insert_allocation(session, orderline_id, batch1_id)
 
