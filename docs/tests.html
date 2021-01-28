@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="guide/04.html">04. Flask API and Service Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/05.html">05. TDD in High and Low Gears</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/06.html">06. Unit of Work Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/07.html">07. Aggregates and Consistency Boundaries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
@@ -210,29 +211,15 @@
 <dl class="py data">
 <dt id="tests.conftest.AddStockFunc">
 <code class="sig-name descname">AddStockFunc</code><a class="headerlink" href="#tests.conftest.AddStockFunc" title="Permalink to this definition">¶</a></dt>
-<dd><p><a class="reference internal" href="#tests.conftest.add_stock" title="tests.conftest.add_stock"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stock()</span></code></a> 함수 타입.</p>
+<dd><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stock()</span></code> 함수 타입.</p>
 <p>alias of Callable[[List[Tuple[str, str, int, Optional[str]]]], None]</p>
 </dd></dl>
 
 <dl class="py data">
 <dt id="tests.conftest.AddStockLines">
 <code class="sig-name descname">AddStockLines</code><a class="headerlink" href="#tests.conftest.AddStockLines" title="Permalink to this definition">¶</a></dt>
-<dd><p><a class="reference internal" href="#tests.conftest.add_stock" title="tests.conftest.add_stock"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stock()</span></code></a> 함수의 인자 타입.</p>
+<dd><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_stock()</span></code> 함수의 인자 타입.</p>
 <p>alias of List[Tuple[str, str, int, Optional[str]]]</p>
-</dd></dl>
-
-<dl class="py function">
-<dt id="tests.conftest.add_stock">
-<code class="sig-name descname">add_stock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">get_repo</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.conftest.add_stock" title="Permalink to this definition">¶</a></dt>
-<dd><p><a class="reference internal" href="#tests.conftest.get_repo" title="tests.conftest.get_repo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_repo()</span></code></a> 픽스쳐를 이용해 레포지터리에 배치를 추가하는 <cite>add_stock</cite>
-함수를 리턴하는 픽스쳐입니다.</p>
-<p>제너레이터를 이용해 리턴하며 픽스쳐 사용 이후에는 레포지터리에서 입력된 배치를
-Clean up 합니다.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#tests.conftest.AddStockFunc" title="tests.conftest.AddStockFunc"><code class="xref py py-class docutils literal notranslate"><span class="pre">AddStockFunc</span></code></a></p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -418,6 +405,50 @@ Clean up 합니다.</p>
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.__init__.random_batchref">
+<code class="sig-name descname">random_batchref</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.__init__.random_batchref" title="Permalink to this definition">¶</a></dt>
+<dd><p>임의의 Batch reference를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.__init__.random_orderid">
+<code class="sig-name descname">random_orderid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.__init__.random_orderid" title="Permalink to this definition">¶</a></dt>
+<dd><p>임의의 order_id 를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.__init__.random_sku">
+<code class="sig-name descname">random_sku</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tests.__init__.random_sku" title="Permalink to this definition">¶</a></dt>
+<dd><p>임의의 SKU를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.__init__.random_suffix">
+<code class="sig-name descname">random_suffix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tests.__init__.random_suffix" title="Permalink to this definition">¶</a></dt>
+<dd><p>랜덤 ID뒤에 붙일 UUID 기반의 6자리 임의의 ID를 생성합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

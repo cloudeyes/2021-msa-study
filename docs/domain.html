@@ -30,7 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -91,6 +91,8 @@
 <li class="toctree-l1"><a class="reference internal" href="guide/03.html">03. Coupling and Abstractions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/04.html">04. Flask API and Service Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/05.html">05. TDD in High and Low Gears</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/06.html">06. Unit of Work Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/07.html">07. Aggregates and Consistency Boundaries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
@@ -299,12 +301,34 @@ Batch::_allocations o--&gt; OrderLine
 </dd></dl>
 
 <dl class="py method">
+<dt id="app.domain.models.Batch.change_purchased_quantity">
+<code class="sig-name descname">change_purchased_quantity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_qty</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.domain.models.Batch.change_purchased_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>구매 수량을 변경합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="app.domain.models.Batch.deallocate">
 <code class="sig-name descname">deallocate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.domain.models.Batch.deallocate" title="Permalink to this definition">¶</a></dt>
 <dd><p>주문선 <cite>line</cite> 을 할당 취소 합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="app.domain.models.Batch.deallocate_one">
+<code class="sig-name descname">deallocate_one</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.domain.models.Batch.deallocate_one" title="Permalink to this definition">¶</a></dt>
+<dd><p>주문선 <cite>line</cite> 을 할당 취소 합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<a class="reference internal" href="#app.domain.models.OrderLine" title="app.domain.models.OrderLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderLine</span></code></a>]</p>
 </dd>
 </dl>
 </dd></dl>

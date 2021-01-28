@@ -37,7 +37,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="config" href="../config.html" />
+    <link rel="next" title="07. Aggregates and Consistency Boundaries" href="07.html" />
     <link rel="prev" title="05. TDD in High and Low Gears" href="05.html" /> 
 </head>
 
@@ -129,6 +129,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">07. Aggregates and Consistency Boundaries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul>
@@ -1016,20 +1017,9 @@ call rollback()!
 <blockquote>
 <div><p>4장 실습에서 사용된 <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> 과 동일한 설정으로 PostgreSQL DB가 떠 있다고 가정하겠습니다.</p>
 </div></blockquote>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">!</span>docker-compose --project-directory ../04-flask-api-and-service-layer ps
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
+<p>docker 컨테이너를 띄운 호스트에서 다음과 같이 확인해보세요.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker-compose --project-directory ../04-flask-api-and-service-layer ps
+
    Name                Command              State              Ports
 --------------------------------------------------------------------------------
 microlab     /bin/sh -c /root/start.sh      Up      0.0.0.0:12222-&gt;22/tcp,
@@ -1037,7 +1027,7 @@ microlab     /bin/sh -c /root/start.sh      Up      0.0.0.0:12222-&gt;22/tcp,
                                                     0.0.0.0:18888-&gt;8888/tcp
 pgsql-test   docker-entrypoint.sh           Up      0.0.0.0:5432-&gt;5432/tcp
              postgres
-</pre></div></div>
+</pre></div>
 </div>
 <p>목업을 준비하고 실제 UoW 객체를 작성해봅시다.</p>
 <div class="nbinput nblast docutils container">
@@ -1046,7 +1036,7 @@ pgsql-test   docker-entrypoint.sh           Up      0.0.0.0:5432-&gt;5432/tcp
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">config</span> <span class="o">=</span> <span class="n">MagicMock</span><span class="p">()</span>
-<span class="n">config</span><span class="o">.</span><span class="n">get_db_uri</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s1">&#39;postgres://smprc:test@pgsql-test&#39;</span>
+<span class="n">config</span><span class="o">.</span><span class="n">get_db_url</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="s1">&#39;postgres://smprc:test@pgsql-test&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1058,7 +1048,7 @@ pgsql-test   docker-entrypoint.sh           Up      0.0.0.0:5432-&gt;5432/tcp
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">...</span>
 <span class="n">metadata</span> <span class="o">=</span> <span class="n">start_mappers</span><span class="p">()</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">init_engine</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get_db_uri</span><span class="p">(),</span> <span class="n">drop_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">init_engine</span><span class="p">(</span><span class="n">metadata</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get_db_url</span><span class="p">(),</span> <span class="n">drop_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">DEFAULT_SESSION_FACTORY</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">SqlAlchemyUnitOfWork</span><span class="p">(</span><span class="n">AbstractUnitOfWork</span><span class="p">):</span>
@@ -1339,7 +1329,7 @@ TypeError: add() missing 1 required positional argument: &#39;session&#39;
     <span class="k">class</span> <span class="nc">MyException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="n">uow</span> <span class="o">=</span> <span class="n">unit_of_work</span><span class="o">.</span><span class="n">SqlAlchemyUnitOfWork</span><span class="p">(</span><span class="n">get_session</span><span class="p">())</span>
+    <span class="n">uow</span> <span class="o">=</span> <span class="n">unit_of_work</span><span class="o">.</span><span class="n">SqlAlchemyUnitOfWork</span><span class="p">(</span><span class="n">get_session</span><span class="p">)</span>
     <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">MyException</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">uow</span><span class="p">:</span>
             <span class="n">insert_batch</span><span class="p">(</span><span class="n">uow</span><span class="o">.</span><span class="n">session</span><span class="p">,</span> <span class="s1">&#39;batch1&#39;</span><span class="p">,</span> <span class="s1">&#39;LARGE-FORK&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -1429,7 +1419,7 @@ TypeError: add() missing 1 required positional argument: &#39;session&#39;
         <span class="k">if</span> <span class="n">batch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidSku</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid sku </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">sku</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">batch</span><span class="o">.</span><span class="n">deallocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-        <span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">batch</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="n">uow</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1495,7 +1485,7 @@ TypeError: add() missing 1 required positional argument: &#39;session&#39;
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../config.html" class="btn btn-neutral float-right" title="config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="07.html" class="btn btn-neutral float-right" title="07. Aggregates and Consistency Boundaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="05.html" class="btn btn-neutral float-left" title="05. TDD in High and Low Gears" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

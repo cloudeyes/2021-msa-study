@@ -30,7 +30,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -91,6 +91,8 @@
 <li class="toctree-l1"><a class="reference internal" href="guide/03.html">03. Coupling and Abstractions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/04.html">04. Flask API and Service Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide/05.html">05. TDD in High and Low Gears</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/06.html">06. Unit of Work Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide/07.html">07. Aggregates and Consistency Boundaries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul class="current">
@@ -211,10 +213,16 @@
 <dd><p>배치의 SKU와 다른 SKU를 할당하려 할 때 발생하는 예외입니다.</p>
 </dd></dl>
 
+<dl class="py exception">
+<dt id="app.services.batch.ReferenceNotFound">
+<em class="property">exception </em><code class="sig-name descname">ReferenceNotFound</code><a class="headerlink" href="#app.services.batch.ReferenceNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>배치 레퍼런스가 존재하지 않을 때 발생하는 예외입니ㅏ..</p>
+</dd></dl>
+
 <dl class="py function">
 <dt id="app.services.batch.add">
-<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ref</span></em>, <em class="sig-param"><span class="n">sku</span></em>, <em class="sig-param"><span class="n">qty</span></em>, <em class="sig-param"><span class="n">eta</span></em>, <em class="sig-param"><span class="n">repo</span></em>, <em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>배치를 추가합니다.</p>
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ref</span></em>, <em class="sig-param"><span class="n">sku</span></em>, <em class="sig-param"><span class="n">qty</span></em>, <em class="sig-param"><span class="n">eta</span></em>, <em class="sig-param"><span class="n">uow</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>UOW를 이용해 배치를 추가합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
@@ -224,7 +232,7 @@
 
 <dl class="py function">
 <dt id="app.services.batch.allocate">
-<code class="sig-name descname">allocate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">orderid</span></em>, <em class="sig-param"><span class="n">sku</span></em>, <em class="sig-param"><span class="n">qty</span></em>, <em class="sig-param"><span class="n">repo</span></em>, <em class="sig-param"><span class="n">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.allocate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">allocate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">orderid</span></em>, <em class="sig-param"><span class="n">sku</span></em>, <em class="sig-param"><span class="n">qty</span></em>, <em class="sig-param"><span class="n">uow</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.allocate" title="Permalink to this definition">¶</a></dt>
 <dd><p>ETA가 가장 빠른 배치를 찾아 <a class="reference internal" href="domain.html#app.domain.models.OrderLine" title="app.domain.models.OrderLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">OrderLine</span></code></a> 을 할당합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -237,12 +245,36 @@
 </dd></dl>
 
 <dl class="py function">
+<dt id="app.services.batch.change_batch_quantity">
+<code class="sig-name descname">change_batch_quantity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">batchref</span></em>, <em class="sig-param"><span class="n">new_qty</span></em>, <em class="sig-param"><span class="n">uow</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.change_batch_quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>배치에 할당된 주문선을 수량만큼 해제합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="app.services.batch.is_valid_sku">
 <code class="sig-name descname">is_valid_sku</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sku</span></em>, <em class="sig-param"><span class="n">batches</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.is_valid_sku" title="Permalink to this definition">¶</a></dt>
 <dd><p><cite>batches</cite> 에서 <cite>sku</cite> 와 일치하는 품목이 하나라도 있으며 참을 리턴합니다.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="app.services.batch.reallocate">
+<code class="sig-name descname">reallocate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span></em>, <em class="sig-param"><span class="n">uow</span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.services.batch.reallocate" title="Permalink to this definition">¶</a></dt>
+<dd><p>기존 Sku의 주문선을 할당 해재 후 새로운 <a href="#id1"><span class="problematic" id="id2">`</span></a>line`을 할당합니다.</p>
+<p>재할당 서비스 함수의 경우, 작업중 예외가 발생하면 UoW의 동작 방식에 의해 이전 상태로 자동 롤백됩니다.
+모든 유효성 검사와 세부 작업이 다 성공할 경우에만 명시적으로 호출된 commit 함수에 의해 저장소 내용이 변경됩니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
 </dd>
 </dl>
 </dd></dl>

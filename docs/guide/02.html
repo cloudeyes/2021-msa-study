@@ -119,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="04.html">04. Flask API and Service Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05.html">05. TDD in High and Low Gears</a></li>
 <li class="toctree-l1"><a class="reference internal" href="06.html">06. Unit of Work Pattern</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07.html">07. Aggregates and Consistency Boundaries</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Modules</span></p>
 <ul>
@@ -1346,7 +1347,7 @@ CREATE TABLE allocation (
 </li></ul></td><td style="width: 50%; vertical-align: top"><ul style="font-size: 14px"><li><p>An ORM already buys you some decoupling. Changing foreign keys might be hard, but it should be pretty easy to swap between MySQL and Postgres if you ever need to.</p>
 </li><li><p>Maintaining ORM mappings by hand requires extra work and extra code.</p>
 </li><li><p>Any extra layer of indirection always increases maintenance costs and adds a “WTF factor” for Python programmers who’ve never seen the Repository pattern before.</p>
-</li></ul></td></tbody></table><img alt="guide/images/apwp_0206.png" src="guide/images/apwp_0206.png" />
+</li></ul></td></tbody></table><img alt="../images/apwp_0206.png" src="../images/apwp_0206.png" />
 <p>Our domain model should be free of infrastructure concerns, so your ORM should import your model, and not the other way around.</p>
 <p>The repository gives you the illusion of a collection of in-memory objects. It makes it easy to create a FakeRepository for testing and to swap fundamental details of your infrastructure without disrupting your core application. See [appendix_csvs] for an example.</p>
 </div>
