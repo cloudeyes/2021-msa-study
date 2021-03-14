@@ -20,6 +20,6 @@ services:
     image: postgres:9.6-alpine
     environment:
       - POSTGRES_USER=smprc
-      - POSTGRES_PASSWORD=p@ssw0rd
+      - POSTGRES_PASSWORD=test
     ports:
       - "5432:5432"
